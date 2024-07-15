@@ -89,7 +89,6 @@
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Application\Internal\CommandServices\" />
     <Folder Include="Publishing\Application\Internal\QueryServices\" />
-    <Folder Include="Publishing\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Publishing\Interfaces\ACL\" />
     <Folder Include="Publishing\Interfaces\REST\Resources\" />
     <Folder Include="Publishing\Interfaces\REST\Transform\" />
