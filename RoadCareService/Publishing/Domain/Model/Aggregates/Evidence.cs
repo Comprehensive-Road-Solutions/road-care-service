@@ -1,4 +1,6 @@
-﻿namespace RoadCareService.Publishing.Domain.Model.Aggregates
+﻿using RoadCareService.Publishing.Domain.Model.Commands;
+
+namespace RoadCareService.Publishing.Domain.Model.Aggregates
 {
     public class Evidence
     {
@@ -17,6 +19,11 @@
         {
             this.PublicationsId = publicationsId;
             this.FileUrl = fileUrl;
+        }
+        public Evidence(CreateEvidenceCommand command)
+        {
+            this.PublicationsId = command.PublicationsId;
+            this.FileUrl = command.FileUrl;
         }
     }
 }
