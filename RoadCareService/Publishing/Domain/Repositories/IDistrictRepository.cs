@@ -3,5 +3,9 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Domain.Repositories
 {
-    public interface IDistrictRepository : IBaseRepository<District> { }
+    public interface IDistrictRepository : IBaseRepository<District>
+    {
+        Task<IEnumerable<District>?> FindByDepartmentsIdAsync
+            (int departmentsId);
+    }
 }
