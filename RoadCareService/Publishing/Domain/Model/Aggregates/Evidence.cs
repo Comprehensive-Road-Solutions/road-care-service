@@ -1,4 +1,4 @@
-﻿using RoadCareService.Publishing.Domain.Model.Commands;
+﻿using RoadCareService.Publishing.Domain.Model.Commands.Evidence;
 
 namespace RoadCareService.Publishing.Domain.Model.Aggregates
 {
