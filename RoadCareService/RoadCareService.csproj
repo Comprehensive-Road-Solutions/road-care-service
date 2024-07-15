@@ -89,6 +89,7 @@
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Application\Internal\CommandServices\" />
     <Folder Include="Publishing\Application\Internal\QueryServices\" />
+    <Folder Include="Publishing\Domain\Model\Queries\Evidence\" />
     <Folder Include="Publishing\Domain\Repositories\" />
     <Folder Include="Publishing\Domain\Services\" />
     <Folder Include="Publishing\Infrastructure\Persistence\Dapper\Repositories\" />
