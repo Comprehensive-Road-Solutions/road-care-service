@@ -7,5 +7,16 @@
         public string FileUrl { get; private set; } = null!;
 
         public virtual Publication Publications { get; } = null!;
+
+        public Evidence()
+        {
+            this.PublicationsId = 0;
+            this.FileUrl = string.Empty;
+        }
+        public Evidence(int publicationsId, string fileUrl)
+        {
+            this.PublicationsId = publicationsId;
+            this.FileUrl = fileUrl;
+        }
     }
 }
