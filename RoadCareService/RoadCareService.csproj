@@ -89,7 +89,6 @@
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Application\Internal\CommandServices\" />
     <Folder Include="Publishing\Application\Internal\QueryServices\" />
-    <Folder Include="Publishing\Domain\Model\Commands\" />
     <Folder Include="Publishing\Domain\Model\Queries\" />
     <Folder Include="Publishing\Domain\Repositories\" />
     <Folder Include="Publishing\Domain\Services\" />
