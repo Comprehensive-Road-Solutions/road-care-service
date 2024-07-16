@@ -5,10 +5,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class PublicationRepositoryEFC(RoadCareContext context) :
-        BaseRepository<Publication>(context), IPublicationRepository
+    public class EvidenceRepositoryEFC(RoadCareContext context) :
+        BaseRepository<Evidence>(context), IEvidenceRepository
     {
-        public Task<IEnumerable<Publication>?> FindByDepartmentsIdAndDistrictsIdAsync
-            (int departmentsId, int districtsId) => throw new NotImplementedException();
+        public Task<IEnumerable<Evidence>?> FindByPublicationsIdAsync
+            (int publicationsId) => throw new NotImplementedException();
     }
 }

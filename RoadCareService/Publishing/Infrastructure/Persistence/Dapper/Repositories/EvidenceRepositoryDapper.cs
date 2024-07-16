@@ -7,19 +7,18 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.Dapper.Repositories
 {
-    public class PublicationRepositoryDapper(RoadCareContext context, IDbConnection connection) :
-        BaseRepository<Publication>(context), IPublicationRepository
+    public class EvidenceRepositoryDapper(RoadCareContext context, IDbConnection connection) :
+        BaseRepository<Evidence>(context), IEvidenceRepository
     {
-        public async Task<IEnumerable<Publication>?> FindByDepartmentsIdAndDistrictsIdAsync
-            (int departmentsId, int districtsId)
+        public async Task<IEnumerable<Evidence>?> FindByPublicationsIdAsync
+            (int publicationsId)
         {
             var parameters = new DynamicParameters();
 
-            parameters.Add("@departments_id", departmentsId);
-            parameters.Add("@districts_id", districtsId);
+            parameters.Add("@publications_id", publicationsId);
 
-            var result = await connection.QueryAsync<Publication>
-                ("sp_search_publications_by_departments_id_and_districts_id",
+            var result = await connection.QueryAsync<Evidence>
+                ("sp_search_evidences_by_publications_id",
                 parameters, commandType: CommandType.StoredProcedure);
 
             return result;

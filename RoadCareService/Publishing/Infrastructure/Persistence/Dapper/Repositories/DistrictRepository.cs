@@ -14,7 +14,7 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.Dapper.Repositor
             parameters.Add("@departments_id", departmentsId);
 
             var result = await connection.QueryAsync<District>
-                ("sp_search_districts_by_department_id", parameters,
+                ("sp_search_districts_by_departments_id", parameters,
                 commandType: CommandType.StoredProcedure);
 
             return result;
