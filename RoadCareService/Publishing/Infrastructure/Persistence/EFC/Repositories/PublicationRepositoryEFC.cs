@@ -9,6 +9,7 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
         BaseRepository<Publication>(context), IPublicationRepository
     {
         public Task<IEnumerable<Publication>?> FindByDepartmentsIdAndDistrictsIdAsync
-            (int departmentsId, int districtsId) => throw new NotImplementedException();
+            (int departmentsId, int districtsId) => throw new NotSupportedException
+            ("This search is done by dapper!");
     }
 }
