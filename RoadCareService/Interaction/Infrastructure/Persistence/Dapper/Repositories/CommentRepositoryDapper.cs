@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Interaction.Infrastructure.Persistence.Dapper.Repositories
 {
-    public partial class CommentRepositoryDapper(IDbConnection connection) :
+    public class CommentRepositoryDapper(IDbConnection connection) :
         BaseRepository<Comment>(null), ICommentRepository
     {
         public async Task<IEnumerable<Comment>?> FindByPublicationsIdAsync
