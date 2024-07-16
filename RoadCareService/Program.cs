@@ -20,6 +20,7 @@ using RoadCareService.Publishing.Domain.Services.Publication;
 using RoadCareService.Publishing.Application.Internal.CommandServices;
 using RoadCareService.Publishing.Interfaces.ACL;
 using RoadCareService.Publishing.Interfaces.ACL.Services;
+using RoadCareService.Interaction.Infrastructure.Socket;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -152,6 +153,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+#region WebSocket Configuration
+
+var webSocketOptions = new WebSocketOptions()
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2),
+};
+
+app.UseWebSockets(webSocketOptions);
+
+var webSocketHandler = new WebSocketHandler();
+
+app.Map("/chat", webSocketHandler.HandleWebSocketAsync);
+
+#endregion
 
 app.UseHttpsRedirection();
 
