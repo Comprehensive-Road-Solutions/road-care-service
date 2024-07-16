@@ -8,6 +8,16 @@ using RoadCareService.IAM.Infrastructure.Token.JWT.Services;
 using RoadCareService.Shared.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
+using Microsoft.Data.SqlClient;
+using System.Data;
+using RoadCareService.Publishing.Domain.Repositories;
+using RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.Publishing.Domain.Services.Department;
+using RoadCareService.Publishing.Application.Internal.QueryServices;
+using RoadCareService.Publishing.Infrastructure.Persistence.Dapper.Repositories;
+using RoadCareService.Publishing.Domain.Services.District;
+using RoadCareService.Publishing.Domain.Services.Publication;
+using RoadCareService.Publishing.Application.Internal.CommandServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,9 +106,15 @@ builder.Services.AddAuthorization();
 
 #region DataBase Configuration
 
+builder.Services.AddTransient<IDbConnection>(db =>
+
+    new SqlConnection(builder.Configuration
+    .GetConnectionString("RoadCare"))
+);
 builder.Services.AddDbContext<RoadCareContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("RoadCare"));
+    options.UseSqlServer(builder.Configuration
+        .GetConnectionString("RoadCare"));
 });
 
 #endregion
@@ -106,6 +122,18 @@ builder.Services.AddDbContext<RoadCareContext>(options =>
 #region Dependencies Injections
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentQueryService, DepartmentQueryService>();
+
+builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
+builder.Services.AddScoped<IDistrictQueryService, DistrictQueryService>();
+
+builder.Services.AddScoped<IPublicationRepository, PublicationRepositoryDapper>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepositoryEFC>();
+builder.Services.AddScoped<IPublicationRepository, PublicationRepositoryEFC>();
+builder.Services.AddScoped<IPublicationCommandService, PublicationCommandService>();
+builder.Services.AddScoped<IPublicationQueryService, PublicationQueryService>();
 
 #endregion
 
