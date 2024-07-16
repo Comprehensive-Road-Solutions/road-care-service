@@ -88,7 +88,6 @@
     <Folder Include="Monitoring\Interfaces\REST\Resources\" />
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Interfaces\ACL\" />
-    <Folder Include="Publishing\Interfaces\REST\Transform\" />
   </ItemGroup>
 
 </Project>
