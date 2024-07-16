@@ -64,7 +64,6 @@
     <Folder Include="IAM\Interfaces\REST\Resources\" />
     <Folder Include="Interaction\Application\Internal\CommandServices\" />
     <Folder Include="Interaction\Application\Internal\QueryServices\" />
-    <Folder Include="Interaction\Domain\Model\ValueObjects\" />
     <Folder Include="Interaction\Domain\Model\Queries\" />
     <Folder Include="Interaction\Domain\Services\" />
     <Folder Include="Interaction\Domain\Repositories\" />

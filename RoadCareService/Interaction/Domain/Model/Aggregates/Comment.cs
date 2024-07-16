@@ -1,5 +1,6 @@
 ﻿using RoadCareService.IAM.Domain.Model.Aggregates;
 using RoadCareService.Interaction.Domain.Model.Commands;
+using RoadCareService.Interaction.Domain.Model.ValueObjects;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
 
 namespace RoadCareService.Interaction.Domain.Model.Aggregates
@@ -23,12 +24,14 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.ShippingDate = DateTime.Now;
             this.Opinion = string.Empty;
         }
-        public Comment(int publicationsId, int citizensId, string opinion)
+        public Comment(int publicationsId, int citizensId,
+            string opinion, ECommentState commentState)
         {
             this.PublicationsId = publicationsId;
             this.CitizensId = citizensId;
             this.ShippingDate = DateTime.Now;
             this.Opinion = opinion;
+            this.State = commentState.ToString();
         }
         public Comment(AddCommentToPublicationCommand command)
         {
@@ -36,6 +39,7 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.CitizensId = command.CitizensId;
             this.ShippingDate = DateTime.Now;
             this.Opinion = command.Opinion;
+            this.State = command.CommentState.ToString();
         }
     }
 }
