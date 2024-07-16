@@ -3,10 +3,10 @@ using RoadCareService.Publishing.Interfaces.REST.Resources.Evidence;
 
 namespace RoadCareService.Publishing.Interfaces.REST.Transform.Evidence
 {
-    public class CreateEvidenceCommandFromResourceAssembler
+    public class AddEvidenceToPublicationCommandFromResourceAssembler
     {
-        public static CreateEvidenceCommand ToCommandFromResource
-            (CreateEvidenceResource resource) =>
+        public static AddEvidenceToPublicationCommand ToCommandFromResource
+            (AddEvidenceToPublicationResource resource) =>
             new(resource.PublicationsId, resource.FileUrl);
     }
 }

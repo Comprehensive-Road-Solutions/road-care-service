@@ -13,7 +13,8 @@ namespace RoadCareService.Publishing.Application.Internal.CommandServices
         private IEvidenceRepository EvidenceRepository =
             new EvidenceRepositoryEFC(context);
 
-        public async Task<bool> Handle(CreateEvidenceCommand command)
+        public async Task<bool> Handle
+            (AddEvidenceToPublicationCommand command)
         {
             try
             {

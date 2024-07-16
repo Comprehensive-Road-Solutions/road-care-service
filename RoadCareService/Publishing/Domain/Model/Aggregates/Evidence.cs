@@ -20,7 +20,7 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.PublicationsId = publicationsId;
             this.FileUrl = fileUrl;
         }
-        public Evidence(CreateEvidenceCommand command)
+        public Evidence(AddEvidenceToPublicationCommand command)
         {
             this.PublicationsId = command.PublicationsId;
             this.FileUrl = command.FileUrl;

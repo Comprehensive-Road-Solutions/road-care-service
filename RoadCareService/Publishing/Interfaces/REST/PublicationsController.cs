@@ -4,6 +4,10 @@ using RoadCareService.Publishing.Domain.Model.Queries.Publication;
 using RoadCareService.Publishing.Domain.Services.Publication;
 using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
 using RoadCareService.Publishing.Interfaces.REST.Transform.Publication;
+using RoadCareService.Publishing.Domain.Services.Evidence;
+using RoadCareService.Publishing.Interfaces.REST.Resources.Evidence;
+using RoadCareService.Publishing.Interfaces.REST.Transform.Evidence;
+using RoadCareService.Publishing.Domain.Model.Queries.Evidence;
 
 namespace RoadCareService.Publishing.Interfaces.REST
 {
@@ -11,21 +15,23 @@ namespace RoadCareService.Publishing.Interfaces.REST
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
     public class PublicationsController(IPublicationCommandService publicationCommandService,
-        IPublicationQueryService publicationQueryService) : ControllerBase
+        IPublicationQueryService publicationQueryService,
+        IEvidenceCommandService evidenceCommandService,
+        IEvidenceQueryService evidenceQueryService) : ControllerBase
     {
         [Route("create-publication")]
         [HttpPost]
         public async Task<IActionResult> CreatePublication
             ([FromBody] CreatePublicationResource resource)
         {
-            var publication = await publicationCommandService
+            var result = await publicationCommandService
                 .Handle(CreatePublicationCommandFromResourceAssembler
                 .ToCommandFromResource(resource));
 
-            if (publication is false)
+            if (result is false)
                 return BadRequest();
 
-            return Ok(publication);
+            return Ok(result);
         }
 
         [Route("publications")]
@@ -62,6 +68,40 @@ namespace RoadCareService.Publishing.Interfaces.REST
                 .ToResourceFromEntity);
 
             return Ok(publicationsResource);
+        }
+
+        [Route("add-evidence-to-publication")]
+        [HttpPost]
+        public async Task<IActionResult> AddEvidenceToPublication
+            ([FromBody] AddEvidenceToPublicationResource resource)
+        {
+            var result = await evidenceCommandService
+                .Handle(AddEvidenceToPublicationCommandFromResourceAssembler
+                .ToCommandFromResource(resource));
+
+            if (result is false)
+                return BadRequest();
+
+            return Ok(result);
+        }
+
+        [Route("evidences-by-publication")]
+        [HttpGet]
+        public async Task<IActionResult> GetEvidencesByPublicationsId
+            ([FromQuery] int publicationsId)
+        {
+            var evidences = await evidenceQueryService
+                .Handle(new GetEvidencesByPublicationsIdQuery
+                (publicationsId));
+
+            if (evidences is null)
+                return BadRequest();
+
+            var evidencesResource = evidences
+                .Select(EvidenceResourceFromEntityAssembler
+                .ToResourceFromEntity);
+
+            return Ok(evidencesResource);
         }
     }
 }
