@@ -18,6 +18,8 @@ using RoadCareService.Publishing.Infrastructure.Persistence.Dapper.Repositories;
 using RoadCareService.Publishing.Domain.Services.District;
 using RoadCareService.Publishing.Domain.Services.Publication;
 using RoadCareService.Publishing.Application.Internal.CommandServices;
+using RoadCareService.Publishing.Interfaces.ACL;
+using RoadCareService.Publishing.Interfaces.ACL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -134,6 +136,8 @@ builder.Services.AddScoped<IPublicationRepository, PublicationRepositoryEFC>();
 builder.Services.AddScoped<IPublicationRepository, PublicationRepositoryEFC>();
 builder.Services.AddScoped<IPublicationCommandService, PublicationCommandService>();
 builder.Services.AddScoped<IPublicationQueryService, PublicationQueryService>();
+
+builder.Services.AddScoped<IPublishingContextFacade, PublishingContextFacade>();
 
 #endregion
 
