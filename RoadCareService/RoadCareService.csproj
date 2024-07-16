@@ -62,9 +62,7 @@
     <Folder Include="IAM\Interfaces\ACL\" />
     <Folder Include="IAM\Interfaces\REST\Transform\" />
     <Folder Include="IAM\Interfaces\REST\Resources\" />
-    <Folder Include="Interaction\Interfaces\ACL\" />
     <Folder Include="Interaction\Interfaces\REST\Transform\" />
-    <Folder Include="Interaction\Interfaces\REST\Resources\" />
     <Folder Include="Monitoring\Application\Internal\CommandServices\" />
     <Folder Include="Monitoring\Application\Internal\QueryServices\" />
     <Folder Include="Monitoring\Domain\Model\Commands\" />
