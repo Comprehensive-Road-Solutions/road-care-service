@@ -2,8 +2,8 @@
 using System.Net.Mime;
 using RoadCareService.Publishing.Domain.Model.Queries.Publication;
 using RoadCareService.Publishing.Domain.Services.Publication;
-using RoadCareService.Publishing.Interfaces.REST.Resources;
-using RoadCareService.Publishing.Interfaces.REST.Transform;
+using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
+using RoadCareService.Publishing.Interfaces.REST.Transform.Publication;
 
 namespace RoadCareService.Publishing.Interfaces.REST
 {

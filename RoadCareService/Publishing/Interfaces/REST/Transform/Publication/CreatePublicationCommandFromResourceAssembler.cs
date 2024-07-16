@@ -1,8 +1,8 @@
 ﻿using RoadCareService.Publishing.Domain.Model.Commands.Publication;
 using RoadCareService.Publishing.Domain.Model.ValueObjects;
-using RoadCareService.Publishing.Interfaces.REST.Resources;
+using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
 
-namespace RoadCareService.Publishing.Interfaces.REST.Transform
+namespace RoadCareService.Publishing.Interfaces.REST.Transform.Publication
 {
     public class CreatePublicationCommandFromResourceAssembler
     {
