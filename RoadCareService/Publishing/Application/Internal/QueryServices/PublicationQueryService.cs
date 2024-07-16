@@ -22,6 +22,14 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
 
             return await PublicationRepository.ListAsync();
         }
+        public async Task<Publication?> Handle
+            (GetPublicationByIdQuery query)
+        {
+            PublicationRepository =
+                new PublicationRepositoryEFC(context);
+
+            return await PublicationRepository.FindByIdAsync(query.Id);
+        }
         public async Task<IEnumerable<Publication>?> Handle
             (GetPublicationsByDepartmentsIdAndDistrictsIdQuery query)
         {
