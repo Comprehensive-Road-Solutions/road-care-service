@@ -6,7 +6,7 @@ namespace RoadCareService.Publishing.Domain.Services.Department
     {
         Task<IEnumerable<Model.Entities.Department>> Handle
             (GetAllDepartmentsQuery query);
-        Task<IEnumerable<Model.Entities.Department>> Handle
-            (GetDepartmentsByIdQuery query);
+        Task<Model.Entities.Department?> Handle
+            (GetDepartmentByIdQuery query);
     }
 }

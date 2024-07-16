@@ -1,4 +1,4 @@
 ﻿namespace RoadCareService.Publishing.Domain.Model.Queries.District
 {
-    public record GetDistrictsByDepartmentsIdQuery(int DistrictsId);
+    public record GetDistrictsByDepartmentsIdQuery(int DepartmentsId);
 }
