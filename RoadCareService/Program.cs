@@ -21,6 +21,12 @@ using RoadCareService.Publishing.Application.Internal.CommandServices;
 using RoadCareService.Publishing.Interfaces.ACL;
 using RoadCareService.Publishing.Interfaces.ACL.Services;
 using RoadCareService.Interaction.Infrastructure.Socket;
+using RoadCareService.Interaction.Domain.Repositories;
+using RoadCareService.Interaction.Infrastructure.Persistence.Dapper.Repositories;
+using RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.Interaction.Domain.Services;
+using RoadCareService.Interaction.Application.Internal.CommandServices;
+using RoadCareService.Interaction.Application.Internal.QueryServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -124,7 +130,13 @@ builder.Services.AddDbContext<RoadCareContext>(options =>
 
 #region Dependencies Injections
 
+#region Shared Context
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+#endregion
+
+#region Publishing Context
 
 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IDepartmentQueryService, DepartmentQueryService>();
@@ -139,6 +151,17 @@ builder.Services.AddScoped<IPublicationCommandService, PublicationCommandService
 builder.Services.AddScoped<IPublicationQueryService, PublicationQueryService>();
 
 builder.Services.AddScoped<IPublishingContextFacade, PublishingContextFacade>();
+
+#endregion
+
+#region Interaction Context
+
+builder.Services.AddScoped<ICommentRepository, CommentRepositoryDapper>();
+builder.Services.AddScoped<ICommentRepository, CommentRepositoryEFC>();
+builder.Services.AddScoped<ICommentCommandService, CommentCommandService>();
+builder.Services.AddScoped<ICommentQueryService, CommentQueryService>();
+
+#endregion
 
 #endregion
 
