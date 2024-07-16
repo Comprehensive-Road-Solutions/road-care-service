@@ -3,6 +3,7 @@ using RoadCareService.Interaction.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Commands.Publication;
 using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Publishing.Domain.Model.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RoadCareService.Publishing.Domain.Model.Aggregates
 {
@@ -14,8 +15,9 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
         public int DistrictsId { get; private set; }
         public string Ubication { get; private set; } = null!;
         public string Description { get; private set; } = null!;
-        public string State => PublicationState.ToString();
+        public string State { get; private set; } = null!;
 
+        [NotMapped]
         public EPublicationState PublicationState { get; set; }
 
         public virtual Citizen Citizens { get; } = null!;
@@ -41,7 +43,7 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.DistrictsId = districtsId;
             this.Ubication = ubication;
             this.Description = description;
-            this.PublicationState = publicationState;
+            this.State = publicationState.ToString();
         }
         public Publication(CreatePublicationCommand command)
         {
@@ -50,7 +52,7 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.DistrictsId = command.DistrictsId;
             this.Ubication = command.Ubication;
             this.Description = command.Description;
-            this.PublicationState = command.PublicationState;
+            this.State = command.PublicationState.ToString();
         }
     }
 }
