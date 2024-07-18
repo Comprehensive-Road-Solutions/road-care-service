@@ -4,7 +4,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Monitoring.Domain.Repositories
 {
-    public interface IDamagedInfrastructure : IBaseRepository<DamagedInfrastructure>
+    public interface IDamagedInfrastructureRepository : IBaseRepository<DamagedInfrastructure>
     {
         Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
             (int departmentsId, int districtsId);
