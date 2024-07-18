@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using RoadCareService.Monitoring.Domain.Model.Commands;
-using RoadCareService.Monitoring.Domain.Model.ValueObjects;
+using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Publishing.Domain.Model.Entities;
 
 namespace RoadCareService.Monitoring.Domain.Model.Aggregates

@@ -1,4 +1,4 @@
-﻿namespace RoadCareService.Monitoring.Domain.Model.ValueObjects
+﻿namespace RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure
 {
     public enum EDamagedInfrastructureState
     {

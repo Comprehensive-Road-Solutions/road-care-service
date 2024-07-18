@@ -1,4 +1,4 @@
-﻿using RoadCareService.Monitoring.Domain.Model.ValueObjects;
+﻿using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 
 namespace RoadCareService.Monitoring.Domain.Model.Commands
 {
