@@ -2,6 +2,6 @@
 
 namespace RoadCareService.Monitoring.Domain.Model.Queries.DamagedInfrastructure
 {
-    public record GetDamagedInfrastructureByStateQuery
+    public record GetDamagedInfrastructuresByStateQuery
         (EDamagedInfrastructureState DamagedInfrastructureState);
 }
