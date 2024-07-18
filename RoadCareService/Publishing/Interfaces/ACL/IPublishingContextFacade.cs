@@ -1,8 +1,10 @@
-﻿namespace RoadCareService.Publishing.Interfaces.ACL
+﻿using RoadCareService.Publishing.Domain.Model.Entities;
+
+namespace RoadCareService.Publishing.Interfaces.ACL
 {
     public interface IPublishingContextFacade
     {
-        Task<bool> ExistsDistrictByDepartmentsId(int departmentsId);
+        Task<IEnumerable<District>?> ExistsDistrictByDepartmentsId(int departmentsId);
         Task<bool> ExistsPublicationById(int id);
     }
 }

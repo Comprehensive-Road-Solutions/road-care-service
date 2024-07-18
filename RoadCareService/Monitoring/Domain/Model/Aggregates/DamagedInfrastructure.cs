@@ -1,31 +1,37 @@
 ﻿using System.Text.RegularExpressions;
 using RoadCareService.Monitoring.Domain.Model.Commands;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects;
+using RoadCareService.Publishing.Domain.Model.Entities;
 
 namespace RoadCareService.Monitoring.Domain.Model.Aggregates
 {
     public class DamagedInfrastructure
     {
         public int Id { get; }
+        public int DistrictsId { get; private set; }
         public DateTime RegistrationDate { get; private set; }
         public string Description { get; private set; } = null!;
         public string Address { get; private set; } = null!;
         public DateTime? WorkDate { get; private set; }
         public string State { get; private set; } = null!;
 
+        public virtual District Districts { get; } = null!;
+
         public virtual ICollection<Staff> Staff { get; } = [];
 
         public DamagedInfrastructure()
         {
+            this.DistrictsId = 0;
             this.RegistrationDate = DateTime.Now;
             this.Description = string.Empty;
             this.Address = string.Empty;
             this.WorkDate = null;
             this.State = string.Empty;
         }
-        public DamagedInfrastructure(string description, string address,
-            EDamagedInfrastructureState damagedInfrastructureState)
+        public DamagedInfrastructure(int districtsId, string description,
+            string address, EDamagedInfrastructureState damagedInfrastructureState)
         {
+            this.DistrictsId = districtsId;
             this.Description = description;
             this.Address = address;
             this.State = Regex.Replace
@@ -36,6 +42,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         public DamagedInfrastructure
             (RegisterDamagedInfrastructureCommand command)
         {
+            this.DistrictsId = command.DistrictsId;
             this.Description = command.Description;
             this.Address = command.Address;
             this.State = Regex.Replace(command

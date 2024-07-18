@@ -1,5 +1,6 @@
 ﻿using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.IAM.Domain.Model.Aggregates;
+using RoadCareService.Monitoring.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
 
 namespace RoadCareService.Publishing.Domain.Model.Entities
@@ -12,6 +13,7 @@ namespace RoadCareService.Publishing.Domain.Model.Entities
 
         public virtual Department Departments { get; } = null!;
 
+        public virtual ICollection<DamagedInfrastructure> DamagedInfrastructures { get; } = [];
         public virtual ICollection<GovernmentEntity> GovernmentsEntities { get; } = [];
         public virtual ICollection<Publication> Publications { get; } = [];
         public virtual ICollection<Worker> Workers { get; } = [];

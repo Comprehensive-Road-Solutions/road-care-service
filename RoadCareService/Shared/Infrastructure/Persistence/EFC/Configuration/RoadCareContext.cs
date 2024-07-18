@@ -147,6 +147,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("description");
+                entity.Property(e => e.DistrictsId).HasColumnName("districts_id");
                 entity.Property(e => e.RegistrationDate)
                     .HasColumnType("datetime")
                     .HasColumnName("registration_date");
@@ -157,6 +158,11 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                 entity.Property(e => e.WorkDate)
                     .HasColumnType("datetime")
                     .HasColumnName("work_date");
+
+                entity.HasOne(d => d.Districts).WithMany(p => p.DamagedInfrastructures)
+                    .HasForeignKey(d => d.DistrictsId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_damaged_infrastructures_districts_id");
             });
 
             modelBuilder.Entity<Department>(entity =>

@@ -64,7 +64,6 @@
     <Folder Include="IAM\Interfaces\REST\Resources\" />
     <Folder Include="Monitoring\Application\Internal\CommandServices\" />
     <Folder Include="Monitoring\Application\Internal\QueryServices\" />
-    <Folder Include="Monitoring\Domain\Model\Queries\" />
     <Folder Include="Monitoring\Domain\Repositories\" />
     <Folder Include="Monitoring\Domain\Services\" />
     <Folder Include="Monitoring\Infrastructure\Persistence\Dapper\Repositories\" />
