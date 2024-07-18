@@ -6,9 +6,9 @@ namespace RoadCareService.Monitoring.Domain.Repositories
 {
     public interface IDamagedInfrastructure : IBaseRepository<DamagedInfrastructure>
     {
-        Task<IEnumerable<DamagedInfrastructure>> FindByDepartmentsIdAndDistrictsIdAsync
+        Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
             (int departmentsId, int districtsId);
-        Task<IEnumerable<DamagedInfrastructure>> FindByStateAsync
+        Task<IEnumerable<DamagedInfrastructure>?> FindByStateAsync
             (EDamagedInfrastructureState damagedInfrastructureState);
     }
 }

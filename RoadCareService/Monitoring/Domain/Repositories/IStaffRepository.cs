@@ -6,7 +6,7 @@ namespace RoadCareService.Monitoring.Domain.Repositories
 {
     public interface IStaffRepository : IBaseRepository<Staff>
     {
-        Task<IEnumerable<Staff>> FindByStateAsync(EStaffState staffState);
-        Task<IEnumerable<Staff>> FindByWorkersIdAsync(int workersId);
+        Task<IEnumerable<Staff>?> FindByStateAsync(EStaffState staffState);
+        Task<IEnumerable<Staff>?> FindByWorkersIdAsync(int workersId);
     }
 }
