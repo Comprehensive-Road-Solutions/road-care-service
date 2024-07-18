@@ -2,5 +2,5 @@
 
 namespace RoadCareService.Monitoring.Domain.Model.Commands.Staff
 {
-    public record UpdateStaffStateCommand(int WorkersId, EStaffState StaffState);
+    public record UpdateStaffStateCommand(int Id, int WorkersId, EStaffState StaffState);
 }

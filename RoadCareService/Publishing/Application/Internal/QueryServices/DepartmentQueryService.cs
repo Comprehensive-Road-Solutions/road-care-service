@@ -5,8 +5,8 @@ using RoadCareService.Publishing.Domain.Services.Department;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class DepartmentQueryService(IDepartmentRepository departmentRepository)
-        : IDepartmentQueryService
+    public class DepartmentQueryService(IDepartmentRepository departmentRepository) :
+        IDepartmentQueryService
     {
 
         public async Task<IEnumerable<Department>?> Handle

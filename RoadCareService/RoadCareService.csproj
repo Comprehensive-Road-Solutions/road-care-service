@@ -62,11 +62,12 @@
     <Folder Include="IAM\Interfaces\ACL\" />
     <Folder Include="IAM\Interfaces\REST\Transform\" />
     <Folder Include="IAM\Interfaces\REST\Resources\" />
-    <Folder Include="Monitoring\Application\Internal\CommandServices\" />
-    <Folder Include="Monitoring\Application\Internal\QueryServices\" />
+    <Folder Include="Interaction\Infrastructure\Persistence\Dapper\Repositories\" />
+    <Folder Include="Monitoring\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Monitoring\Interfaces\ACL\" />
     <Folder Include="Monitoring\Interfaces\REST\Resources\" />
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
+    <Folder Include="Publishing\Infrastructure\Persistence\Dapper\Repositories\" />
   </ItemGroup>
 
 </Project>

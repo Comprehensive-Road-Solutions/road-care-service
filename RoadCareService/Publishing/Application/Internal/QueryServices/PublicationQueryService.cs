@@ -1,44 +1,22 @@
-﻿using System.Data;
-using RoadCareService.Publishing.Domain.Model.Aggregates;
+﻿using RoadCareService.Publishing.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Queries.Publication;
 using RoadCareService.Publishing.Domain.Repositories;
 using RoadCareService.Publishing.Domain.Services.Publication;
-using RoadCareService.Publishing.Infrastructure.Persistence.Dapper.Repositories;
-using RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories;
-using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class PublicationQueryService(RoadCareContext context,
-        IDbConnection connection) : IPublicationQueryService
+    public class PublicationQueryService(IPublicationRepository publicationRepository) :
+        IPublicationQueryService
     {
-        private IPublicationRepository? PublicationRepository;
-
         public async Task<IEnumerable<Publication>?> Handle
-            (GetAllPublicationsQuery query)
-        {
-            PublicationRepository =
-                new PublicationRepositoryEFC(context);
-
-            return await PublicationRepository.ListAsync();
-        }
+            (GetAllPublicationsQuery query) =>
+            await publicationRepository.ListAsync();
         public async Task<Publication?> Handle
-            (GetPublicationByIdQuery query)
-        {
-            PublicationRepository =
-                new PublicationRepositoryEFC(context);
-
-            return await PublicationRepository.FindByIdAsync(query.Id);
-        }
+            (GetPublicationByIdQuery query) =>
+            await publicationRepository.FindByIdAsync(query.Id);
         public async Task<IEnumerable<Publication>?> Handle
-            (GetPublicationsByDepartmentsIdAndDistrictsIdQuery query)
-        {
-            PublicationRepository =
-                new PublicationRepositoryDapper(context, connection);
-
-            return await PublicationRepository
-                .FindByDepartmentsIdAndDistrictsIdAsync
-                (query.DepartmentsId, query.DistrictsId);
-        }
+            (GetPublicationsByDepartmentsIdAndDistrictsIdQuery query) =>
+            await publicationRepository.FindByDepartmentsIdAndDistrictsIdAsync
+            (query.DepartmentsId, query.DistrictsId);
     }
 }
