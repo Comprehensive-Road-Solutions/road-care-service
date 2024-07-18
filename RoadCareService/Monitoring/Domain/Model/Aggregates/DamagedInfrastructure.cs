@@ -1,4 +1,8 @@
-﻿namespace RoadCareService.Monitoring.Domain.Model.Aggregates
+﻿using System.Text.RegularExpressions;
+using RoadCareService.Monitoring.Domain.Model.Commands;
+using RoadCareService.Monitoring.Domain.Model.ValueObjects;
+
+namespace RoadCareService.Monitoring.Domain.Model.Aggregates
 {
     public class DamagedInfrastructure
     {
@@ -10,5 +14,34 @@
         public string State { get; private set; } = null!;
 
         public virtual ICollection<Staff> Staff { get; } = [];
+
+        public DamagedInfrastructure()
+        {
+            this.RegistrationDate = DateTime.Now;
+            this.Description = string.Empty;
+            this.Address = string.Empty;
+            this.WorkDate = null;
+            this.State = string.Empty;
+        }
+        public DamagedInfrastructure(string description, string address,
+            EDamagedInfrastructureState damagedInfrastructureState)
+        {
+            this.Description = description;
+            this.Address = address;
+            this.State = Regex.Replace
+                (damagedInfrastructureState
+                .ToString(), "([A-Z])", " $1")
+                .Trim();
+        }
+        public DamagedInfrastructure
+            (RegisterDamagedInfrastructureCommand command)
+        {
+            this.Description = command.Description;
+            this.Address = command.Address;
+            this.State = Regex.Replace(command
+                .DamagedInfrastructureState
+                .ToString(), "([A-Z])", " $1")
+                .Trim();
+        }
     }
 }
