@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using RoadCareService.Monitoring.Domain.Model.Commands;
+using RoadCareService.Monitoring.Domain.Model.Commands.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Publishing.Domain.Model.Entities;
 
@@ -7,7 +7,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
 {
     public class DamagedInfrastructure
     {
-        public int Id { get; }
+        public int Id { get; private set; }
         public int DistrictsId { get; private set; }
         public DateTime RegistrationDate { get; private set; }
         public string Description { get; private set; } = null!;
@@ -45,6 +45,15 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             this.DistrictsId = command.DistrictsId;
             this.Description = command.Description;
             this.Address = command.Address;
+            this.State = Regex.Replace(command
+                .DamagedInfrastructureState
+                .ToString(), "([A-Z])", " $1")
+                .Trim();
+        }
+        public DamagedInfrastructure
+            (UpdateDamagedInfrastructureStateCommand command)
+        {
+            this.Id = command.Id;
             this.State = Regex.Replace(command
                 .DamagedInfrastructureState
                 .ToString(), "([A-Z])", " $1")
