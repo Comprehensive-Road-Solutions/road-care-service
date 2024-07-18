@@ -27,6 +27,7 @@ using RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositories;
 using RoadCareService.Interaction.Domain.Services;
 using RoadCareService.Interaction.Application.Internal.CommandServices;
 using RoadCareService.Interaction.Application.Internal.QueryServices;
+using RoadCareService.Interaction.Application.Internal.OutboundServices.ACL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -160,6 +161,8 @@ builder.Services.AddScoped<ICommentRepository, CommentRepositoryDapper>();
 builder.Services.AddScoped<ICommentRepository, CommentRepositoryEFC>();
 builder.Services.AddScoped<ICommentCommandService, CommentCommandService>();
 builder.Services.AddScoped<ICommentQueryService, CommentQueryService>();
+
+builder.Services.AddTransient<ExternalPublishingService>();
 
 #endregion
 
