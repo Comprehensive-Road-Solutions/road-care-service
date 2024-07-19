@@ -1,4 +1,6 @@
 ﻿using RoadCareService.Assignment.Domain.Model.Aggregates;
+using RoadCareService.Assignment.Domain.Model.Commands.WorkerArea;
+using RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerArea;
 
 namespace RoadCareService.Assignment.Domain.Model.Entities
 {
@@ -12,5 +14,30 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
         public virtual GovernmentEntity GovernmentsEntities { get; } = null!;
 
         public virtual ICollection<Role> Roles { get; } = [];
+
+        public WorkerArea()
+        {
+            this.GovernmentsEntitiesId = 0;
+            this.Name = string.Empty;
+            this.State = string.Empty;
+        }
+        public WorkerArea(int governmentsEntitiesId, string name,
+            EWorkerAreaState workerAreaState)
+        {
+            this.GovernmentsEntitiesId = governmentsEntitiesId;
+            this.Name = name;
+            this.State = workerAreaState.ToString();
+        }
+        public WorkerArea(CreateWorkerAreaCommand command)
+        {
+            this.GovernmentsEntitiesId = command.GovernmentsEntitiesId;
+            this.Name = command.Name;
+            this.State = command.WorkerAreaState.ToString();
+        }
+        public WorkerArea(UpdateWorkerAreaStateCommand command)
+        {
+            this.Id = Id;
+            this.State = command.WorkerAreaState.ToString();
+        }
     }
 }
