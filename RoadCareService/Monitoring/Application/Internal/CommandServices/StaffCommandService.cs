@@ -26,9 +26,11 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
             {
                 var result = await staffRepository.FindByIdAsync(command.Id);
 
-                staffRepository.Update(new(command));
+                if (result is null)
+                    return false;
 
-                await unitOfWork.CompleteAsync();
+                await staffRepository.UpdateStaffStateAsync
+                    (command.Id, command.StaffState);
 
                 return true;
             }

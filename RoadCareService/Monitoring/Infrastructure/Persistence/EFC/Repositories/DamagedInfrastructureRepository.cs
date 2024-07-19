@@ -12,6 +12,20 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
     public class DamagedInfrastructureRepository(RoadCareContext context) :
         BaseRepository<DamagedInfrastructure>(context), IDamagedInfrastructureRepository
     {
+        public async Task<bool> UpdateDamagedInfrastructureStateAsync
+            (int id, EDamagedInfrastructureState damagedInfrastructureState)
+        {
+            try
+            {
+                await Context.Set<DamagedInfrastructure>().Where(d => d.Id == id)
+                .ExecuteUpdateAsync(d => d
+                .SetProperty(u => u.State, Regex.Replace(damagedInfrastructureState
+                .ToString(), "([A-Z])", " $1").Trim()));
+
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
         public async Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
             (int departmentsId, int districtsId)
         {

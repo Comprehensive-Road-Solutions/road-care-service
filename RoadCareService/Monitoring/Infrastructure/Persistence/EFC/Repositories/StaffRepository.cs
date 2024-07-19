@@ -10,6 +10,19 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
     public class StaffRepository(RoadCareContext context) :
         BaseRepository<Staff>(context), IStaffRepository
     {
+        public async Task<bool> UpdateStaffStateAsync
+            (int id, EStaffState staffState)
+        {
+            try
+            {
+                await Context.Set<Staff>().Where(s => s.Id == id)
+                    .ExecuteUpdateAsync(s => s
+                    .SetProperty(u => u.State, staffState.ToString()));
+
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
         public async Task<IEnumerable<Staff>?> FindByStateAsync
             (EStaffState staffState) =>
             await Context.Set<Staff>()
