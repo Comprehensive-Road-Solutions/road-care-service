@@ -14,7 +14,7 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
         public DateOnly FinalDate { get; private set; }
         public string State { get; private set; } = null!;
 
-        public virtual Role Roles { get; } = null!;
+        public virtual WorkerRole Roles { get; } = null!;
         public virtual Worker Workers { get; } = null!;
 
         public AssignmentWorker()

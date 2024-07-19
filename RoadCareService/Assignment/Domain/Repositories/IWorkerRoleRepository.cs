@@ -3,9 +3,9 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Assignment.Domain.Repositories
 {
-    public interface IRoleRepository : IBaseRepository<Role>
+    public interface IWorkerRoleRepository : IBaseRepository<WorkerRole>
     {
-        Task<IEnumerable<Role>> FindByGovernmentsEntitiesIdAndWorkersIdAsync
+        Task<IEnumerable<WorkerRole>> FindByGovernmentsEntitiesIdAndWorkersIdAsync
             (int governmentsEntitiesId, int workersId);
     }
 }

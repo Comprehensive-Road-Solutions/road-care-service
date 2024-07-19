@@ -283,11 +283,11 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasConstraintName("fk_publications_districts_id");
             });
 
-            modelBuilder.Entity<Role>(entity =>
+            modelBuilder.Entity<WorkerRole>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("pk_role_id");
 
-                entity.ToTable("roles");
+                entity.ToTable("workers_roles");
 
                 entity.Property(e => e.Id).HasColumnName("id");
                 entity.Property(e => e.Name)

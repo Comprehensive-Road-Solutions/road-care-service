@@ -13,7 +13,7 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
 
         public virtual GovernmentEntity GovernmentsEntities { get; } = null!;
 
-        public virtual ICollection<Role> Roles { get; } = [];
+        public virtual ICollection<WorkerRole> Roles { get; } = [];
 
         public WorkerArea()
         {
