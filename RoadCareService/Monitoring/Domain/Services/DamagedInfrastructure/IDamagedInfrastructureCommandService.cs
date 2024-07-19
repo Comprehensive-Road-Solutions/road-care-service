@@ -8,5 +8,7 @@ namespace RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure
             (RegisterDamagedInfrastructureCommand command);
         Task<bool> Handle
             (UpdateDamagedInfrastructureStateCommand command);
+        Task<bool> Handle
+            (AssignWorkDateToDamagedInfrastructureCommand command);
     }
 }

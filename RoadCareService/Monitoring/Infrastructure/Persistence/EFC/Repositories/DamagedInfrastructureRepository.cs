@@ -26,6 +26,19 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             }
             catch (Exception) { return false; }
         }
+        public async Task<bool> AssignWorkDateToDamagedInfrastructureAsync
+            (int id, DateTime workDate)
+        {
+            try
+            {
+                await Context.Set<DamagedInfrastructure>().Where(d => d.Id == id)
+                    .ExecuteUpdateAsync(d => d
+                    .SetProperty(u => u.WorkDate, workDate));
+
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
         public async Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
             (int departmentsId, int districtsId)
         {

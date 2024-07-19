@@ -9,7 +9,8 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
         (IDamagedInfrastructureRepository damagedInfrastructureRepository,
         IUnitOfWork unitOfWork) : IDamagedInfrastructureCommandService
     {
-        public async Task<bool> Handle(RegisterDamagedInfrastructureCommand command)
+        public async Task<bool> Handle
+            (RegisterDamagedInfrastructureCommand command)
         {
             try
             {
@@ -21,7 +22,8 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
             }
             catch (Exception) { return false; }
         }
-        public async Task<bool> Handle(UpdateDamagedInfrastructureStateCommand command)
+        public async Task<bool> Handle
+            (UpdateDamagedInfrastructureStateCommand command)
         {
             try
             {
@@ -34,6 +36,25 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
                 await damagedInfrastructureRepository
                      .UpdateDamagedInfrastructureStateAsync
                      (command.Id, command.DamagedInfrastructureState);
+
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+        public async Task<bool> Handle
+            (AssignWorkDateToDamagedInfrastructureCommand command)
+        {
+            try
+            {
+                var result = await damagedInfrastructureRepository
+                    .FindByIdAsync(command.Id);
+
+                if (result is null)
+                    return false;
+
+                await damagedInfrastructureRepository
+                     .AssignWorkDateToDamagedInfrastructureAsync
+                     (command.Id, command.WorkDate);
 
                 return true;
             }

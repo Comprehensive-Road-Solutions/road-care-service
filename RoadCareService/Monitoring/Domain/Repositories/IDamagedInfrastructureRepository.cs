@@ -9,6 +9,8 @@ namespace RoadCareService.Monitoring.Domain.Repositories
     {
         Task<bool> UpdateDamagedInfrastructureStateAsync
             (int id, EDamagedInfrastructureState damagedInfrastructureState);
+        Task<bool> AssignWorkDateToDamagedInfrastructureAsync
+            (int id, DateTime workDate);
         Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
             (int departmentsId, int districtsId);
         Task<IEnumerable<DamagedInfrastructure>?> FindByStateAsync
