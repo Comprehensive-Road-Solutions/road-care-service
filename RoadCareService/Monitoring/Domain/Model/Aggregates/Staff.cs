@@ -35,7 +35,6 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         }
         public Staff(UpdateStaffStateCommand command)
         {
-            this.WorkersId = command.WorkersId;
             this.State = command.StaffState.ToString();
         }
     }
