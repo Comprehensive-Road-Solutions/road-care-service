@@ -36,7 +36,7 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
         }
         public WorkerArea(UpdateWorkerAreaStateCommand command)
         {
-            this.Id = Id;
+            this.Id = command.Id;
             this.State = command.WorkerAreaState.ToString();
         }
     }

@@ -41,13 +41,11 @@
     <Folder Include="Assignment\Application\Internal\CommandServices\" />
     <Folder Include="Assignment\Application\Internal\QueryServices\" />
     <Folder Include="Assignment\Domain\Model\Commands\AssignmentWorker\" />
-    <Folder Include="Assignment\Domain\Model\Commands\Role\" />
     <Folder Include="Assignment\Domain\Model\Queries\WorkerArea\" />
     <Folder Include="Assignment\Domain\Model\Queries\AssignmentWorker\" />
     <Folder Include="Assignment\Domain\Model\Queries\Role\" />
     <Folder Include="Assignment\Domain\Model\Queries\GovernmentEntity\" />
     <Folder Include="Assignment\Domain\Model\ValueObjects\AssignmentWorker\" />
-    <Folder Include="Assignment\Domain\Model\ValueObjects\Role\" />
     <Folder Include="Assignment\Domain\Services\" />
     <Folder Include="Assignment\Domain\Repositories\" />
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
