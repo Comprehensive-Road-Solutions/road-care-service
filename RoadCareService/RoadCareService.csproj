@@ -64,7 +64,6 @@
     <Folder Include="IAM\Interfaces\REST\Resources\" />
     <Folder Include="Interaction\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Monitoring\Infrastructure\Persistence\Dapper\Repositories\" />
-    <Folder Include="Monitoring\Interfaces\REST\Resources\" />
     <Folder Include="Monitoring\Interfaces\REST\Transform\" />
     <Folder Include="Publishing\Infrastructure\Persistence\Dapper\Repositories\" />
   </ItemGroup>

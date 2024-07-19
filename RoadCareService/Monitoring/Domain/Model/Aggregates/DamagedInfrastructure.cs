@@ -32,6 +32,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             string address, EDamagedInfrastructureState damagedInfrastructureState)
         {
             this.DistrictsId = districtsId;
+            this.RegistrationDate = DateTime.Now;
             this.Description = description;
             this.Address = address;
             this.State = Regex.Replace
@@ -43,6 +44,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             (RegisterDamagedInfrastructureCommand command)
         {
             this.DistrictsId = command.DistrictsId;
+            this.RegistrationDate = DateTime.Now;
             this.Description = command.Description;
             this.Address = command.Address;
             this.State = Regex.Replace(command
