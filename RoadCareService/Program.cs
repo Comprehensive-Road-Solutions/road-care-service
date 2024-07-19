@@ -27,6 +27,12 @@ using RoadCareService.Interaction.Application.Internal.CommandServices;
 using RoadCareService.Interaction.Application.Internal.QueryServices;
 using RoadCareService.Interaction.Application.Internal.OutboundServices.ACL;
 using RoadCareService.Publishing.Domain.Services.Evidence;
+using RoadCareService.Monitoring.Domain.Repositories;
+using RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure;
+using RoadCareService.Monitoring.Application.Internal.CommandServices;
+using RoadCareService.Monitoring.Application.Internal.QueryServices;
+using RoadCareService.Monitoring.Domain.Services.Staff;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -168,7 +174,13 @@ builder.Services.AddTransient<ExternalPublishingService>();
 
 #region Monitoring Context
 
+builder.Services.AddScoped<IDamagedInfrastructureRepository, DamagedInfrastructureRepository>();
+builder.Services.AddScoped<IDamagedInfrastructureCommandService, DamagedInfrastructureCommandService>();
+builder.Services.AddScoped<IDamagedInfrastructureQueryService, DamagedInfrastructureQueryService>();
 
+builder.Services.AddScoped<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<IStaffCommandService, StaffCommandService>();
+builder.Services.AddScoped<IStaffQueryService, StaffQueryService>();
 
 #endregion
 
