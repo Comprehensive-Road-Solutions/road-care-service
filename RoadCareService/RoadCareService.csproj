@@ -41,7 +41,6 @@
     <Folder Include="Assignment\Application\Internal\CommandServices\" />
     <Folder Include="Assignment\Application\Internal\QueryServices\" />
     <Folder Include="Assignment\Domain\Model\Queries\AssignmentWorker\" />
-    <Folder Include="Assignment\Domain\Model\Queries\Role\" />
     <Folder Include="Assignment\Domain\Services\" />
     <Folder Include="Assignment\Domain\Repositories\" />
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
