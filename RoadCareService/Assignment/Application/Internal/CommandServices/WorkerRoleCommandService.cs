@@ -18,6 +18,8 @@ namespace RoadCareService.Assignment.Application.Internal.CommandServices
                     .AddAsync(new(command));
 
                 await unitOfWork.CompleteAsync();
+
+                return true;
             }
             catch (Exception) { return false; }
         }
