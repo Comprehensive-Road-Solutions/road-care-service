@@ -9,16 +9,25 @@ namespace RoadCareService.Assignment.Application.Internal.CommandServices
         (IAssignmentWorkerRepository assignmentWorkerRepository,
         IUnitOfWork unitOfWork) : IAssignmentWorkerCommandService
     {
-        public Task<bool> Handle
+        public async Task<bool> Handle
             (AddAssignmentWorkerCommand command)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await assignmentWorkerRepository
+                    .AddAsync(new(command));
+
+                await unitOfWork.CompleteAsync();
+
+                return true;
+            }
+            catch (Exception) { return false; }
         }
 
-        public Task<bool> Handle
-            (UpdateAssignmentWorkerStateCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> Handle
+            (UpdateAssignmentWorkerStateCommand command) =>
+            await assignmentWorkerRepository
+            .UpdateAssignmentWorkerStateAsync
+            (command.Id, command.AssignmentWorkerState);
     }
 }

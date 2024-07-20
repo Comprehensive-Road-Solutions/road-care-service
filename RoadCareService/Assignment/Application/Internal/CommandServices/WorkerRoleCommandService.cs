@@ -9,16 +9,23 @@ namespace RoadCareService.Assignment.Application.Internal.CommandServices
         (IWorkerRoleRepository workerRoleRepository,
         IUnitOfWork unitOfWork) : IWorkerRoleCommandService
     {
-        public Task<bool> Handle
+        public async Task<bool> Handle
             (AddWorkerRoleToWorkerAreaCommand command)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await workerRoleRepository
+                    .AddAsync(new(command));
+
+                await unitOfWork.CompleteAsync();
+            }
+            catch (Exception) { return false; }
         }
 
-        public Task<bool> Handle
-            (UpdateWorkerRoleStateCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> Handle
+            (UpdateWorkerRoleStateCommand command) =>
+            await workerRoleRepository
+            .UpdateWorkerRoleStateAsync
+            (command.Id, command.WorkerRoleState);
     }
 }

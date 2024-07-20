@@ -10,16 +10,25 @@ namespace RoadCareService.Assignment.Application.Internal.CommandServices
         IUnitOfWork unitOfWork) :
         IWorkerAreaCommandService
     {
-        public Task<bool> Handle
+        public async Task<bool> Handle
             (CreateWorkerAreaCommand command)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await workerAreaRepository
+                    .AddAsync(new(command));
+
+                await unitOfWork.CompleteAsync();
+
+                return true;
+            }
+            catch (Exception){ return true; }
         }
 
-        public Task<bool> Handle
-            (UpdateWorkerAreaStateCommand command)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<bool> Handle
+            (UpdateWorkerAreaStateCommand command) =>
+            await workerAreaRepository
+            .UpdateWorkerAreaStateAsync
+            (command.Id, command.WorkerAreaState);
     }
 }
