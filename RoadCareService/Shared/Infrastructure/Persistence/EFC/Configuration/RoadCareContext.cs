@@ -25,7 +25,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
 
                 entity.Property(e => e.Id).HasColumnName("id");
                 entity.Property(e => e.FinalDate).HasColumnName("final_date");
-                entity.Property(e => e.WorkersRolesId).HasColumnName("roles_id");
+                entity.Property(e => e.WorkersRolesId).HasColumnName("workers_roles_id");
                 entity.Property(e => e.StartDate).HasColumnName("start_date");
                 entity.Property(e => e.State)
                     .HasMaxLength(20)
