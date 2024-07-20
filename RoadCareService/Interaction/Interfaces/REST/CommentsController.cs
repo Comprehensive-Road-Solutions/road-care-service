@@ -28,14 +28,14 @@ namespace RoadCareService.Interaction.Interfaces.REST
             return Ok(result);
         }
 
-        [Route("comments-by-publications")]
+        [Route("comments-by-publication")]
         [HttpGet]
-        public async Task<IActionResult> GetCommentsByPublicationsId
-            ([FromQuery] int publicationsId)
+        public async Task<IActionResult> GetCommentsByPublicationId
+            ([FromQuery] int publicationId)
         {
             var comments = await commentQueryService
                 .Handle(new GetCommentsByPublicationIdQuery
-                (publicationsId));
+                (publicationId));
 
             if (comments is null)
                 return BadRequest();
