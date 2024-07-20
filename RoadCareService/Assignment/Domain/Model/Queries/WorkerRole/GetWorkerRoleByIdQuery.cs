@@ -1,4 +1,4 @@
 ﻿namespace RoadCareService.Assignment.Domain.Model.Queries.WorkerRole
 {
-    public record GetAllRolesQuery();
+    public record GetWorkerRoleByIdQuery(int Id);
 }

@@ -1,6 +1,6 @@
 ﻿using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Commands.WorkerRole;
-using RoadCareService.Assignment.Domain.Model.ValueObjects.Role;
+using RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerRole;
 
 namespace RoadCareService.Assignment.Domain.Model.Entities
 {
@@ -28,13 +28,13 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = name;
             this.State = roleState.ToString();
         }
-        public WorkerRole(AddRoleToWorkerAreaCommand command)
+        public WorkerRole(AddWorkerRoleToWorkerAreaCommand command)
         {
             this.WorkersAreasId = command.WorkersAreasId;
             this.Name = command.Name;
             this.State = command.RoleState.ToString();
         }
-        public WorkerRole(UpdateRoleStateCommand command)
+        public WorkerRole(UpdateWorkerRoleStateCommand command)
         {
             this.Id = command.Id;
             this.State = command.RoleState.ToString();

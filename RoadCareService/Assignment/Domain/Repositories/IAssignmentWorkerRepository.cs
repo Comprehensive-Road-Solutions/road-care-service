@@ -9,9 +9,9 @@ namespace RoadCareService.Assignment.Domain.Repositories
     {
         Task<bool> UpdateAssignmentWorkerStateAsync
             (EAssignmentWorkerState assignmentWorkerState);
-        Task<IEnumerable<AssignmentWorker>> FindByGovernmentsEntitiesIdAndWorkersAreasIdAndRolesIdAsync
+        Task<IEnumerable<AssignmentWorker>?> FindByGovernmentsEntitiesIdAndWorkersAreasIdAndRolesIdAsync
             (int governmentsEntitiesId, int workersAreasId, int rolesId);
-        Task<IEnumerable<AssignmentWorker>> FindByGovernmentsEntitiesIdAndWorkersAreasIdAsync
+        Task<IEnumerable<AssignmentWorker>?> FindByGovernmentsEntitiesIdAndWorkersAreasIdAsync
             (int governmentsEntitiesId, int workersAreasId);
     }
 }

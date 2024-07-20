@@ -1,4 +1,4 @@
-﻿namespace RoadCareService.Assignment.Domain.Model.ValueObjects.Role
+﻿namespace RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerRole
 {
     public enum ERoleState
     {

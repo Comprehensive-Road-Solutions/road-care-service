@@ -40,10 +40,6 @@
   <ItemGroup>
     <Folder Include="Assignment\Application\Internal\CommandServices\" />
     <Folder Include="Assignment\Application\Internal\QueryServices\" />
-    <Folder Include="Assignment\Domain\Services\GovernmentEntity\" />
-    <Folder Include="Assignment\Domain\Services\AssignmentWorker\" />
-    <Folder Include="Assignment\Domain\Services\WorkerArea\" />
-    <Folder Include="Assignment\Domain\Services\WorkerRole\" />
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Assignment\Infrastructure\Persistence\EFC\Repositories\" />
     <Folder Include="Assignment\Interfaces\ACL\" />

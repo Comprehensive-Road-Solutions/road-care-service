@@ -1,5 +1,5 @@
 ﻿namespace RoadCareService.Assignment.Domain.Model.Queries.WorkerRole
 {
-    public record GetRolesByGovernmentsEntitiesIdAndWorkersAreasIdQuery
+    public record GetWorkersRolesByGovernmentsEntitiesIdAndWorkersAreasIdQuery
         (int GovernmentsEntitiesId, int WorkersAreasId);
 }
