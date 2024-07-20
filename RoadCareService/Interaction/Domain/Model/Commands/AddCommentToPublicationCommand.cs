@@ -2,8 +2,6 @@
 
 namespace RoadCareService.Interaction.Domain.Model.Commands
 {
-    public record AddCommentToPublicationCommand(int PublicationsId,
-                                                 int CitizensId,
-                                                 string Opinion,
-                                                 ECommentState CommentState);
+    public record AddCommentToPublicationCommand(int PublicationId,
+        int CitizenId, string Opinion, ECommentState CommentState);
 }

@@ -5,12 +5,13 @@ using RoadCareService.Interaction.Domain.Services;
 
 namespace RoadCareService.Interaction.Application.Internal.QueryServices
 {
-    public class CommentQueryService(ICommentRepository commentRepository) :
+    public class CommentQueryService
+        (ICommentRepository commentRepository) :
         ICommentQueryService
     {
         public async Task<IEnumerable<Comment>?> Handle
-            (GetCommentsByPublicationsIdQuery query) =>
-            await commentRepository.FindByPublicationsIdAsync
-            (query.PublicationsId);
+            (GetCommentsByPublicationIdQuery query) =>
+            await commentRepository.FindByPublicationIdAsync
+            (query.PublicationId);
     }
 }

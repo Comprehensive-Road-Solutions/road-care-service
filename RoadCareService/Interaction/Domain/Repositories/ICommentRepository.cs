@@ -3,9 +3,10 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Interaction.Domain.Repositories
 {
-    public interface ICommentRepository : IBaseRepository<Comment>
+    public interface ICommentRepository :
+        IBaseRepository<Comment>
     {
-        Task<IEnumerable<Comment>?> FindByPublicationsIdAsync
-            (int publicationsId);
+        Task<IEnumerable<Comment>?> FindByPublicationIdAsync
+            (int publicationId);
     }
 }

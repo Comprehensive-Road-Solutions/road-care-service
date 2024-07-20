@@ -8,7 +8,7 @@ namespace RoadCareService.Interaction.Interfaces.REST.Transform
     {
         public static AddCommentToPublicationCommand ToCommandFromResource
             (AddCommentToPublicationResource resource) =>
-            new(resource.PublicationsId, resource.CitizensId,
+            new(resource.PublicationId, resource.CitizenId,
                 resource.Opinion, ECommentState.ENVIADO);
     }
 }

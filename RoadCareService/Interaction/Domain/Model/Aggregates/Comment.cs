@@ -14,8 +14,8 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
         public string Opinion { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        public virtual Citizen Citizens { get; } = null!;
-        public virtual Publication Publications { get; } = null!;
+        public virtual Citizen Citizen { get; } = null!;
+        public virtual Publication Publication { get; } = null!;
 
         public Comment()
         {
@@ -24,19 +24,19 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.ShippingDate = DateTime.Now;
             this.Opinion = string.Empty;
         }
-        public Comment(int publicationsId, int citizensId,
+        public Comment(int publicationId, int citizenId,
             string opinion, ECommentState commentState)
         {
-            this.PublicationsId = publicationsId;
-            this.CitizensId = citizensId;
+            this.PublicationsId = publicationId;
+            this.CitizensId = citizenId;
             this.ShippingDate = DateTime.Now;
             this.Opinion = opinion;
             this.State = commentState.ToString();
         }
         public Comment(AddCommentToPublicationCommand command)
         {
-            this.PublicationsId = command.PublicationsId;
-            this.CitizensId = command.CitizensId;
+            this.PublicationsId = command.PublicationId;
+            this.CitizensId = command.CitizenId;
             this.ShippingDate = DateTime.Now;
             this.Opinion = command.Opinion;
             this.State = command.CommentState.ToString();

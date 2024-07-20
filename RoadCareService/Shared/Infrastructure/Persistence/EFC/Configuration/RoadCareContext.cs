@@ -121,12 +121,12 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("state");
 
-                entity.HasOne(d => d.Citizens).WithMany(p => p.Comments)
+                entity.HasOne(d => d.Citizen).WithMany(p => p.Comments)
                     .HasForeignKey(d => d.CitizensId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_comments_citizens_id");
 
-                entity.HasOne(d => d.Publications).WithMany(p => p.Comments)
+                entity.HasOne(d => d.Publication).WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PublicationsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_comments_publications_id");

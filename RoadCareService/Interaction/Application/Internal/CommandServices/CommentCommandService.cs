@@ -17,7 +17,7 @@ namespace RoadCareService.Interaction.Application.Internal.CommandServices
             {
                 if (await externalPublishingService
                     .ExistsPublicationById
-                    (command.PublicationsId) is false)
+                    (command.PublicationId) is false)
                     return false;
 
                 await commentRepository.AddAsync(new(command));

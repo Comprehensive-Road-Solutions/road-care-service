@@ -9,9 +9,9 @@ namespace RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositorie
     public class CommentRepository(RoadCareContext context) :
         BaseRepository<Comment>(context), ICommentRepository
     {
-        public async Task<IEnumerable<Comment>?> FindByPublicationsIdAsync
-            (int publicationsId) =>
+        public async Task<IEnumerable<Comment>?> FindByPublicationIdAsync
+            (int publicationId) =>
             await Context.Set<Comment>().Where
-            (c => c.PublicationsId == publicationsId).ToListAsync();
+            (c => c.PublicationsId == publicationId).ToListAsync();
     }
 }

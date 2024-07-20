@@ -1,8 +1,5 @@
 ﻿namespace RoadCareService.Interaction.Interfaces.REST.Resources
 {
-    public record CommentResource(int Id,
-                                  int PublicationsId,
-                                  int CitizensId,
-                                  DateTime shippingDate,
-                                  string Opinion);
+    public record CommentResource(int Id, int PublicationId, int CitizenId,
+        DateTime ShippingDate, string Opinion);
 }

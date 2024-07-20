@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.Interaction.Domain.Model.Queries;
 using RoadCareService.Interaction.Domain.Services;
 using RoadCareService.Interaction.Interfaces.REST.Resources;
 using RoadCareService.Interaction.Interfaces.REST.Transform;
-using RoadCareService.Interaction.Domain.Model.Queries;
 
 namespace RoadCareService.Interaction.Interfaces.REST
 {
@@ -34,7 +34,7 @@ namespace RoadCareService.Interaction.Interfaces.REST
             ([FromQuery] int publicationsId)
         {
             var comments = await commentQueryService
-                .Handle(new GetCommentsByPublicationsIdQuery
+                .Handle(new GetCommentsByPublicationIdQuery
                 (publicationsId));
 
             if (comments is null)
