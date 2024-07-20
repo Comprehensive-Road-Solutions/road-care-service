@@ -124,9 +124,9 @@ namespace RoadCareService.Assignment.Interfaces.REST
             return Ok(workersAreasResource);
         }
 
-        [Route("create-worker-role")]
+        [Route("add-worker-role-to-worker-area")]
         [HttpPost]
-        public async Task<IActionResult> CreateWorkerRole
+        public async Task<IActionResult> AddWorkerRoleToWorkerArea
             ([FromBody] AddWorkerRoleToWorkerAreaResource resource)
         {
             var result = await workerRoleCommandService
