@@ -40,7 +40,6 @@
   <ItemGroup>
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Assignment\Interfaces\REST\Transform\" />
-    <Folder Include="Assignment\Interfaces\REST\Resources\" />
     <Folder Include="IAM\Application\Internal\CommandServices\" />
     <Folder Include="IAM\Application\Internal\QueryServices\" />
     <Folder Include="IAM\Domain\Model\Commands\" />
