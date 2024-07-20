@@ -9,19 +9,19 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IWorkerRoleRepository workerRoleRepository) :
         IWorkerRoleQueryService
     {
-        public Task<IEnumerable<WorkerRole>?> Handle(GetAllWorkersRolesQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<WorkerRole>?> Handle
+            (GetAllWorkersRolesQuery query) =>
+            await workerRoleRepository.ListAsync();
 
-        public Task<WorkerRole?> Handle(GetWorkerRoleByIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<WorkerRole?> Handle
+            (GetWorkerRoleByIdQuery query) =>
+            await workerRoleRepository
+            .FindByIdAsync(query.Id);
 
-        public Task<IEnumerable<WorkerRole>?> Handle(GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<WorkerRole>?> Handle(
+            GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery query)
+            => await workerRoleRepository
+            .FindByGovernmentEntityIdAndWorkerAreaIdAsync
+            (query.GovernmentEntityId, query.WorkerAreaId);
     }
 }

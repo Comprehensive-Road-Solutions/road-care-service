@@ -9,28 +9,25 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IAssignmentWorkerRepository assignmentWorkerRepository) :
         IAssignmentWorkerQueryService
     {
-        public Task<IEnumerable<AssignmentWorker>?> Handle
-            (GetAllAssignmentsWorkersQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<AssignmentWorker>?> Handle
+            (GetAllAssignmentsWorkersQuery query) =>
+            await assignmentWorkerRepository.ListAsync();
 
-        public Task<AssignmentWorker?> Handle
-            (GetAssignmentWorkerByIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<AssignmentWorker?> Handle
+            (GetAssignmentWorkerByIdQuery query) =>
+            await assignmentWorkerRepository
+            .FindByIdAsync(query.Id);
 
-        public Task<IEnumerable<AssignmentWorker>?> Handle
+        public async Task<IEnumerable<AssignmentWorker>?> Handle
             (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+            => await assignmentWorkerRepository
+            .FindByGovernmentEntityIdAndWorkerAreaIdAndRoleIdAsync
+            (query.GovernmentEntityId, query.WorkerAreaId, query.RoleId);
 
-        public Task<IEnumerable<AssignmentWorker>?> Handle
+        public async Task<IEnumerable<AssignmentWorker>?> Handle
             (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+            => await assignmentWorkerRepository
+            .FindByGovernmentEntityIdAndWorkerAreaIdAsync
+            (query.GovernmentEntityId, query.WorkerAreaId);
     }
 }

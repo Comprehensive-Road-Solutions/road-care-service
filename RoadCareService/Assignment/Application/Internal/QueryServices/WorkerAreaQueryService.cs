@@ -9,28 +9,25 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IWorkerAreaRepository workerAreaRepository) :
         IWorkerAreaQueryService
     {
-        public Task<IEnumerable<WorkerArea>?> Handle
-            (GetAllWorkersAreasQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<WorkerArea>?> Handle
+            (GetAllWorkersAreasQuery query) =>
+            await workerAreaRepository.ListAsync();
 
-        public Task<WorkerArea?> Handle
-            (GetWorkerAreaByIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<WorkerArea?> Handle
+            (GetWorkerAreaByIdQuery query) =>
+            await workerAreaRepository
+            .FindByIdAsync(query.Id);
 
-        public Task<IEnumerable<WorkerArea>?> Handle
+        public async Task<IEnumerable<WorkerArea>?> Handle
             (GetWorkersAreasByGovernmentEntityIdAndStateQuery query)
-        {
-            throw new NotImplementedException();
-        }
+            => await workerAreaRepository
+            .FindByGovernmentEntityIdAndStateAsync
+            (query.GovernmentEntityId, query.WorkerAreaState);
 
-        public Task<IEnumerable<WorkerArea>?> Handle
-            (GetWorkersAreasByGovernmentEntityIdQuery query)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<WorkerArea>?> Handle
+            (GetWorkersAreasByGovernmentEntityIdQuery query) =>
+            await workerAreaRepository
+            .FindByGovernmentEntityIdAsync
+            (query.GovernmentEntityId);
     }
 }
