@@ -5,7 +5,8 @@ using RoadCareService.Monitoring.Domain.Services.Staff;
 
 namespace RoadCareService.Monitoring.Application.Internal.QueryServices
 {
-    public class StaffQueryService(IStaffRepository staffRepository) :
+    public class StaffQueryService
+        (IStaffRepository staffRepository) :
         IStaffQueryService
     {
         public async Task<IEnumerable<Staff>?> Handle

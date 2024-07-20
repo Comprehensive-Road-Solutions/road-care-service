@@ -191,7 +191,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("name");
 
-                entity.HasOne(d => d.Departments).WithMany(p => p.Districts)
+                entity.HasOne(d => d.Department).WithMany(p => p.Districts)
                     .HasForeignKey(d => d.DepartmentsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_districts_departments_id");

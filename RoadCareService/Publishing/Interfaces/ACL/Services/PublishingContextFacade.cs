@@ -6,8 +6,10 @@ using RoadCareService.Publishing.Domain.Services.Publication;
 
 namespace RoadCareService.Publishing.Interfaces.ACL.Services
 {
-    public class PublishingContextFacade(IDistrictQueryService districtQueryService,
-        IPublicationQueryService publicationQueryService) : IPublishingContextFacade
+    public class PublishingContextFacade
+        (IDistrictQueryService districtQueryService,
+        IPublicationQueryService publicationQueryService) :
+        IPublishingContextFacade
     {
         public async Task<IEnumerable<District>?> ExistsDistrictByDepartmentId
             (int departmentId) => await districtQueryService

@@ -3,8 +3,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using System.Data;
+using System.Text;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Configuration;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Services;
 using RoadCareService.Shared.Domain.Repositories;
@@ -33,6 +33,14 @@ using RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure;
 using RoadCareService.Monitoring.Application.Internal.CommandServices;
 using RoadCareService.Monitoring.Application.Internal.QueryServices;
 using RoadCareService.Monitoring.Domain.Services.Staff;
+using RoadCareService.Assignment.Domain.Repositories;
+using RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.Assignment.Domain.Services.AssignmentWorker;
+using RoadCareService.Assignment.Application.Internal.CommandServices;
+using RoadCareService.Assignment.Application.Internal.QueryServices;
+using RoadCareService.Assignment.Domain.Services.GovernmentEntity;
+using RoadCareService.Assignment.Domain.Services.WorkerArea;
+using RoadCareService.Assignment.Domain.Services.WorkerRole;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -181,6 +189,25 @@ builder.Services.AddScoped<IDamagedInfrastructureQueryService, DamagedInfrastruc
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<IStaffCommandService, StaffCommandService>();
 builder.Services.AddScoped<IStaffQueryService, StaffQueryService>();
+
+#endregion
+
+#region Assignment Context
+
+builder.Services.AddScoped<IAssignmentWorkerRepository, AssignmentWorkerRepository>();
+builder.Services.AddScoped<IAssignmentWorkerCommandService, AssignmentWorkerCommandService>();
+builder.Services.AddScoped<IAssignmentWorkerQueryService, AssignmentWorkerQueryService>();
+
+builder.Services.AddScoped<IGovernmentEntityRepository, GovernmentEntityRepository>();
+builder.Services.AddScoped<IGovernmentEntityQueryService, GovernmentEntityQueryService>();
+
+builder.Services.AddScoped<IWorkerAreaRepository, WorkerAreaRepository>();
+builder.Services.AddScoped<IWorkerAreaCommandService, WorkerAreaCommandService>();
+builder.Services.AddScoped<IWorkerAreaQueryService, WorkerAreaQueryService>();
+
+builder.Services.AddScoped<IWorkerRoleRepository, WorkerRoleRepository>();
+builder.Services.AddScoped<IWorkerRoleCommandService, WorkerRoleCommandService>();
+builder.Services.AddScoped<IWorkerRoleQueryService, WorkerRoleQueryService>();
 
 #endregion
 

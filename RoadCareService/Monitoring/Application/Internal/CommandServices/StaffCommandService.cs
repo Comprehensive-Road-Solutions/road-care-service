@@ -5,8 +5,10 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Monitoring.Application.Internal.CommandServices
 {
-    public class StaffCommandService(IStaffRepository staffRepository,
-        IUnitOfWork unitOfWork) : IStaffCommandService
+    public class StaffCommandService
+        (IStaffRepository staffRepository,
+        IUnitOfWork unitOfWork) :
+        IStaffCommandService
     {
         public async Task<bool> Handle
             (AddStaffInChargeCommand command)

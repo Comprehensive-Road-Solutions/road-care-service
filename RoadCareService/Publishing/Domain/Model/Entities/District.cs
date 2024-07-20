@@ -11,7 +11,7 @@ namespace RoadCareService.Publishing.Domain.Model.Entities
         public int DepartmentsId { get; private set; }
         public string Name { get; private set; } = null!;
 
-        public virtual Department Departments { get; } = null!;
+        public virtual Department Department { get; } = null!;
 
         public virtual ICollection<DamagedInfrastructure> DamagedInfrastructures { get; } = [];
         public virtual ICollection<GovernmentEntity> GovernmentsEntities { get; } = [];

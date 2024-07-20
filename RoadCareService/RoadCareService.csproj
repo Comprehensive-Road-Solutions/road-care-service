@@ -38,10 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assignment\Application\Internal\CommandServices\" />
-    <Folder Include="Assignment\Application\Internal\QueryServices\" />
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
-    <Folder Include="Assignment\Interfaces\ACL\" />
     <Folder Include="Assignment\Interfaces\REST\Transform\" />
     <Folder Include="Assignment\Interfaces\REST\Resources\" />
     <Folder Include="IAM\Application\Internal\CommandServices\" />

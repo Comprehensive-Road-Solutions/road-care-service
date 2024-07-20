@@ -6,8 +6,10 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Interaction.Application.Internal.CommandServices
 {
-    public class CommentCommandService(ICommentRepository commentRepository,
-        IUnitOfWork unitOfWork, ExternalPublishingService externalPublishingService) :
+    public class CommentCommandService
+        (ICommentRepository commentRepository,
+        IUnitOfWork unitOfWork,
+        ExternalPublishingService externalPublishingService) :
         ICommentCommandService
     {
         public async Task<bool> Handle
