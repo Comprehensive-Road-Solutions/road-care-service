@@ -21,20 +21,23 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = string.Empty;
             this.State = string.Empty;
         }
-        public WorkerArea(int governmentEntityId, string name,
+        public WorkerArea
+            (int governmentEntityId, string name,
             EWorkerAreaState workerAreaState)
         {
             this.GovernmentsEntitiesId = governmentEntityId;
             this.Name = name;
             this.State = workerAreaState.ToString();
         }
-        public WorkerArea(CreateWorkerAreaCommand command)
+        public WorkerArea
+            (CreateWorkerAreaCommand command)
         {
             this.GovernmentsEntitiesId = command.GovernmentEntityId;
             this.Name = command.Name;
             this.State = command.WorkerAreaState.ToString();
         }
-        public WorkerArea(UpdateWorkerAreaStateCommand command)
+        public WorkerArea
+            (UpdateWorkerAreaStateCommand command)
         {
             this.Id = command.Id;
             this.State = command.WorkerAreaState.ToString();

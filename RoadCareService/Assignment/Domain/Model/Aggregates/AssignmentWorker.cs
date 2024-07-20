@@ -23,24 +23,27 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
             this.WorkersId = 0;
             this.State = string.Empty;
         }
-        public AssignmentWorker(int roleId, int workerId, DateOnly startDate,
+        public AssignmentWorker
+            (int workerRoleId, int workerId, DateOnly startDate,
             DateOnly finalDate, EAssignmentWorkerState assignmentWorkerState)
         {
-            this.WorkersRolesId = roleId;
+            this.WorkersRolesId = workerRoleId;
             this.WorkersId = workerId;
             this.StartDate = startDate;
             this.FinalDate = finalDate;
             this.State = assignmentWorkerState.ToString();
         }
-        public AssignmentWorker(AddAssignmentWorkerCommand command)
+        public AssignmentWorker
+            (AddAssignmentWorkerCommand command)
         {
-            this.WorkersRolesId = command.RoleId;
+            this.WorkersRolesId = command.WorkerRoleId;
             this.WorkersId = command.WorkerId;
             this.StartDate = command.StartDate;
             this.FinalDate = command.FinalDate;
             this.State = command.AssignmentWorkerState.ToString();
         }
-        public AssignmentWorker(UpdateAssignmentWorkerStateCommand command)
+        public AssignmentWorker
+            (UpdateAssignmentWorkerStateCommand command)
         {
             this.Id = command.Id;
             this.State = command.AssignmentWorkerState.ToString();

@@ -28,13 +28,15 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = name;
             this.State = workerRoleState.ToString();
         }
-        public WorkerRole(AddWorkerRoleToWorkerAreaCommand command)
+        public WorkerRole
+            (AddWorkerRoleToWorkerAreaCommand command)
         {
             this.WorkersAreasId = command.WorkerAreaId;
             this.Name = command.Name;
             this.State = command.WorkerRoleState.ToString();
         }
-        public WorkerRole(UpdateWorkerRoleStateCommand command)
+        public WorkerRole
+            (UpdateWorkerRoleStateCommand command)
         {
             this.Id = command.Id;
             this.State = command.WorkerRoleState.ToString();
