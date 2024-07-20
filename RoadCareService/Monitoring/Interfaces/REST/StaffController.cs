@@ -100,7 +100,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
 
         [Route("staff-by-worker")]
         [HttpGet]
-        public async Task<IActionResult> GetStaffByWorkersId
+        public async Task<IActionResult> GetStaffByWorkerId
             ([FromQuery] int workerId)
         {
             var staff = await staffQueryService

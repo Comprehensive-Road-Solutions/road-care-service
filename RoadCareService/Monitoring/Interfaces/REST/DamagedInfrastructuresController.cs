@@ -98,7 +98,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
 
         [Route("damaged-infrastructures-by-department-and-district")]
         [HttpGet]
-        public async Task<IActionResult> GetDamagedInfrastructuresByDepartmentsIdAndDistrictsId
+        public async Task<IActionResult> GetDamagedInfrastructuresByDepartmentIdAndDistrictId
             ([FromQuery] int departmentId, [FromQuery] int districtId)
         {
             var damagedInfrastructures = await damagedInfrastructureQueryService
