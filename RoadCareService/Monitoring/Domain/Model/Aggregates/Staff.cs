@@ -29,8 +29,8 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         }
         public Staff(AddStaffInChargeCommand command)
         {
-            this.DamagedInfrastructuresId = command.DamagedInfrastructuresId;
-            this.WorkersId = command.WorkersId;
+            this.DamagedInfrastructuresId = command.DamagedInfrastructureId;
+            this.WorkersId = command.WorkerId;
             this.State = command.StaffState.ToString();
         }
         public Staff(UpdateStaffStateCommand command)

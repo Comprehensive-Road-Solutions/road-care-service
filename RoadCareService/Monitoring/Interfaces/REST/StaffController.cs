@@ -11,8 +11,10 @@ namespace RoadCareService.Monitoring.Interfaces.REST
     [Route("api/staff/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    public class StaffController(IStaffCommandService staffCommandService,
-        IStaffQueryService staffQueryService) : ControllerBase
+    public class StaffController
+        (IStaffCommandService staffCommandService,
+        IStaffQueryService staffQueryService) :
+        ControllerBase
     {
         [Route("add-staff-in-charge")]
         [HttpPost]

@@ -1,10 +1,12 @@
 ﻿using RoadCareService.Publishing.Domain.Model.Entities;
+using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Domain.Repositories
 {
-    public interface IDistrictRepository
+    public interface IDistrictRepository :
+        IBaseRepository<District>
     {
-        Task<IEnumerable<District>?> FindByDepartmentsIdAsync
-            (int departmentsId);
+        Task<IEnumerable<District>?> FindByDepartmentIdAsync
+            (int departmentId);
     }
 }

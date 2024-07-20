@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.Publishing.Domain.Model.Queries.Department;
+using RoadCareService.Publishing.Domain.Model.Queries.District;
 using RoadCareService.Publishing.Domain.Services.Department;
 using RoadCareService.Publishing.Domain.Services.District;
-using RoadCareService.Publishing.Domain.Model.Queries.Department;
 using RoadCareService.Publishing.Interfaces.REST.Transform.Department;
 using RoadCareService.Publishing.Interfaces.REST.Transform.District;
 
@@ -11,8 +12,10 @@ namespace RoadCareService.Publishing.Interfaces.REST
     [Route("api/locations/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    public class LocationsController(IDepartmentQueryService departmentQueryService,
-        IDistrictQueryService districtQueryService) : ControllerBase
+    public class LocationsController
+        (IDepartmentQueryService departmentQueryService,
+        IDistrictQueryService districtQueryService) :
+        ControllerBase
     {
         [Route("departments")]
         [HttpGet]
@@ -33,10 +36,12 @@ namespace RoadCareService.Publishing.Interfaces.REST
 
         [Route("districts-by-department")]
         [HttpGet]
-        public async Task<IActionResult> GetDistrictsByDepartmentsId(int departmentsId)
+        public async Task<IActionResult> GetDistrictsByDepartmentsId
+            (int departmentId)
         {
             var districts = await districtQueryService
-                .Handle(new Domain.Model.Queries.District.GetDistrictsByDepartmentsIdQuery(departmentsId));
+                .Handle(new GetDistrictsByDepartmentIdQuery
+                (departmentId));
 
             if (districts is null)
                 return BadRequest();

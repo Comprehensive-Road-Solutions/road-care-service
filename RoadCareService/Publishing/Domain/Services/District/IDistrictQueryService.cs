@@ -5,6 +5,6 @@ namespace RoadCareService.Publishing.Domain.Services.District
     public interface IDistrictQueryService
     {
         Task<IEnumerable<Model.Entities.District>?> Handle
-            (GetDistrictsByDepartmentsIdQuery query);
+            (GetDistrictsByDepartmentIdQuery query);
     }
 }

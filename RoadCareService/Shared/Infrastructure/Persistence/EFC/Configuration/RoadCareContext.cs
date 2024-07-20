@@ -209,7 +209,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("file_url");
                 entity.Property(e => e.PublicationsId).HasColumnName("publications_id");
 
-                entity.HasOne(d => d.Publications).WithMany(p => p.Evidences)
+                entity.HasOne(d => d.Publication).WithMany(p => p.Evidences)
                     .HasForeignKey(d => d.PublicationsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_evidences_publications_id");
@@ -272,12 +272,12 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("ubication");
 
-                entity.HasOne(d => d.Citizens).WithMany(p => p.Publications)
+                entity.HasOne(d => d.Citizen).WithMany(p => p.Publications)
                     .HasForeignKey(d => d.CitizensId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_publications_citizens_id");
 
-                entity.HasOne(d => d.Districts).WithMany(p => p.Publications)
+                entity.HasOne(d => d.District).WithMany(p => p.Publications)
                     .HasForeignKey(d => d.DistrictsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_publications_districts_id");

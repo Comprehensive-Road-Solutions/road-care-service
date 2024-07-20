@@ -5,12 +5,13 @@ using RoadCareService.Publishing.Domain.Services.District;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class DistrictQueryService(IDistrictRepository districtRepository) :
+    public class DistrictQueryService
+        (IDistrictRepository districtRepository) :
         IDistrictQueryService
     {
         public async Task<IEnumerable<District>?> Handle
-            (GetDistrictsByDepartmentsIdQuery query) =>
-            await districtRepository.FindByDepartmentsIdAsync
-            (query.DepartmentsId);
+            (GetDistrictsByDepartmentIdQuery query) =>
+            await districtRepository.FindByDepartmentIdAsync
+            (query.DepartmentId);
     }
 }

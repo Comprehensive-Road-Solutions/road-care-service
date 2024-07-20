@@ -7,6 +7,6 @@ namespace RoadCareService.Publishing.Interfaces.REST.Transform.Evidence
     {
         public static AddEvidenceToPublicationCommand ToCommandFromResource
             (AddEvidenceToPublicationResource resource) =>
-            new(resource.PublicationsId, resource.FileUrl);
+            new(resource.PublicationId, resource.FileUrl);
     }
 }

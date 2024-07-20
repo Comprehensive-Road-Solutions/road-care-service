@@ -4,6 +4,7 @@ namespace RoadCareService.Publishing.Domain.Services.Publication
 {
     public interface IPublicationCommandService
     {
-        Task<bool> Handle(CreatePublicationCommand command);
+        Task<bool> Handle
+            (CreatePublicationCommand command);
     }
 }

@@ -9,9 +9,10 @@ namespace RoadCareService.Publishing.Interfaces.ACL.Services
     public class PublishingContextFacade(IDistrictQueryService districtQueryService,
         IPublicationQueryService publicationQueryService) : IPublishingContextFacade
     {
-        public async Task<IEnumerable<District>?> ExistsDistrictByDepartmentsId
-            (int departmentsId) => await districtQueryService
-            .Handle(new GetDistrictsByDepartmentsIdQuery(departmentsId));
+        public async Task<IEnumerable<District>?> ExistsDistrictByDepartmentId
+            (int departmentId) => await districtQueryService
+            .Handle(new GetDistrictsByDepartmentIdQuery(departmentId));
+
         public async Task<bool> ExistsPublicationById(int id)
         {
             var result = await publicationQueryService

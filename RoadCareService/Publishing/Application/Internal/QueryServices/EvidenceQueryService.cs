@@ -5,13 +5,14 @@ using RoadCareService.Publishing.Domain.Services.Evidence;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class EvidenceQueryService(IEvidenceRepository evidenceRepository) :
+    public class EvidenceQueryService
+        (IEvidenceRepository evidenceRepository) :
         IEvidenceQueryService
     {
-
         public async Task<IEnumerable<Evidence>?> Handle
-            (GetEvidencesByPublicationsIdQuery query) =>
+            (GetEvidencesByPublicationIdQuery query) =>
             await evidenceRepository
-            .FindByPublicationsIdAsync(query.PublicationsId);
+            .FindByPublicationIdAsync
+            (query.PublicationId);
     }
 }

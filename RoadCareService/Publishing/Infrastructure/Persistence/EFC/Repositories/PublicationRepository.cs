@@ -9,16 +9,18 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
     public class PublicationRepository(RoadCareContext context) :
         BaseRepository<Publication>(context), IPublicationRepository
     {
-        public async Task<IEnumerable<Publication>?> FindByDepartmentsIdAndDistrictsIdAsync
-            (int departmentsId, int districtsId)
+        public async Task<IEnumerable<Publication>?> FindByDepartmentIdAndDistrictIdAsync
+            (int departmentId, int districtId)
         {
             Task<IEnumerable<Publication>?> queryAsync = new(() =>
             {
                 return
-                from pu in Context.Set<Publication>()
-                join di in Context.Set<District>() on pu.DistrictsId equals di.Id
-                join de in Context.Set<Department>() on di.DepartmentsId equals de.Id
-                where de.Id == departmentsId && di.Id == districtsId
+                from pu in Context.Set<Publication>().ToList()
+                join di in Context.Set<District>().ToList()
+                on pu.DistrictsId equals di.Id
+                join de in Context.Set<Department>().ToList()
+                on di.DepartmentsId equals de.Id
+                where de.Id == departmentId && di.Id == districtId
                 select pu;
             });
 

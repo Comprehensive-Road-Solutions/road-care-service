@@ -9,8 +9,8 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
     public class EvidenceRepository(RoadCareContext context) :
         BaseRepository<Evidence>(context), IEvidenceRepository
     {
-        public async Task<IEnumerable<Evidence>?> FindByPublicationsIdAsync
-            (int publicationsId) => await Context.Set<Evidence>()
-            .Where(e => e.PublicationsId == publicationsId).ToListAsync();
+        public async Task<IEnumerable<Evidence>?> FindByPublicationIdAsync
+            (int publicationId) => await Context.Set<Evidence>()
+            .Where(e => e.PublicationsId == publicationId).ToListAsync();
     }
 }

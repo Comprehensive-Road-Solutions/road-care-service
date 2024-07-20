@@ -5,10 +5,12 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Application.Internal.CommandServices
 {
-    public class PublicationCommandService(IPublicationRepository publicationRepository,
+    public class PublicationCommandService
+        (IPublicationRepository publicationRepository,
         IUnitOfWork unitOfWork) : IPublicationCommandService
     {
-        public async Task<bool> Handle(CreatePublicationCommand command)
+        public async Task<bool> Handle
+            (CreatePublicationCommand command)
         {
             try
             {

@@ -3,9 +3,10 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Domain.Repositories
 {
-    public interface IEvidenceRepository : IBaseRepository<Evidence>
+    public interface IEvidenceRepository :
+        IBaseRepository<Evidence>
     {
-        Task<IEnumerable<Evidence>?> FindByPublicationsIdAsync
-            (int publicationsId);
+        Task<IEnumerable<Evidence>?> FindByPublicationIdAsync
+            (int publicationId);
     }
 }

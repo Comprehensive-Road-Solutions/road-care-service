@@ -8,7 +8,7 @@ namespace RoadCareService.Publishing.Interfaces.REST.Transform.Publication
     {
         public static CreatePublicationCommand ToCommandFromResource
             (CreatePublicationResource resource) =>
-            new(resource.CitizensId, resource.DistrictsId,
+            new(resource.CitizenId, resource.DistrictId,
                 resource.Ubication, resource.Ubication,
                 EPublicationState.PUBLICADO);
     }

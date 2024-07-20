@@ -44,7 +44,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         public DamagedInfrastructure
             (RegisterDamagedInfrastructureCommand command)
         {
-            this.DistrictsId = command.DistrictsId;
+            this.DistrictsId = command.DistrictId;
             this.RegistrationDate = DateTime.Now;
             this.Description = command.Description;
             this.Address = command.Address;

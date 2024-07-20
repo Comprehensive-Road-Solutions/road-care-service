@@ -8,21 +8,21 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
         public int PublicationsId { get; private set; }
         public string FileUrl { get; private set; } = null!;
 
-        public virtual Publication Publications { get; } = null!;
+        public virtual Publication Publication { get; } = null!;
 
         public Evidence()
         {
             this.PublicationsId = 0;
             this.FileUrl = string.Empty;
         }
-        public Evidence(int publicationsId, string fileUrl)
+        public Evidence(int publicationId, string fileUrl)
         {
-            this.PublicationsId = publicationsId;
+            this.PublicationsId = publicationId;
             this.FileUrl = fileUrl;
         }
         public Evidence(AddEvidenceToPublicationCommand command)
         {
-            this.PublicationsId = command.PublicationsId;
+            this.PublicationsId = command.PublicationId;
             this.FileUrl = command.FileUrl;
         }
     }

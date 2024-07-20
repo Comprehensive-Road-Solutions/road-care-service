@@ -3,5 +3,6 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Domain.Repositories
 {
-    public interface IDepartmentRepository : IBaseRepository<Department> { }
+    public interface IDepartmentRepository :
+        IBaseRepository<Department> { }
 }

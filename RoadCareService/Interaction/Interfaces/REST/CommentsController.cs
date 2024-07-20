@@ -10,8 +10,10 @@ namespace RoadCareService.Interaction.Interfaces.REST
     [Route("api/comments/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    public class CommentsController(ICommentCommandService commentCommandService,
-        ICommentQueryService commentQueryService) : ControllerBase
+    public class CommentsController
+        (ICommentCommandService commentCommandService,
+        ICommentQueryService commentQueryService) :
+        ControllerBase
     {
         [Route("add-comment-to-publication")]
         [HttpPost]

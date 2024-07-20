@@ -3,7 +3,6 @@ using RoadCareService.Interaction.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Commands.Publication;
 using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Publishing.Domain.Model.ValueObjects;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RoadCareService.Publishing.Domain.Model.Aggregates
 {
@@ -17,11 +16,8 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
         public string Description { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        [NotMapped]
-        public EPublicationState PublicationState { get; set; }
-
-        public virtual Citizen Citizens { get; } = null!;
-        public virtual District Districts { get; } = null!;
+        public virtual Citizen Citizen { get; } = null!;
+        public virtual District District { get; } = null!;
 
         public virtual ICollection<Comment> Comments { get; } = [];
         public virtual ICollection<Evidence> Evidences { get; } = [];
@@ -34,22 +30,22 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.Ubication = string.Empty;
             this.Description = string.Empty;
         }
-        public Publication(int citizensId, DateTime publicationDate,
-            int districtsId, string ubication, string description,
+        public Publication(int citizenId, DateTime publicationDate,
+            int districtId, string ubication, string description,
             EPublicationState publicationState)
         {
-            this.CitizensId = citizensId;
+            this.CitizensId = citizenId;
             this.PublicationDate = publicationDate;
-            this.DistrictsId = districtsId;
+            this.DistrictsId = districtId;
             this.Ubication = ubication;
             this.Description = description;
             this.State = publicationState.ToString();
         }
         public Publication(CreatePublicationCommand command)
         {
-            this.CitizensId = command.CitizensId;
+            this.CitizensId = command.CitizenId;
             this.PublicationDate = DateTime.Now;
-            this.DistrictsId = command.DistrictsId;
+            this.DistrictsId = command.DistrictId;
             this.Ubication = command.Ubication;
             this.Description = command.Description;
             this.State = command.PublicationState.ToString();

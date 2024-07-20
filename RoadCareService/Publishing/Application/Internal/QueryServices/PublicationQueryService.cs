@@ -5,18 +5,23 @@ using RoadCareService.Publishing.Domain.Services.Publication;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class PublicationQueryService(IPublicationRepository publicationRepository) :
+    public class PublicationQueryService
+        (IPublicationRepository publicationRepository) :
         IPublicationQueryService
     {
         public async Task<IEnumerable<Publication>?> Handle
             (GetAllPublicationsQuery query) =>
             await publicationRepository.ListAsync();
+
         public async Task<Publication?> Handle
             (GetPublicationByIdQuery query) =>
-            await publicationRepository.FindByIdAsync(query.Id);
+            await publicationRepository
+            .FindByIdAsync(query.Id);
+
         public async Task<IEnumerable<Publication>?> Handle
-            (GetPublicationsByDepartmentsIdAndDistrictsIdQuery query) =>
-            await publicationRepository.FindByDepartmentsIdAndDistrictsIdAsync
-            (query.DepartmentsId, query.DistrictsId);
+            (GetPublicationsByDepartmentIdAndDistrictIdQuery query) =>
+            await publicationRepository
+            .FindByDepartmentIdAndDistrictIdAsync
+            (query.DepartmentId, query.DistrictId);
     }
 }

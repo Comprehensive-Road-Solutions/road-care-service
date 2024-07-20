@@ -1,23 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-using RoadCareService.Publishing.Domain.Model.Queries.Publication;
-using RoadCareService.Publishing.Domain.Services.Publication;
-using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
-using RoadCareService.Publishing.Interfaces.REST.Transform.Publication;
-using RoadCareService.Publishing.Domain.Services.Evidence;
-using RoadCareService.Publishing.Interfaces.REST.Resources.Evidence;
-using RoadCareService.Publishing.Interfaces.REST.Transform.Evidence;
 using RoadCareService.Publishing.Domain.Model.Queries.Evidence;
+using RoadCareService.Publishing.Domain.Model.Queries.Publication;
+using RoadCareService.Publishing.Domain.Services.Evidence;
+using RoadCareService.Publishing.Domain.Services.Publication;
+using RoadCareService.Publishing.Interfaces.REST.Resources.Evidence;
+using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
+using RoadCareService.Publishing.Interfaces.REST.Transform.Evidence;
+using RoadCareService.Publishing.Interfaces.REST.Transform.Publication;
 
 namespace RoadCareService.Publishing.Interfaces.REST
 {
     [Route("api/publications/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    public class PublicationsController(IPublicationCommandService publicationCommandService,
+    public class PublicationsController
+        (IPublicationCommandService publicationCommandService,
         IPublicationQueryService publicationQueryService,
         IEvidenceCommandService evidenceCommandService,
-        IEvidenceQueryService evidenceQueryService) : ControllerBase
+        IEvidenceQueryService evidenceQueryService) :
+        ControllerBase
     {
         [Route("create-publication")]
         [HttpPost]
@@ -53,12 +55,12 @@ namespace RoadCareService.Publishing.Interfaces.REST
 
         [Route("publications-by-zone")]
         [HttpGet]
-        public async Task<IActionResult> GetPublicationsByDepartmentsIdAndDistrictsId
-            ([FromQuery] int departmentsId, [FromQuery] int districtsId)
+        public async Task<IActionResult> GetPublicationsByDepartmentIdAndDistrictId
+            ([FromQuery] int departmentId, [FromQuery] int districtId)
         {
             var publications = await publicationQueryService
-                .Handle(new GetPublicationsByDepartmentsIdAndDistrictsIdQuery
-                (departmentsId, districtsId));
+                .Handle(new GetPublicationsByDepartmentIdAndDistrictIdQuery
+                (departmentId, districtId));
 
             if (publications is null)
                 return BadRequest();
@@ -87,12 +89,12 @@ namespace RoadCareService.Publishing.Interfaces.REST
 
         [Route("evidences-by-publication")]
         [HttpGet]
-        public async Task<IActionResult> GetEvidencesByPublicationsId
-            ([FromQuery] int publicationsId)
+        public async Task<IActionResult> GetEvidencesByPublicationId
+            ([FromQuery] int publicationId)
         {
             var evidences = await evidenceQueryService
-                .Handle(new GetEvidencesByPublicationsIdQuery
-                (publicationsId));
+                .Handle(new GetEvidencesByPublicationIdQuery
+                (publicationId));
 
             if (evidences is null)
                 return BadRequest();
