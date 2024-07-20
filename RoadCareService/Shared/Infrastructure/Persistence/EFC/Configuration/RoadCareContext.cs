@@ -25,7 +25,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
 
                 entity.Property(e => e.Id).HasColumnName("id");
                 entity.Property(e => e.FinalDate).HasColumnName("final_date");
-                entity.Property(e => e.RolesId).HasColumnName("roles_id");
+                entity.Property(e => e.WorkersRolesId).HasColumnName("roles_id");
                 entity.Property(e => e.StartDate).HasColumnName("start_date");
                 entity.Property(e => e.State)
                     .HasMaxLength(20)
@@ -33,15 +33,15 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("state");
                 entity.Property(e => e.WorkersId).HasColumnName("workers_id");
 
-                entity.HasOne(d => d.Roles).WithMany(p => p.AssignmentsWorkers)
-                    .HasForeignKey(d => d.RolesId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_assignments_workers_roles_id");
-
                 entity.HasOne(d => d.Workers).WithMany(p => p.AssignmentsWorkers)
                     .HasForeignKey(d => d.WorkersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_assignments_workers_workers_id");
+
+                entity.HasOne(d => d.WorkersRoles).WithMany(p => p.AssignmentsWorkers)
+                    .HasForeignKey(d => d.WorkersRolesId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_assignments_workers_workers_roles_id");
             });
 
             modelBuilder.Entity<Citizen>(entity =>
@@ -285,7 +285,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
 
             modelBuilder.Entity<WorkerRole>(entity =>
             {
-                entity.HasKey(e => e.Id).HasName("pk_role_id");
+                entity.HasKey(e => e.Id).HasName("pk_worker_role_id");
 
                 entity.ToTable("workers_roles");
 
@@ -300,10 +300,10 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("state");
                 entity.Property(e => e.WorkersAreasId).HasColumnName("workers_areas_id");
 
-                entity.HasOne(d => d.WorkersAreas).WithMany(p => p.Roles)
+                entity.HasOne(d => d.WorkersAreas).WithMany(p => p.WorkersRoles)
                     .HasForeignKey(d => d.WorkersAreasId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_roles_workers_areas_id");
+                    .HasConstraintName("fk_workers_roles_workers_areas_id");
             });
 
             modelBuilder.Entity<Staff>(entity =>
