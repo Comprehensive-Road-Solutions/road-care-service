@@ -3,5 +3,5 @@
 namespace RoadCareService.Assignment.Domain.Model.Commands.WorkerRole
 {
     public record AddWorkerRoleToWorkerAreaCommand(int WorkersAreasId, string Name,
-                                             ERoleState RoleState);
+                                             EWorkerRoleState WorkerRoleState);
 }

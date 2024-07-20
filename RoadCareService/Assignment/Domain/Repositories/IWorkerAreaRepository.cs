@@ -6,6 +6,7 @@ namespace RoadCareService.Assignment.Domain.Repositories
 {
     public interface IWorkerAreaRepository : IBaseRepository<WorkerArea>
     {
+        Task<bool> UpdateWorkerAreaStateAsync(int id, EWorkerAreaState workerAreaState);
         Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAndStateAsync
             (int governmentsEntitiesId, EWorkerAreaState workerAreaState);
         Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAsync

@@ -2,5 +2,6 @@
 
 namespace RoadCareService.Assignment.Domain.Model.Commands.WorkerArea
 {
-    public record UpdateWorkerAreaStateCommand(int Id, EWorkerAreaState WorkerAreaState);
+    public record UpdateWorkerAreaStateCommand
+        (int Id, EWorkerAreaState WorkerAreaState);
 }

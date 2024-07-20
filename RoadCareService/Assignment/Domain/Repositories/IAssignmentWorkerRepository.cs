@@ -8,7 +8,7 @@ namespace RoadCareService.Assignment.Domain.Repositories
         IBaseRepository<AssignmentWorker>
     {
         Task<bool> UpdateAssignmentWorkerStateAsync
-            (EAssignmentWorkerState assignmentWorkerState);
+            (int id, EAssignmentWorkerState assignmentWorkerState);
         Task<IEnumerable<AssignmentWorker>?> FindByGovernmentsEntitiesIdAndWorkersAreasIdAndRolesIdAsync
             (int governmentsEntitiesId, int workersAreasId, int rolesId);
         Task<IEnumerable<AssignmentWorker>?> FindByGovernmentsEntitiesIdAndWorkersAreasIdAsync

@@ -2,5 +2,5 @@
 
 namespace RoadCareService.Assignment.Domain.Model.Commands.WorkerRole
 {
-    public record UpdateWorkerRoleStateCommand(int Id, ERoleState RoleState);
+    public record UpdateWorkerRoleStateCommand(int Id, EWorkerRoleState WorkerRoleState);
 }

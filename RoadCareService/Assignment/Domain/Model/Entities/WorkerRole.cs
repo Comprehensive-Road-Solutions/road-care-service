@@ -22,7 +22,7 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.State = string.Empty;
         }
         public WorkerRole(int workersAreasId, string name,
-            ERoleState roleState)
+            EWorkerRoleState roleState)
         {
             this.WorkersAreasId = workersAreasId;
             this.Name = name;
