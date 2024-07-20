@@ -4,12 +4,14 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Assignment.Domain.Repositories
 {
-    public interface IWorkerAreaRepository : IBaseRepository<WorkerArea>
+    public interface IWorkerAreaRepository :
+        IBaseRepository<WorkerArea>
     {
-        Task<bool> UpdateWorkerAreaStateAsync(int id, EWorkerAreaState workerAreaState);
-        Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAndStateAsync
-            (int governmentsEntitiesId, EWorkerAreaState workerAreaState);
-        Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAsync
-            (int governmentsEntitiesId);
+        Task<bool> UpdateWorkerAreaStateAsync
+            (int id, EWorkerAreaState workerAreaState);
+        Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAndStateAsync
+            (int governmentEntityId, EWorkerAreaState workerAreaState);
+        Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAsync
+            (int governmentEntityId);
     }
 }

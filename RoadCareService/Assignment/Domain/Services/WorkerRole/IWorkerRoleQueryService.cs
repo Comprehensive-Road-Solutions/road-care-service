@@ -6,9 +6,11 @@ namespace RoadCareService.Assignment.Domain.Services.WorkerRole
     {
         Task<IEnumerable<Model.Entities.WorkerRole>?> Handle
             (GetAllWorkersRolesQuery query);
+
         Task<Model.Entities.WorkerRole?> Handle
             (GetWorkerRoleByIdQuery query);
+
         Task<IEnumerable<Model.Entities.WorkerRole>?> Handle
-            (GetWorkersRolesByGovernmentsEntitiesIdAndWorkersAreasIdQuery query);
+            (GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery query);
     }
 }

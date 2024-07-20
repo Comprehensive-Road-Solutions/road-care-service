@@ -14,8 +14,8 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
         public DateOnly FinalDate { get; private set; }
         public string State { get; private set; } = null!;
 
-        public virtual WorkerRole WorkersRoles { get; } = null!;
-        public virtual Worker Workers { get; } = null!;
+        public virtual WorkerRole WorkerRole { get; } = null!;
+        public virtual Worker Worker { get; } = null!;
 
         public AssignmentWorker()
         {
@@ -23,19 +23,19 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
             this.WorkersId = 0;
             this.State = string.Empty;
         }
-        public AssignmentWorker(int rolesId, int workersId, DateOnly startDate,
+        public AssignmentWorker(int roleId, int workerId, DateOnly startDate,
             DateOnly finalDate, EAssignmentWorkerState assignmentWorkerState)
         {
-            this.WorkersRolesId = rolesId;
-            this.WorkersId = workersId;
+            this.WorkersRolesId = roleId;
+            this.WorkersId = workerId;
             this.StartDate = startDate;
             this.FinalDate = finalDate;
             this.State = assignmentWorkerState.ToString();
         }
         public AssignmentWorker(AddAssignmentWorkerCommand command)
         {
-            this.WorkersRolesId = command.RolesId;
-            this.WorkersId = command.WorkersId;
+            this.WorkersRolesId = command.RoleId;
+            this.WorkersId = command.WorkerId;
             this.StartDate = command.StartDate;
             this.FinalDate = command.FinalDate;
             this.State = command.AssignmentWorkerState.ToString();

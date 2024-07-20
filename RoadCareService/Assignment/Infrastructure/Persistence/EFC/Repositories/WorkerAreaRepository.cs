@@ -1,4 +1,5 @@
-﻿using RoadCareService.Assignment.Domain.Model.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerArea;
 using RoadCareService.Assignment.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -9,19 +10,29 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
     public class WorkerAreaRepository(RoadCareContext context) :
         BaseRepository<WorkerArea>(context), IWorkerAreaRepository
     {
-        public Task<bool> UpdateWorkerAreaStateAsync(int id, EWorkerAreaState workerAreaState)
+        public async Task<bool> UpdateWorkerAreaStateAsync
+            (int id, EWorkerAreaState workerAreaState)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await Context.Set<WorkerArea>().Where(w => w.Id == id)
+                    .ExecuteUpdateAsync(w => w
+                    .SetProperty(u => u.State, workerAreaState.ToString()));
+
+                return true;
+            }
+            catch (Exception) { return false; }
         }
-        public Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAndStateAsync
-            (int governmentsEntitiesId, EWorkerAreaState workerAreaState)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<IEnumerable<WorkerArea>?> FindByWorkersAreasByGovernmentsEntitiesIdAsync
-            (int governmentsEntitiesId)
-        {
-            throw new NotImplementedException();
-        }
+
+        public async Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAndStateAsync
+            (int governmentEntityId, EWorkerAreaState workerAreaState) =>
+            await Context.Set<WorkerArea>().Where
+            (w => w.GovernmentsEntitiesId == governmentEntityId &&
+            w.State == workerAreaState.ToString()).ToListAsync();
+
+        public async Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAsync
+            (int governmentEntityId) =>
+            await Context.Set<WorkerArea>().Where
+            (w => w.GovernmentsEntitiesId == governmentEntityId).ToListAsync();
     }
 }

@@ -11,7 +11,7 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
         public string Name { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        public virtual WorkerArea WorkersAreas { get; set; } = null!;
+        public virtual WorkerArea WorkerArea { get; set; } = null!;
 
         public virtual ICollection<AssignmentWorker> AssignmentsWorkers { get; set; } = [];
 
@@ -21,23 +21,23 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = string.Empty;
             this.State = string.Empty;
         }
-        public WorkerRole(int workersAreasId, string name,
-            EWorkerRoleState roleState)
+        public WorkerRole(int workerAreaId, string name,
+            EWorkerRoleState workerRoleState)
         {
-            this.WorkersAreasId = workersAreasId;
+            this.WorkersAreasId = workerAreaId;
             this.Name = name;
-            this.State = roleState.ToString();
+            this.State = workerRoleState.ToString();
         }
         public WorkerRole(AddWorkerRoleToWorkerAreaCommand command)
         {
-            this.WorkersAreasId = command.WorkersAreasId;
+            this.WorkersAreasId = command.WorkerAreaId;
             this.Name = command.Name;
-            this.State = command.RoleState.ToString();
+            this.State = command.WorkerRoleState.ToString();
         }
         public WorkerRole(UpdateWorkerRoleStateCommand command)
         {
             this.Id = command.Id;
-            this.State = command.RoleState.ToString();
+            this.State = command.WorkerRoleState.ToString();
         }
     }
 }

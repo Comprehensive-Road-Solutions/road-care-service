@@ -33,12 +33,12 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("state");
                 entity.Property(e => e.WorkersId).HasColumnName("workers_id");
 
-                entity.HasOne(d => d.Workers).WithMany(p => p.AssignmentsWorkers)
+                entity.HasOne(d => d.Worker).WithMany(p => p.AssignmentsWorkers)
                     .HasForeignKey(d => d.WorkersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_assignments_workers_workers_id");
 
-                entity.HasOne(d => d.WorkersRoles).WithMany(p => p.AssignmentsWorkers)
+                entity.HasOne(d => d.WorkerRole).WithMany(p => p.AssignmentsWorkers)
                     .HasForeignKey(d => d.WorkersRolesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_assignments_workers_workers_roles_id");
@@ -241,7 +241,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("ruc");
 
-                entity.HasOne(d => d.Districts).WithMany(p => p.GovernmentsEntities)
+                entity.HasOne(d => d.District).WithMany(p => p.GovernmentsEntities)
                     .HasForeignKey(d => d.DistrictsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fK_governments_entities_districts_id");
@@ -300,7 +300,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("state");
                 entity.Property(e => e.WorkersAreasId).HasColumnName("workers_areas_id");
 
-                entity.HasOne(d => d.WorkersAreas).WithMany(p => p.WorkersRoles)
+                entity.HasOne(d => d.WorkerArea).WithMany(p => p.WorkersRoles)
                     .HasForeignKey(d => d.WorkersAreasId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_workers_roles_workers_areas_id");
@@ -397,7 +397,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("state");
 
-                entity.HasOne(d => d.GovernmentsEntities).WithMany(p => p.WorkersAreas)
+                entity.HasOne(d => d.GovernmentEntity).WithMany(p => p.WorkersAreas)
                     .HasForeignKey(d => d.GovernmentsEntitiesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_workers_areas_governments_entities_id");

@@ -14,7 +14,7 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
         public string Email { get; private set; } = null!;
         public string Address { get; private set; } = null!;
 
-        public virtual District Districts { get; } = null!;
+        public virtual District District { get; } = null!;
 
         public virtual ICollection<Worker> Workers { get; } = [];
         public virtual ICollection<WorkerArea> WorkersAreas { get; } = [];

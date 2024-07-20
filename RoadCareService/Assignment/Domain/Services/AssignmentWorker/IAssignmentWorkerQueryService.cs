@@ -9,8 +9,8 @@ namespace RoadCareService.Assignment.Domain.Services.AssignmentWorker
         Task<Model.Aggregates.AssignmentWorker?> Handle
             (GetAssignmentWorkerByIdQuery query);
         Task<IEnumerable<Model.Aggregates.AssignmentWorker>?> Handle
-            (GetAssignmentsWorkersByGovernmentsEntitiesIdAndWorkersAreasIdAndRolesIdQuery query);
+            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query);
         Task<IEnumerable<Model.Aggregates.AssignmentWorker>?> Handle
-            (GetAssignmentsWorkersByGovernmentsEntitiesIdAndWorkersAreasIdQuery query);
+            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery query);
     }
 }

@@ -2,6 +2,6 @@
 
 namespace RoadCareService.Assignment.Domain.Model.Queries.WorkerArea
 {
-    public record GetWorkersAreasByGovernmentsEntitiesIdAndStateQuery
-        (int GovernmentsEntitiesId, EWorkerAreaState WorkerAreaState);
+    public record GetWorkersAreasByGovernmentEntityIdAndStateQuery
+        (int GovernmentEntityId, EWorkerAreaState WorkerAreaState);
 }

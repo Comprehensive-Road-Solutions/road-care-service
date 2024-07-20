@@ -11,7 +11,7 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
         public string Name { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        public virtual GovernmentEntity GovernmentsEntities { get; } = null!;
+        public virtual GovernmentEntity GovernmentEntity { get; } = null!;
 
         public virtual ICollection<WorkerRole> WorkersRoles { get; } = [];
 
@@ -21,16 +21,16 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = string.Empty;
             this.State = string.Empty;
         }
-        public WorkerArea(int governmentsEntitiesId, string name,
+        public WorkerArea(int governmentEntityId, string name,
             EWorkerAreaState workerAreaState)
         {
-            this.GovernmentsEntitiesId = governmentsEntitiesId;
+            this.GovernmentsEntitiesId = governmentEntityId;
             this.Name = name;
             this.State = workerAreaState.ToString();
         }
         public WorkerArea(CreateWorkerAreaCommand command)
         {
-            this.GovernmentsEntitiesId = command.GovernmentsEntitiesId;
+            this.GovernmentsEntitiesId = command.GovernmentEntityId;
             this.Name = command.Name;
             this.State = command.WorkerAreaState.ToString();
         }

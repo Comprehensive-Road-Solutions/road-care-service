@@ -9,8 +9,8 @@ namespace RoadCareService.Assignment.Domain.Services.WorkerArea
         Task<Model.Entities.WorkerArea?> Handle
             (GetWorkerAreaByIdQuery query);
         Task<IEnumerable<Model.Entities.WorkerArea>?> Handle
-            (GetWorkersAreasByGovernmentsEntitiesIdAndStateQuery query);
+            (GetWorkersAreasByGovernmentEntityIdAndStateQuery query);
         Task<IEnumerable<Model.Entities.WorkerArea>?> Handle
-            (GetWorkersAreasByGovernmentsEntitiesIdQuery query);
+            (GetWorkersAreasByGovernmentEntityIdQuery query);
     }
 }

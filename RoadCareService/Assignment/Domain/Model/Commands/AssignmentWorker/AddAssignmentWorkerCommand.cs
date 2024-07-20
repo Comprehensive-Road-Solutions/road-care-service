@@ -2,7 +2,6 @@
 
 namespace RoadCareService.Assignment.Domain.Model.Commands.AssignmentWorker
 {
-    public record AddAssignmentWorkerCommand(int RolesId, int WorkersId,
-                                             DateOnly StartDate, DateOnly FinalDate,
-                                             EAssignmentWorkerState AssignmentWorkerState);
+    public record AddAssignmentWorkerCommand(int RoleId, int WorkerId, DateOnly StartDate,
+        DateOnly FinalDate, EAssignmentWorkerState AssignmentWorkerState);
 }

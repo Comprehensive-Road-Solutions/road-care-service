@@ -2,6 +2,6 @@
 
 namespace RoadCareService.Assignment.Domain.Model.Commands.WorkerArea
 {
-    public record CreateWorkerAreaCommand(int GovernmentsEntitiesId, string Name,
+    public record CreateWorkerAreaCommand(int GovernmentEntityId, string Name,
                                           EWorkerAreaState WorkerAreaState);
 }
