@@ -23,15 +23,15 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             }
             catch (Exception) { return false; }
         }
+
         public async Task<IEnumerable<Staff>?> FindByStateAsync
-            (EStaffState staffState) =>
-            await Context.Set<Staff>()
+            (EStaffState staffState) => await Context.Set<Staff>()
             .Where(s => s.State == staffState.ToString())
             .ToListAsync();
-        public async Task<IEnumerable<Staff>?> FindByWorkersIdAsync
-            (int workersId) =>
-            await Context.Set<Staff>()
-            .Where(s => s.WorkersId == workersId)
+
+        public async Task<IEnumerable<Staff>?> FindByWorkerIdAsync
+            (int workerId) => await Context.Set<Staff>()
+            .Where(s => s.WorkersId == workerId)
             .ToListAsync();
     }
 }

@@ -8,6 +8,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST.Transform.Staff
     {
         public static UpdateStaffStateCommand ToCommandFromResource
             (UpdateStaffStateResource resource) =>
-            new(resource.Id, Enum.Parse<EStaffState>(resource.StaffState));
+            new(resource.Id, Enum.Parse<EStaffState>
+                (resource.StaffState));
     }
 }

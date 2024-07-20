@@ -8,7 +8,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST.Transform.Staff
     {
         public static AddStaffInChargeCommand ToCommandFromResource
             (AddStaffInChargeResource resource) =>
-            new(resource.DamagedInfrastructuresId, resource.WorkersId,
+            new(resource.DamagedInfrastructureId, resource.WorkerId,
                 EStaffState.ACTIVO);
     }
 }

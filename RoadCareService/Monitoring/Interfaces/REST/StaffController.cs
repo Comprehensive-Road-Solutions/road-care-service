@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using RoadCareService.Monitoring.Domain.Model.Queries.Staff;
-using RoadCareService.Monitoring.Domain.Services.Staff;
-using RoadCareService.Monitoring.Interfaces.REST.Transform.Staff;
-using RoadCareService.Monitoring.Interfaces.REST.Resources.Staff;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.Staff;
+using RoadCareService.Monitoring.Domain.Services.Staff;
+using RoadCareService.Monitoring.Interfaces.REST.Resources.Staff;
+using RoadCareService.Monitoring.Interfaces.REST.Transform.Staff;
 
 namespace RoadCareService.Monitoring.Interfaces.REST
 {
@@ -101,11 +101,11 @@ namespace RoadCareService.Monitoring.Interfaces.REST
         [Route("staff-by-worker")]
         [HttpGet]
         public async Task<IActionResult> GetStaffByWorkersId
-            ([FromQuery] int workersId)
+            ([FromQuery] int workerId)
         {
             var staff = await staffQueryService
-                .Handle(new GetStaffByWorkersIdQuery
-                (workersId));
+                .Handle(new GetStaffByWorkerIdQuery
+                (workerId));
 
             if (staff is null)
                 return BadRequest();

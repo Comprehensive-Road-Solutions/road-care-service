@@ -8,7 +8,8 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
     public class StaffCommandService(IStaffRepository staffRepository,
         IUnitOfWork unitOfWork) : IStaffCommandService
     {
-        public async Task<bool> Handle(AddStaffInChargeCommand command)
+        public async Task<bool> Handle
+            (AddStaffInChargeCommand command)
         {
             try
             {
@@ -20,7 +21,9 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
             }
             catch (Exception) { return false; }
         }
-        public async Task<bool> Handle(UpdateStaffStateCommand command)
+
+        public async Task<bool> Handle
+            (UpdateStaffStateCommand command)
         {
             try
             {

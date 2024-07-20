@@ -11,8 +11,8 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         public int WorkersId { get; private set; }
         public string State { get; private set; } = null!;
 
-        public virtual DamagedInfrastructure DamagedInfrastructures { get; } = null!;
-        public virtual Worker Workers { get; } = null!;
+        public virtual DamagedInfrastructure DamagedInfrastructure { get; } = null!;
+        public virtual Worker Worker { get; } = null!;
 
         public Staff()
         {
@@ -20,11 +20,11 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             this.WorkersId = 0;
             this.State = string.Empty;
         }
-        public Staff(int damagedInfrastructuresId,
-            int workersId, EStaffState staffState)
+        public Staff(int damagedInfrastructureId,
+            int workerId, EStaffState staffState)
         {
-            this.DamagedInfrastructuresId = damagedInfrastructuresId;
-            this.WorkersId = workersId;
+            this.DamagedInfrastructuresId = damagedInfrastructureId;
+            this.WorkersId = workerId;
             this.State = staffState.ToString();
         }
         public Staff(AddStaffInChargeCommand command)

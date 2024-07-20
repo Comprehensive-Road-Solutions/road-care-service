@@ -2,8 +2,6 @@
 
 namespace RoadCareService.Monitoring.Domain.Model.Commands.DamagedInfrastructure
 {
-    public record RegisterDamagedInfrastructureCommand(int DistrictsId,
-                                                       string Description,
-                                                       string Address,
-        EDamagedInfrastructureState DamagedInfrastructureState);
+    public record RegisterDamagedInfrastructureCommand(int DistrictId, string Description,
+        string Address, EDamagedInfrastructureState DamagedInfrastructureState);
 }

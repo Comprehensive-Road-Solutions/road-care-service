@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using RoadCareService.Monitoring.Domain.Model.Commands.DamagedInfrastructure;
-using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Publishing.Domain.Model.Entities;
+using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 
 namespace RoadCareService.Monitoring.Domain.Model.Aggregates
 {
@@ -15,7 +15,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
         public DateTime? WorkDate { get; private set; }
         public string State { get; private set; } = null!;
 
-        public virtual District Districts { get; } = null!;
+        public virtual District District { get; } = null!;
 
         public virtual ICollection<Staff> Staff { get; } = [];
 
@@ -28,13 +28,14 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             this.WorkDate = null;
             this.State = string.Empty;
         }
-        public DamagedInfrastructure(int districtsId, string description,
+        public DamagedInfrastructure(int districtId, string description,
             string address, EDamagedInfrastructureState damagedInfrastructureState)
         {
-            this.DistrictsId = districtsId;
+            this.DistrictsId = districtId;
             this.RegistrationDate = DateTime.Now;
             this.Description = description;
             this.Address = address;
+            this.WorkDate = null;
             this.State = Regex.Replace
                 (damagedInfrastructureState
                 .ToString(), "([A-Z])", " $1")
@@ -47,6 +48,7 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             this.RegistrationDate = DateTime.Now;
             this.Description = command.Description;
             this.Address = command.Address;
+            this.WorkDate = null;
             this.State = Regex.Replace(command
                 .DamagedInfrastructureState
                 .ToString(), "([A-Z])", " $1")

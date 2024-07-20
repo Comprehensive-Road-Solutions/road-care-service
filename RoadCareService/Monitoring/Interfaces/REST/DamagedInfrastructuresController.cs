@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.Monitoring.Domain.Model.Queries.DamagedInfrastructure;
+using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure;
 using RoadCareService.Monitoring.Interfaces.REST.Resources.DamagedInfrastructure;
 using RoadCareService.Monitoring.Interfaces.REST.Transform.DamagedInfrastructure;
-using RoadCareService.Monitoring.Domain.Model.Queries.DamagedInfrastructure;
-using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 
 namespace RoadCareService.Monitoring.Interfaces.REST
 {
@@ -99,11 +99,11 @@ namespace RoadCareService.Monitoring.Interfaces.REST
         [Route("damaged-infrastructures-by-department-and-district")]
         [HttpGet]
         public async Task<IActionResult> GetDamagedInfrastructuresByDepartmentsIdAndDistrictsId
-            ([FromQuery] int departmentsId, [FromQuery] int districtsId)
+            ([FromQuery] int departmentId, [FromQuery] int districtId)
         {
             var damagedInfrastructures = await damagedInfrastructureQueryService
                 .Handle(new GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery
-                (departmentsId, districtsId));
+                (departmentId, districtId));
 
             if (damagedInfrastructures is null)
                 return BadRequest();

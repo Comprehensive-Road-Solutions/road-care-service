@@ -159,7 +159,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnType("datetime")
                     .HasColumnName("work_date");
 
-                entity.HasOne(d => d.Districts).WithMany(p => p.DamagedInfrastructures)
+                entity.HasOne(d => d.District).WithMany(p => p.DamagedInfrastructures)
                     .HasForeignKey(d => d.DistrictsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_damaged_infrastructures_districts_id");
@@ -320,12 +320,12 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .HasColumnName("state");
                 entity.Property(e => e.WorkersId).HasColumnName("workers_id");
 
-                entity.HasOne(d => d.DamagedInfrastructures).WithMany(p => p.Staff)
+                entity.HasOne(d => d.DamagedInfrastructure).WithMany(p => p.Staff)
                     .HasForeignKey(d => d.DamagedInfrastructuresId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_staff_damaged_infrastructures_id");
 
-                entity.HasOne(d => d.Workers).WithMany(p => p.Staff)
+                entity.HasOne(d => d.Worker).WithMany(p => p.Staff)
                     .HasForeignKey(d => d.WorkersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_staff_workers_id");

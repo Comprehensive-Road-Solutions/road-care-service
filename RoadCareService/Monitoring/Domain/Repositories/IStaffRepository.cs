@@ -8,10 +8,12 @@ namespace RoadCareService.Monitoring.Domain.Repositories
         IBaseRepository<Staff>
     {
         Task<bool> UpdateStaffStateAsync
+
             (int id, EStaffState staffState);
         Task<IEnumerable<Staff>?> FindByStateAsync
             (EStaffState staffState);
-        Task<IEnumerable<Staff>?> FindByWorkersIdAsync
-            (int workersId);
+
+        Task<IEnumerable<Staff>?> FindByWorkerIdAsync
+            (int workerId);
     }
 }

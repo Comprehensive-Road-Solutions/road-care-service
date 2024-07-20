@@ -22,6 +22,7 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
             }
             catch (Exception) { return false; }
         }
+
         public async Task<bool> Handle
             (UpdateDamagedInfrastructureStateCommand command)
         {
@@ -41,6 +42,7 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
             }
             catch (Exception) { return false; }
         }
+
         public async Task<bool> Handle
             (AssignWorkDateToDamagedInfrastructureCommand command)
         {

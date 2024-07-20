@@ -8,7 +8,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST.Transform.DamagedInfrastruc
     {
         public static RegisterDamagedInfrastructureCommand ToCommandFromResource
             (RegisterDamagedInfrastructureResource resource) =>
-            new(resource.DistrictsId, resource.Description, resource.Address,
+            new(resource.DistrictId, resource.Description, resource.Address,
                 EDamagedInfrastructureState.ENPROCESO);
     }
 }

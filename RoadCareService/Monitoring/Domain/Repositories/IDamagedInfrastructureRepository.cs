@@ -7,12 +7,15 @@ namespace RoadCareService.Monitoring.Domain.Repositories
     public interface IDamagedInfrastructureRepository :
         IBaseRepository<DamagedInfrastructure>
     {
-        Task<bool> UpdateDamagedInfrastructureStateAsync
-            (int id, EDamagedInfrastructureState damagedInfrastructureState);
         Task<bool> AssignWorkDateToDamagedInfrastructureAsync
             (int id, DateTime workDate);
-        Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentsIdAndDistrictsIdAsync
-            (int departmentsId, int districtsId);
+
+        Task<bool> UpdateDamagedInfrastructureStateAsync
+            (int id, EDamagedInfrastructureState damagedInfrastructureState);
+
+        Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentIdAndDistrictIdAsync
+            (int departmentId, int districtId);
+
         Task<IEnumerable<DamagedInfrastructure>?> FindByStateAsync
             (EDamagedInfrastructureState damagedInfrastructureState);
     }
