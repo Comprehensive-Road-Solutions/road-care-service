@@ -4,7 +4,7 @@ namespace RoadCareService.IAM.Domain.Services.Worker
 {
     public interface IWorkerQueryService
     {
-        Task<Model.Aggregates.Worker?> Handle
+        Task<bool> Handle
             (GetWorkerByIdAndCodeQuery query);
     }
 }
