@@ -94,7 +94,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("code");
 
-                entity.HasOne(d => d.Citizens).WithOne(p => p.CitizensCredential)
+                entity.HasOne(d => d.Citizen).WithOne(p => p.CitizenCredential)
                     .HasForeignKey<CitizenCredential>(d => d.CitizensId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_citizens_credentials_citizens_id");
@@ -369,12 +369,12 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("state");
 
-                entity.HasOne(d => d.Districts).WithMany(p => p.Workers)
+                entity.HasOne(d => d.District).WithMany(p => p.Workers)
                     .HasForeignKey(d => d.DistrictsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_workers_districts_id");
 
-                entity.HasOne(d => d.GovernmentsEntities).WithMany(p => p.Workers)
+                entity.HasOne(d => d.GovernmentEntity).WithMany(p => p.Workers)
                     .HasForeignKey(d => d.GovernmentsEntitiesId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_workers_governments_entities_id");
@@ -417,7 +417,7 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
                     .IsUnicode(false)
                     .HasColumnName("code");
 
-                entity.HasOne(d => d.Workers).WithOne(p => p.WorkersCredential)
+                entity.HasOne(d => d.Worker).WithOne(p => p.WorkerCredential)
                     .HasForeignKey<WorkerCredential>(d => d.WorkersId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_workers_credentials_workers_id");

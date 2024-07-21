@@ -7,6 +7,6 @@ namespace RoadCareService.IAM.Domain.Model.Entities
         public int WorkersId { get; private set; }
         public string Code { get; private set; } = null!;
 
-        public virtual Worker Workers { get; } = null!;
+        public virtual Worker Worker { get; } = null!;
     }
 }

@@ -7,6 +7,6 @@ namespace RoadCareService.IAM.Domain.Model.Entities
         public int CitizensId { get; private set; }
         public string Code { get; private set; } = null!;
 
-        public virtual Citizen Citizens { get; } = null!;
+        public virtual Citizen Citizen { get; } = null!;
     }
 }

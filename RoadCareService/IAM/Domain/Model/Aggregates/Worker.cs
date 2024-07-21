@@ -19,9 +19,9 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
         public string Address { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        public virtual District Districts { get; } = null!;
-        public virtual GovernmentEntity GovernmentsEntities { get; } = null!;
-        public virtual WorkerCredential? WorkersCredential { get; }
+        public virtual District District { get; } = null!;
+        public virtual GovernmentEntity GovernmentEntity { get; } = null!;
+        public virtual WorkerCredential? WorkerCredential { get; }
 
         public virtual ICollection<AssignmentWorker> AssignmentsWorkers { get; } = [];
         public virtual ICollection<Staff> Staff { get; } = [];

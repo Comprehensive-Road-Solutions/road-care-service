@@ -16,7 +16,7 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
         public string Email { get; private set; } = null!;
         public string State { get; private set; } = null!;
 
-        public virtual CitizenCredential? CitizensCredential { get; }
+        public virtual CitizenCredential? CitizenCredential { get; }
 
         public virtual ICollection<Comment> Comments { get; } = [];
         public virtual ICollection<Publication> Publications { get; } = [];
