@@ -5,8 +5,5 @@ namespace RoadCareService.IAM.Domain.Repositories
 {
     public interface IWorkerRepository :
         IBaseRepository<Worker>
-    {
-        Task<bool> FinByIdAndCodeAsync
-            (int id, string code);
-    }
+    { }
 }

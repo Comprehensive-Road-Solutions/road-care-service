@@ -9,8 +9,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
-    public class DamagedInfrastructureRepository(RoadCareContext context) :
-        BaseRepository<DamagedInfrastructure>(context), IDamagedInfrastructureRepository
+    public class DamagedInfrastructureRepository
+        (RoadCareContext context) :
+        BaseRepository<DamagedInfrastructure>(context),
+        IDamagedInfrastructureRepository
     {
         public async Task<bool> AssignWorkDateToDamagedInfrastructureAsync
             (int id, DateTime workDate)

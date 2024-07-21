@@ -6,8 +6,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class PublicationRepository(RoadCareContext context) :
-        BaseRepository<Publication>(context), IPublicationRepository
+    public class PublicationRepository
+        (RoadCareContext context) :
+        BaseRepository<Publication>(context),
+        IPublicationRepository
     {
         public async Task<IEnumerable<Publication>?> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId)

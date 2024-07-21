@@ -1,4 +1,4 @@
-﻿using RoadCareService.IAM.Domain.Model.Queries.Citizen;
+﻿using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
 using RoadCareService.IAM.Domain.Repositories;
 using RoadCareService.IAM.Domain.Services.Citizen;
 

@@ -7,8 +7,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
-    public class WorkerAreaRepository(RoadCareContext context) :
-        BaseRepository<WorkerArea>(context), IWorkerAreaRepository
+    public class WorkerAreaRepository
+        (RoadCareContext context) :
+        BaseRepository<WorkerArea>(context),
+        IWorkerAreaRepository
     {
         public async Task<bool> UpdateWorkerAreaStateAsync
             (int id, EWorkerAreaState workerAreaState)

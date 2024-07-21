@@ -6,8 +6,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositories
 {
-    public class CommentRepository(RoadCareContext context) :
-        BaseRepository<Comment>(context), ICommentRepository
+    public class CommentRepository
+        (RoadCareContext context) :
+        BaseRepository<Comment>(context),
+        ICommentRepository
     {
         public async Task<IEnumerable<Comment>?> FindByPublicationIdAsync
             (int publicationId) =>

@@ -7,8 +7,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
-    public class StaffRepository(RoadCareContext context) :
-        BaseRepository<Staff>(context), IStaffRepository
+    public class StaffRepository
+        (RoadCareContext context) :
+        BaseRepository<Staff>(context),
+        IStaffRepository
     {
         public async Task<bool> UpdateStaffStateAsync
             (int id, EStaffState staffState)

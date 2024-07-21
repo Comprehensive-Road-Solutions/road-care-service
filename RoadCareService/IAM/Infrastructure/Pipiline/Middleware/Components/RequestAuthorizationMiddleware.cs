@@ -1,7 +1,7 @@
 ﻿using RoadCareService.IAM.Application.Internal.OutboundServices;
 using RoadCareService.IAM.Domain.Model.Entities;
-using RoadCareService.IAM.Domain.Model.Queries.Citizen;
-using RoadCareService.IAM.Domain.Model.Queries.Worker;
+using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
+using RoadCareService.IAM.Domain.Model.Queries.WorkerCredential;
 using RoadCareService.IAM.Domain.Services.Citizen;
 using RoadCareService.IAM.Domain.Services.Worker;
 using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
@@ -46,7 +46,7 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
             if (result is WorkerCredential workerCredential)
             {
                 isValidUser = await workerQueryService.Handle
-                    (new GetWorkerByIdAndCodeQuery
+                    (new GetWorkerCredentialByIdAndCodeQuery
                     (workerCredential.WorkersId,
                     workerCredential.Code));
 

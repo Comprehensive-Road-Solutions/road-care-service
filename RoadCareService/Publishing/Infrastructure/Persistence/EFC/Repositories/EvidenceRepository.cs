@@ -6,8 +6,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class EvidenceRepository(RoadCareContext context) :
-        BaseRepository<Evidence>(context), IEvidenceRepository
+    public class EvidenceRepository
+        (RoadCareContext context) :
+        BaseRepository<Evidence>(context),
+        IEvidenceRepository
     {
         public async Task<IEnumerable<Evidence>?> FindByPublicationIdAsync
             (int publicationId) => await Context.Set<Evidence>()

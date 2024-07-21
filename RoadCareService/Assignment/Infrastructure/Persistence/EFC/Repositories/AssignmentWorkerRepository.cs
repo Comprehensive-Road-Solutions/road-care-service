@@ -8,8 +8,10 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
-    public class AssignmentWorkerRepository(RoadCareContext context) :
-        BaseRepository<AssignmentWorker>(context), IAssignmentWorkerRepository
+    public class AssignmentWorkerRepository
+        (RoadCareContext context) :
+        BaseRepository<AssignmentWorker>(context),
+        IAssignmentWorkerRepository
     {
         public async Task<bool> UpdateAssignmentWorkerStateAsync
             (int id, EAssignmentWorkerState assignmentWorkerState)

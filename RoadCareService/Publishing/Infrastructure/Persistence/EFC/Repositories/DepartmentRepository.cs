@@ -5,7 +5,9 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class DepartmentRepository(RoadCareContext context) :
-        BaseRepository<Department>(context), IDepartmentRepository
+    public class DepartmentRepository
+        (RoadCareContext context) :
+        BaseRepository<Department>(context),
+        IDepartmentRepository
     { }
 }
