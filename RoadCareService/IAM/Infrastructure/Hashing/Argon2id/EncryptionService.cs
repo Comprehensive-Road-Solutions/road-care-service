@@ -1,9 +1,10 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using RoadCareService.IAM.Application.Internal.OutboundServices;
 
 namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
 {
-    public class Encryption
+    public class EncryptionService : IEncryptionService
     {
         public string CreateSalt()
         {
@@ -16,9 +17,11 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
             return Convert.ToBase64String(buffer);
         }
 
-        public string HashCode(string code, string salt)
+        public string HashCode
+            (string code, string salt)
         {
-            Konscious.Security.Cryptography.Argon2id EncryptionCode =
+            Konscious.Security
+                .Cryptography.Argon2id EncryptionCode =
                 new(Encoding.UTF8.GetBytes(code))
             {
                 Salt = Encoding.UTF8.GetBytes(salt),
@@ -27,10 +30,12 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
                 MemorySize = 1024 * 1024
             };
 
-            return Convert.ToBase64String(EncryptionCode.GetBytes(16));
+            return Convert.ToBase64String
+                (EncryptionCode.GetBytes(16));
         }
 
-        public bool VerifyHash(string code, string salt, string hash)
+        public bool VerifyHash
+            (string code, string salt, string hash)
         {
             string newHash = HashCode(code, salt);
 
