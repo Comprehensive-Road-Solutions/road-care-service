@@ -4,13 +4,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using RoadCareService.IAM.Application.Internal.OutboundServices;
-using RoadCareService.IAM.Domain.Model.Aggregates;
+using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Configuration;
 
 namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
 {
-    internal class TokenGeneratorService
+    internal class TokenService
         (IOptions<JwtSettings> tokenSettings) :
         ITokenService
     {
@@ -93,11 +93,11 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
 
                 if (role.ToUpper() == ECredentialRole
                     .TRABAJADOR.ToString())
-                    return new Worker();
+                    return new WorkerCredential(id, code);
 
                 if (role.ToUpper() == ECredentialRole
                     .CIUDADANO.ToString())
-                    return new Citizen();
+                    return new CitizenCredential(id, code);
             }
             catch (Exception) { return null; }
 

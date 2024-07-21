@@ -8,5 +8,16 @@ namespace RoadCareService.IAM.Domain.Model.Entities
         public string Code { get; private set; } = null!;
 
         public virtual Citizen Citizen { get; } = null!;
+
+        public CitizenCredential()
+        {
+            this.CitizensId = 0;
+            this.Code = string.Empty;
+        }
+        public CitizenCredential(int citizenId, string code)
+        {
+            this.CitizensId = citizenId;
+            this.Code = code;
+        }
     }
 }
