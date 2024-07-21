@@ -1,0 +1,34 @@
+﻿using RoadCareService.IAM.Application.Internal.OutboundServices;
+using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
+using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
+using RoadCareService.IAM.Domain.Repositories;
+using RoadCareService.IAM.Domain.Services.CitizenCredential;
+
+namespace RoadCareService.IAM.Application.Internal.QueryServices
+{
+    public class CitizenCredentialQueryService
+        (ICitizenCredentialRepository citizenCredentialRepository,
+        IEncryptionService encryptionService,
+        ITokenService tokenService) :
+        ICitizenCredentialQueryService
+    {
+        public async Task<string?> Handle
+            (GetCitizenCredentialByIdAndCodeQuery query)
+        {
+            var result = await citizenCredentialRepository
+                .FindByCitizenId(query.Id);
+
+            if (string.IsNullOrEmpty(result))
+                return null;
+
+            if (!encryptionService.VerifyHash
+                (query.Code, result[..23],
+                result.Substring(24, 47)))
+                return null;
+
+            return tokenService.GenerateJwtToken
+                (query.Id.ToString(), query.Code,
+                ECredentialRole.CIUDADANO);
+        }
+    }
+}

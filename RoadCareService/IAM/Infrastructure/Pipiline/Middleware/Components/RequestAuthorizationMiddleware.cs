@@ -2,8 +2,8 @@
 using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
 using RoadCareService.IAM.Domain.Model.Queries.WorkerCredential;
-using RoadCareService.IAM.Domain.Services.Citizen;
-using RoadCareService.IAM.Domain.Services.Worker;
+using RoadCareService.IAM.Domain.Services.CitizenCredential;
+using RoadCareService.IAM.Domain.Services.WorkerCredential;
 using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 
 namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
@@ -13,8 +13,8 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
     {
         public async Task InvokeAsync
             (HttpContext context,
-            IWorkerQueryService workerQueryService,
-            ICitizenQueryService citizenQueryService,
+            IWorkerCredentialQueryService workerCredentialQueryService,
+            ICitizenCredentialQueryService citizenCredentialQueryService,
             ITokenService tokenService)
         {
             var allowAnonymous =
@@ -41,32 +41,32 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
             if (result is null)
                 throw new Exception("Invalid token!");
 
-            bool isValidUser = false;
+            string? user = null;
 
             if (result is WorkerCredential workerCredential)
             {
-                isValidUser = await workerQueryService.Handle
+                user = await workerCredentialQueryService.Handle
                     (new GetWorkerCredentialByIdAndCodeQuery
                     (workerCredential.WorkersId,
                     workerCredential.Code));
 
-                if (isValidUser)
+                if (!string.IsNullOrEmpty(user))
                     context.Items["Credentials"] =
                         workerCredential;
             }
             else if (result is CitizenCredential citizenCredential)
             {
-                isValidUser = await citizenQueryService.Handle
+                user = await citizenCredentialQueryService.Handle
                     (new GetCitizenCredentialByIdAndCodeQuery
                     (citizenCredential.CitizensId,
                     citizenCredential.Code));
 
-                if (isValidUser)
+                if (!string.IsNullOrEmpty(user))
                     context.Items["Credentials"] =
                         citizenCredential;
             }
 
-            if (!isValidUser)
+            if (!string.IsNullOrEmpty(user))
                 throw new Exception("Credentials not found!");
 
             await next(context);
