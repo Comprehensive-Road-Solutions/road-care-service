@@ -41,8 +41,6 @@
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="IAM\Application\Internal\CommandServices\" />
     <Folder Include="IAM\Application\Internal\QueryServices\" />
-    <Folder Include="IAM\Domain\Model\Commands\" />
-    <Folder Include="IAM\Domain\Model\ValueObjects\" />
     <Folder Include="IAM\Domain\Model\Queries\" />
     <Folder Include="IAM\Domain\Services\" />
     <Folder Include="IAM\Domain\Repositories\" />
