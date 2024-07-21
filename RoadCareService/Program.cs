@@ -121,7 +121,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddTransient<TokenGeneratorService>();
-builder.Services.AddTransient<TokenValidationHandlerService>();
+builder.Services.AddTransient<TokenValidationHandler>();
 
 builder.Services.AddAuthorization();
 
