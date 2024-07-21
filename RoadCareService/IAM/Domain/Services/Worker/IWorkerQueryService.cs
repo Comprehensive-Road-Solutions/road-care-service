@@ -5,6 +5,6 @@ namespace RoadCareService.IAM.Domain.Services.Worker
     public interface IWorkerQueryService
     {
         Task<Model.Aggregates.Worker?> Handle
-            (GetWorkerByIdQuery query);
+            (GetWorkerByIdAndCodeQuery query);
     }
 }

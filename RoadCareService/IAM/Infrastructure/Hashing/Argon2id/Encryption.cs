@@ -15,9 +15,11 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
 
             return Convert.ToBase64String(buffer);
         }
+
         public string HashCode(string code, string salt)
         {
-            Konscious.Security.Cryptography.Argon2id EncryptionCode = new(Encoding.UTF8.GetBytes(code))
+            Konscious.Security.Cryptography.Argon2id EncryptionCode =
+                new(Encoding.UTF8.GetBytes(code))
             {
                 Salt = Encoding.UTF8.GetBytes(salt),
                 DegreeOfParallelism = 8,
@@ -27,6 +29,7 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
 
             return Convert.ToBase64String(EncryptionCode.GetBytes(16));
         }
+
         public bool VerifyHash(string code, string salt, string hash)
         {
             string newHash = HashCode(code, salt);

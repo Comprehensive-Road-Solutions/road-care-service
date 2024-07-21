@@ -5,5 +5,8 @@ namespace RoadCareService.IAM.Domain.Repositories
 {
     public interface ICitizenRepository :
         IBaseRepository<Citizen>
-    { }
+    {
+        Task<bool> FinByIdAndCodeAsync
+            (int id, string code);
+    }
 }
