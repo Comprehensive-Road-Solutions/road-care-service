@@ -16,7 +16,7 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
             (GetCitizenCredentialByIdAndCodeQuery query)
         {
             var result = await citizenCredentialRepository
-                .FindByCitizenId(query.Id);
+                .FindByCitizenIdAsync(query.Id);
 
             if (string.IsNullOrEmpty(result))
                 return null;

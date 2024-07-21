@@ -41,7 +41,6 @@
     <Folder Include="Assignment\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="IAM\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="IAM\Interfaces\ACL\" />
-    <Folder Include="IAM\Interfaces\REST\Transform\" />
     <Folder Include="IAM\Interfaces\REST\Resources\" />
     <Folder Include="Interaction\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Monitoring\Infrastructure\Persistence\Dapper\Repositories\" />

@@ -6,7 +6,7 @@ namespace RoadCareService.IAM.Domain.Repositories
     public interface ICitizenCredentialRepository :
         IBaseRepository<CitizenCredential>
     {
-        Task<string?> FindByCitizenId
+        Task<string?> FindByCitizenIdAsync
             (int citizenId);
     }
 }

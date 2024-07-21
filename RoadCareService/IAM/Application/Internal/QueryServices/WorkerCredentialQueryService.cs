@@ -16,10 +16,10 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
             (GetWorkerCredentialByIdAndCodeQuery query)
         {
             await workerCredentialRepository
-            .FindByWorkerId(query.Id);
+            .FindByWorkerIdAsync(query.Id);
 
             var result = await workerCredentialRepository
-                .FindByWorkerId(query.Id);
+                .FindByWorkerIdAsync(query.Id);
 
             if (string.IsNullOrEmpty(result))
                 return null;
