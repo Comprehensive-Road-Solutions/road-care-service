@@ -44,7 +44,6 @@
     <Folder Include="IAM\Interfaces\REST\Transform\WorkerCredential\" />
     <Folder Include="IAM\Interfaces\REST\Transform\Worker\" />
     <Folder Include="IAM\Interfaces\REST\Transform\CitizenCredential\" />
-    <Folder Include="IAM\Interfaces\REST\Transform\Citizen\" />
     <Folder Include="Interaction\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Monitoring\Infrastructure\Persistence\Dapper\Repositories\" />
     <Folder Include="Publishing\Infrastructure\Persistence\Dapper\Repositories\" />
