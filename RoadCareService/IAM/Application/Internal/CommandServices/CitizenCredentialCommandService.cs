@@ -17,14 +17,15 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
         {
             try
             {
+                var salt = encryptionService
+                    .CreateSalt();
+
                 var code = encryptionService
-                    .HashCode(command.Code,
-                    encryptionService
-                    .CreateSalt());
+                    .HashCode(command.Code, salt);
 
                 await citizenCredentialRepository
                     .AddAsync(new(command
-                    .CitizenId, code));
+                    .CitizenId, string.Concat(salt, code)));
 
                 await unitOfWork.CompleteAsync();
 
