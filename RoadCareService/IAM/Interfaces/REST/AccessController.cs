@@ -34,32 +34,29 @@ namespace RoadCareService.IAM.Interfaces.REST
         public async Task<IActionResult> Login
             ([FromBody] UserResource resource)
         {
+            if (!Enum.TryParse<ECredentialRole>
+                (resource.Role, out var role))
+                return BadRequest();
+
             try
             {
-                var role = Enum.Parse
-                    <ECredentialRole>
-                    (resource.Role);
-
-                var result = "";
-
-                if (role.ToString() ==
-                    ECredentialRole
-                    .TRABAJADOR
-                    .ToString())
+                var result = role switch
                 {
-                    result = await workerCredentialQueryService
-                        .Handle(new GetWorkerCredentialByWorkerIdAndCodeQuery
-                        (resource.Username, resource.Password));
-                }
-                else if (role.ToString() ==
-                    ECredentialRole
-                    .TRABAJADOR
-                    .ToString())
-                {
-                    result = await citizenCredentialQueryService
-                        .Handle(new GetCitizenCredentialByCitizenIdAndCodeQuery
-                        (resource.Username, resource.Password));
-                }
+                    ECredentialRole.TRABAJADOR =>
+                    await workerCredentialQueryService
+                    .Handle(new GetWorkerCredentialByWorkerIdAndCodeQuery
+                    (resource.Username, resource.Password)),
+
+                    ECredentialRole.CIUDADANO =>
+                    await citizenCredentialQueryService
+                    .Handle(new GetCitizenCredentialByCitizenIdAndCodeQuery
+                    (resource.Username, resource.Password)),
+
+                    _ => null
+                };
+
+                if (string.IsNullOrEmpty(result))
+                    return Unauthorized();
 
                 return Ok(result);
             }
