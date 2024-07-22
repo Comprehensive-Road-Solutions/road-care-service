@@ -41,6 +41,16 @@ using RoadCareService.Assignment.Application.Internal.QueryServices;
 using RoadCareService.Assignment.Domain.Services.GovernmentEntity;
 using RoadCareService.Assignment.Domain.Services.WorkerArea;
 using RoadCareService.Assignment.Domain.Services.WorkerRole;
+using RoadCareService.IAM.Domain.Repositories;
+using RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.IAM.Domain.Services.Worker;
+using RoadCareService.IAM.Application.Internal.CommandServices;
+using RoadCareService.IAM.Domain.Services.Citizen;
+using RoadCareService.IAM.Application.Internal.OutboundServices;
+using RoadCareService.IAM.Domain.Services.WorkerCredential;
+using RoadCareService.IAM.Application.Internal.QueryServices;
+using RoadCareService.IAM.Domain.Services.CitizenCredential;
+using RoadCareService.IAM.Infrastructure.Hashing.Argon2id;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -120,7 +130,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddTransient<TokenService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddTransient<TokenValidationHandler>();
 
 builder.Services.AddAuthorization();
@@ -208,6 +218,26 @@ builder.Services.AddScoped<IWorkerAreaQueryService, WorkerAreaQueryService>();
 builder.Services.AddScoped<IWorkerRoleRepository, WorkerRoleRepository>();
 builder.Services.AddScoped<IWorkerRoleCommandService, WorkerRoleCommandService>();
 builder.Services.AddScoped<IWorkerRoleQueryService, WorkerRoleQueryService>();
+
+#endregion
+
+#region IAM Context
+
+builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
+builder.Services.AddScoped<IWorkerCommandService, WorkerCommandService>();
+
+builder.Services.AddScoped<ICitizenRepository, CitizenRepository>();
+builder.Services.AddScoped<ICitizenCommandService, CitizenCommandService>();
+
+builder.Services.AddScoped<IWorkerCredentialRepository, WorkerCredentialRepository>();
+builder.Services.AddScoped<IWorkerCredentialCommandService, WorkerCredentialCommandService>();
+builder.Services.AddScoped<IWorkerCredentialQueryService, WorkerCredentialQueryService>();
+
+builder.Services.AddScoped<ICitizenCredentialRepository, CitizenCredentialRepository>();
+builder.Services.AddScoped<ICitizenCredentialCommandService, CitizenCredentialCommandService>();
+builder.Services.AddScoped<ICitizenCredentialQueryService, CitizenCredentialQueryService>();
+
+builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 
 #endregion
 
