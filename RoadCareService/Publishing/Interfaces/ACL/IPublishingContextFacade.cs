@@ -4,7 +4,10 @@ namespace RoadCareService.Publishing.Interfaces.ACL
 {
     public interface IPublishingContextFacade
     {
-        Task<IEnumerable<District>?> ExistsDistrictByDepartmentId(int departmentId);
-        Task<bool> ExistsPublicationById(int id);
+        Task<IEnumerable<District>?> DistrictsByDepartmentId
+            (int departmentId);
+
+        Task<bool> ExistsPublicationById
+            (int id);
     }
 }
