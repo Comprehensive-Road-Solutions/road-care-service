@@ -1,5 +1,5 @@
 ﻿namespace RoadCareService.IAM.Domain.Model.Queries.CitizenCredential
 {
-    public record GetCitizenCredentialByIdAndCodeQuery
+    public record GetCitizenCredentialByCitizenIdAndCodeQuery
         (int Id, string Code);
 }

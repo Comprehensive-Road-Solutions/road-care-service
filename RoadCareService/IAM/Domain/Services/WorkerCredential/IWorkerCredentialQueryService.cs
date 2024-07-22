@@ -5,6 +5,6 @@ namespace RoadCareService.IAM.Domain.Services.WorkerCredential
     public interface IWorkerCredentialQueryService
     {
         Task<string?> Handle
-            (GetWorkerCredentialByIdAndCodeQuery query);
+            (GetWorkerCredentialByWorkerIdAndCodeQuery query);
     }
 }

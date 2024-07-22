@@ -46,7 +46,7 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
             if (result is WorkerCredential workerCredential)
             {
                 user = await workerCredentialQueryService.Handle
-                    (new GetWorkerCredentialByIdAndCodeQuery
+                    (new GetWorkerCredentialByWorkerIdAndCodeQuery
                     (workerCredential.WorkersId,
                     workerCredential.Code));
 
@@ -57,7 +57,7 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
             else if (result is CitizenCredential citizenCredential)
             {
                 user = await citizenCredentialQueryService.Handle
-                    (new GetCitizenCredentialByIdAndCodeQuery
+                    (new GetCitizenCredentialByCitizenIdAndCodeQuery
                     (citizenCredential.CitizensId,
                     citizenCredential.Code));
 

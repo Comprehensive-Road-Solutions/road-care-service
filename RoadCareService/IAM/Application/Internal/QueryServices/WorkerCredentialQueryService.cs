@@ -13,7 +13,7 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
         IWorkerCredentialQueryService
     {
         public async Task<string?> Handle
-            (GetWorkerCredentialByIdAndCodeQuery query)
+            (GetWorkerCredentialByWorkerIdAndCodeQuery query)
         {
             await workerCredentialRepository
             .FindByWorkerIdAsync(query.Id);
