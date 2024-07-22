@@ -22,8 +22,8 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
                 return null;
 
             if (!encryptionService.VerifyHash
-                (query.Code, result[..23],
-                result.Substring(24, 47)))
+                (query.Code, result[..24],
+                result[24..]))
                 return null;
 
             return tokenService.GenerateJwtToken
