@@ -4,12 +4,14 @@ using RoadCareService.Assignment.Domain.Model.Queries.AssignmentWorker;
 using RoadCareService.Assignment.Domain.Services.AssignmentWorker;
 using RoadCareService.Assignment.Interfaces.REST.Resources.AssignmentWorker;
 using RoadCareService.Assignment.Interfaces.REST.Transform.AssignmentWorker;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 
 namespace RoadCareService.Assignment.Interfaces.REST
 {
     [Route("api/assignmentsworkers/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("TRABAJADOR")]
     public class AssignmentsWorkersController
         (IAssignmentWorkerCommandService assignmentWorkerCommandService,
         IAssignmentWorkerQueryService assignmentWorkerQueryService) :

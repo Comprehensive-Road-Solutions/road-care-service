@@ -3,18 +3,21 @@ using System.Net.Mime;
 using RoadCareService.Assignment.Domain.Model.Queries.GovernmentEntity;
 using RoadCareService.Assignment.Domain.Services.GovernmentEntity;
 using RoadCareService.Assignment.Interfaces.REST.Transform.GovernmentEntity;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 
 namespace RoadCareService.Assignment.Interfaces.REST
 {
     [Route("api/governmentsentities/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize]
     public class GovernmentsEntitiesController
         (IGovernmentEntityQueryService governmentEntityQueryService) :
         ControllerBase
     {
         [Route("all-governments-entities")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllGovernmentsEntities()
         {
             var govenmentsEntities = await governmentEntityQueryService
@@ -32,6 +35,7 @@ namespace RoadCareService.Assignment.Interfaces.REST
 
         [Route("government-entity-by-id")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetGovernmentEntityById
             ([FromQuery] int id)
         {

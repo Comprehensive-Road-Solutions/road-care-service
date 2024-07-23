@@ -9,12 +9,14 @@ using RoadCareService.Assignment.Interfaces.REST.Resources.WorkerArea;
 using RoadCareService.Assignment.Interfaces.REST.Resources.WorkerRole;
 using RoadCareService.Assignment.Interfaces.REST.Transform.WorkerArea;
 using RoadCareService.Assignment.Interfaces.REST.Transform.WorkerRole;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 
 namespace RoadCareService.Assignment.Interfaces.REST
 {
     [Route("api/worksareas/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("TRABAJADOR")]
     public class WorkAreasController
         (IWorkerAreaCommandService workerAreaCommandService,
         IWorkerAreaQueryService workerAreaQueryService,
