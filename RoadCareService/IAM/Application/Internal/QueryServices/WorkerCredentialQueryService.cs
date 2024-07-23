@@ -15,9 +15,6 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
         public async Task<string?> Handle
             (GetWorkerCredentialByWorkerIdAndCodeQuery query)
         {
-            await workerCredentialRepository
-            .FindByWorkerIdAsync(query.Id);
-
             var result = await workerCredentialRepository
                 .FindByWorkerIdAsync(query.Id);
 
@@ -25,8 +22,8 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
                 return null;
 
             if (!encryptionService.VerifyHash
-                (query.Code, result[..23],
-                result.Substring(24, 47)))
+                (query.Code, result[..24],
+                result[24..]))
                 return null;
 
             return tokenService.GenerateJwtToken
