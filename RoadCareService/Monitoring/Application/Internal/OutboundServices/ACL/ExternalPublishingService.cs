@@ -1,12 +1,12 @@
 ﻿using RoadCareService.Publishing.Interfaces.ACL;
 
-namespace RoadCareService.Interaction.Application.Internal.OutboundServices.ACL
+namespace RoadCareService.Monitoring.Application.Internal.OutboundServices.ACL
 {
     public class ExternalPublishingService
         (IPublishingContextFacade publishingContextFacade)
     {
-        public async Task<bool> ExistsPublicationById
+        public async Task<bool> ExistsDistrictById
             (int id) => await publishingContextFacade
-            .ExistsPublicationById(id);
+            .ExistsDistrictById(id);
     }
 }

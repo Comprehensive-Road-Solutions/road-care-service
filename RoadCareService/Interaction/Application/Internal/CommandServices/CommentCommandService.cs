@@ -9,7 +9,8 @@ namespace RoadCareService.Interaction.Application.Internal.CommandServices
     public class CommentCommandService
         (ICommentRepository commentRepository,
         IUnitOfWork unitOfWork,
-        ExternalPublishingService externalPublishingService) :
+        ExternalPublishingService externalPublishingService,
+        ExternalIamService externalIamService) :
         ICommentCommandService
     {
         public async Task<bool> Handle
@@ -19,10 +20,14 @@ namespace RoadCareService.Interaction.Application.Internal.CommandServices
             {
                 if (await externalPublishingService
                     .ExistsPublicationById
-                    (command.PublicationId) is false)
+                    (command.PublicationId) is false ||
+                    await externalIamService
+                    .ExistsCitizenById
+                    (command.CitizenId) is false)
                     return false;
 
-                await commentRepository.AddAsync(new(command));
+                await commentRepository
+                    .AddAsync(new(command));
 
                 await unitOfWork.CompleteAsync();
 

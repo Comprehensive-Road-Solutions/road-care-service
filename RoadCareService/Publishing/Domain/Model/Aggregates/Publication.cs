@@ -30,7 +30,8 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.Ubication = string.Empty;
             this.Description = string.Empty;
         }
-        public Publication(int citizenId, DateTime publicationDate,
+        public Publication
+            (int citizenId, DateTime publicationDate,
             int districtId, string ubication, string description,
             EPublicationState publicationState)
         {
@@ -41,7 +42,8 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.Description = description;
             this.State = publicationState.ToString();
         }
-        public Publication(CreatePublicationCommand command)
+        public Publication
+            (CreatePublicationCommand command)
         {
             this.CitizensId = command.CitizenId;
             this.PublicationDate = DateTime.Now;

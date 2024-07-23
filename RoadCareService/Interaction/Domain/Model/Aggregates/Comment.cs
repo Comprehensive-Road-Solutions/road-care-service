@@ -24,7 +24,8 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.ShippingDate = DateTime.Now;
             this.Opinion = string.Empty;
         }
-        public Comment(int publicationId, int citizenId,
+        public Comment
+            (int publicationId, int citizenId,
             string opinion, ECommentState commentState)
         {
             this.PublicationsId = publicationId;
@@ -33,7 +34,8 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.Opinion = opinion;
             this.State = commentState.ToString();
         }
-        public Comment(AddCommentToPublicationCommand command)
+        public Comment
+            (AddCommentToPublicationCommand command)
         {
             this.PublicationsId = command.PublicationId;
             this.CitizensId = command.CitizenId;

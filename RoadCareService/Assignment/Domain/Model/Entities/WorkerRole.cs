@@ -21,7 +21,8 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             this.Name = string.Empty;
             this.State = string.Empty;
         }
-        public WorkerRole(int workerAreaId, string name,
+        public WorkerRole
+            (int workerAreaId, string name,
             EWorkerRoleState workerRoleState)
         {
             this.WorkersAreasId = workerAreaId;

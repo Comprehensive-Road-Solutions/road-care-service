@@ -3,7 +3,7 @@ using RoadCareService.IAM.Domain.Model.Queries.Worker;
 using RoadCareService.IAM.Domain.Services.Citizen;
 using RoadCareService.IAM.Domain.Services.Worker;
 
-namespace RoadCareService.IAM.Interfaces.ACL
+namespace RoadCareService.IAM.Interfaces.ACL.Services
 {
     public class IamContextFacade
         (IWorkerQueryService workerQueryService,

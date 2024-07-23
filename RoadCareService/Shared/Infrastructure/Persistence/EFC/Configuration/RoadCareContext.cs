@@ -13,7 +13,9 @@ namespace RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration
     public partial class RoadCareContext : DbContext
     {
         public RoadCareContext() { }
-        public RoadCareContext(DbContextOptions<RoadCareContext> options) : base(options) { }
+        public RoadCareContext
+            (DbContextOptions<RoadCareContext> options) :
+            base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

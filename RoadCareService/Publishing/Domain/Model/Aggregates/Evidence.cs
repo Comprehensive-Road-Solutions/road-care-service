@@ -15,12 +15,14 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.PublicationsId = 0;
             this.FileUrl = string.Empty;
         }
-        public Evidence(int publicationId, string fileUrl)
+        public Evidence
+            (int publicationId, string fileUrl)
         {
             this.PublicationsId = publicationId;
             this.FileUrl = fileUrl;
         }
-        public Evidence(AddEvidenceToPublicationCommand command)
+        public Evidence
+            (AddEvidenceToPublicationCommand command)
         {
             this.PublicationsId = command.PublicationId;
             this.FileUrl = command.FileUrl;

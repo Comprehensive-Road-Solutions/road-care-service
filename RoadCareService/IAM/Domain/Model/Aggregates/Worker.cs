@@ -42,9 +42,11 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Address = string.Empty;
             this.State = string.Empty;
         }
-        public Worker(int id, int districtId, int governmentEntityId,
-            string firstname, string lastname, int age, string genre,
-            int phone, string email, string address, EWorkerState workerState)
+        public Worker
+            (int id, int districtId, int governmentEntityId,
+            string firstname, string lastname, int age,
+            string genre, int phone, string email,
+            string address, EWorkerState workerState)
         {
             this.Id = id;
             this.DistrictsId = districtId;
@@ -58,7 +60,8 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Address = address;
             this.State = workerState.ToString();
         }
-        public Worker(RegisterWorkerCommand command)
+        public Worker
+            (RegisterWorkerCommand command)
         {
             this.Id = command.Id;
             this.DistrictsId = command.DistrictId;

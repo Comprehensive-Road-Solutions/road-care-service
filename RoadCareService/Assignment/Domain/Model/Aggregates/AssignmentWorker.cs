@@ -24,8 +24,9 @@ namespace RoadCareService.Assignment.Domain.Model.Aggregates
             this.State = string.Empty;
         }
         public AssignmentWorker
-            (int workerRoleId, int workerId, DateOnly startDate,
-            DateOnly finalDate, EAssignmentWorkerState assignmentWorkerState)
+            (int workerRoleId, int workerId,
+            DateOnly startDate, DateOnly finalDate,
+            EAssignmentWorkerState assignmentWorkerState)
         {
             this.WorkersRolesId = workerRoleId;
             this.WorkersId = workerId;

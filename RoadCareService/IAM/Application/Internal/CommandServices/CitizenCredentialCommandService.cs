@@ -25,7 +25,8 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
 
                 await citizenCredentialRepository
                     .AddAsync(new(command
-                    .CitizenId, string.Concat(salt, code)));
+                    .CitizenId, string.Concat
+                    (salt, code)));
 
                 await unitOfWork.CompleteAsync();
 

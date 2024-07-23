@@ -1,4 +1,5 @@
-﻿using RoadCareService.IAM.Domain.Model.Commands.Worker;
+﻿using RoadCareService.IAM.Application.Internal.OutboundServices.ACL;
+using RoadCareService.IAM.Domain.Model.Commands.Worker;
 using RoadCareService.IAM.Domain.Repositories;
 using RoadCareService.IAM.Domain.Services.Worker;
 using RoadCareService.Shared.Domain.Repositories;
@@ -7,7 +8,8 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
 {
     public class WorkerCommandService
         (IWorkerRepository workerRepository,
-        IUnitOfWork unitOfWork) :
+        IUnitOfWork unitOfWork,
+        ExternalPublishingService externalPublishingService) :
         IWorkerCommandService
     {
         public async Task<bool> Handle
@@ -15,6 +17,12 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
         {
             try
             {
+                if (await externalPublishingService
+                    .ExistsDistrictById
+                    (command.DistrictId)
+                    is false)
+                    return false;
+
                 await workerRepository
                     .AddAsync(new(command));
 

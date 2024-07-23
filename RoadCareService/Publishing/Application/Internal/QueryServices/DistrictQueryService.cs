@@ -9,6 +9,12 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
         (IDistrictRepository districtRepository) :
         IDistrictQueryService
     {
+        public async Task<bool> Handle
+            (GetDistrictByIdQuery query) =>
+            await districtRepository
+            .FindByIdAsync(query.Id)
+            is not null;
+
         public async Task<IEnumerable<District>?> Handle
             (GetDistrictsByDepartmentIdQuery query) =>
             await districtRepository.FindByDepartmentIdAsync

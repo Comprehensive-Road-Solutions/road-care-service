@@ -7,7 +7,8 @@ namespace RoadCareService.Assignment.Application.Internal.CommandServices
 {
     public class WorkerRoleCommandService
         (IWorkerRoleRepository workerRoleRepository,
-        IUnitOfWork unitOfWork) : IWorkerRoleCommandService
+        IUnitOfWork unitOfWork) :
+        IWorkerRoleCommandService
     {
         public async Task<bool> Handle
             (AddWorkerRoleToWorkerAreaCommand command)

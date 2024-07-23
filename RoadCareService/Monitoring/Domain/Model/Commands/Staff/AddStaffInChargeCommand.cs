@@ -2,6 +2,7 @@
 
 namespace RoadCareService.Monitoring.Domain.Model.Commands.Staff
 {
-    public record AddStaffInChargeCommand(int DamagedInfrastructureId,
+    public record AddStaffInChargeCommand
+        (int DamagedInfrastructureId,
         int WorkerId, EStaffState StaffState);
 }

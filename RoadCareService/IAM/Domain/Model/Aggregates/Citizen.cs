@@ -23,7 +23,6 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
         public virtual ICollection<Comment> Comments { get; } = [];
         public virtual ICollection<Publication> Publications { get; } = [];
 
-
         public Citizen()
         {
             this.Id = 0;
@@ -36,7 +35,8 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Email = string.Empty;
             this.State = string.Empty;
         }
-        public Citizen(int id, string? profileUrl,
+        public Citizen
+            (int id, string? profileUrl,
             string firstname, string lastname,
             int age, string genre, int phone,
             string email, ECitizenState citizenState)
@@ -51,7 +51,8 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Email = email;
             this.State = citizenState.ToString();
         }
-        public Citizen(RegisterCitizenCommand command)
+        public Citizen
+            (RegisterCitizenCommand command)
         {
             this.Id = command.Id;
             this.ProfileUrl = command.ProfileUrl;

@@ -14,7 +14,8 @@ namespace RoadCareService.IAM.Domain.Model.Entities
             this.WorkersId = 0;
             this.Code = string.Empty;
         }
-        public WorkerCredential(int workerId, string code)
+        public WorkerCredential
+            (int workerId, string code)
         {
             this.WorkersId = workerId;
             this.Code = code;

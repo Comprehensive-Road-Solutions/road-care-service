@@ -28,8 +28,9 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
             this.WorkDate = null;
             this.State = string.Empty;
         }
-        public DamagedInfrastructure(int districtId, string description,
-            string address, EDamagedInfrastructureState damagedInfrastructureState)
+        public DamagedInfrastructure
+            (int districtId, string description, string address,
+            EDamagedInfrastructureState damagedInfrastructureState)
         {
             this.DistrictsId = districtId;
             this.RegistrationDate = DateTime.Now;

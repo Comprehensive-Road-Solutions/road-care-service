@@ -2,5 +2,6 @@
 
 namespace RoadCareService.Monitoring.Domain.Model.Queries.Staff
 {
-    public record GetStaffByStateQuery(EStaffState StaffState);
+    public record GetStaffByStateQuery
+        (EStaffState StaffState);
 }

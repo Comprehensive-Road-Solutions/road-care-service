@@ -1,4 +1,5 @@
-﻿using RoadCareService.Monitoring.Domain.Model.Commands.Staff;
+﻿using RoadCareService.Monitoring.Application.Internal.OutboundServices.ACL;
+using RoadCareService.Monitoring.Domain.Model.Commands.Staff;
 using RoadCareService.Monitoring.Domain.Repositories;
 using RoadCareService.Monitoring.Domain.Services.Staff;
 using RoadCareService.Shared.Domain.Repositories;
@@ -7,7 +8,8 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
 {
     public class StaffCommandService
         (IStaffRepository staffRepository,
-        IUnitOfWork unitOfWork) :
+        IUnitOfWork unitOfWork,
+        ExternalIamService externalIamService) :
         IStaffCommandService
     {
         public async Task<bool> Handle
@@ -15,7 +17,13 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
         {
             try
             {
-                await staffRepository.AddAsync(new(command));
+                if (await externalIamService
+                    .ExistsWorkerById
+                    (command.WorkerId) is false)
+                    return false;
+
+                await staffRepository
+                    .AddAsync(new(command));
 
                 await unitOfWork.CompleteAsync();
 
