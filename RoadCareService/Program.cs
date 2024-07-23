@@ -51,6 +51,7 @@ using RoadCareService.IAM.Domain.Services.WorkerCredential;
 using RoadCareService.IAM.Application.Internal.QueryServices;
 using RoadCareService.IAM.Domain.Services.CitizenCredential;
 using RoadCareService.IAM.Infrastructure.Hashing.Argon2id;
+using RoadCareService.IAM.Interfaces.ACL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -172,11 +173,11 @@ builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 builder.Services.AddScoped<IPublicationCommandService, PublicationCommandService>();
 builder.Services.AddScoped<IPublicationQueryService, PublicationQueryService>();
 
-builder.Services.AddScoped<IPublishingContextFacade, PublishingContextFacade>();
-
 builder.Services.AddScoped<IEvidenceRepository, EvidenceRepository>();
 builder.Services.AddScoped<IEvidenceCommandService, EvidenceCommandService>();
 builder.Services.AddScoped<IEvidenceQueryService, EvidenceQueryService>();
+
+builder.Services.AddScoped<IPublishingContextFacade, PublishingContextFacade>();
 
 #endregion
 
@@ -225,9 +226,11 @@ builder.Services.AddScoped<IWorkerRoleQueryService, WorkerRoleQueryService>();
 
 builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
 builder.Services.AddScoped<IWorkerCommandService, WorkerCommandService>();
+builder.Services.AddScoped<IWorkerQueryService, WorkerQueryService>();
 
 builder.Services.AddScoped<ICitizenRepository, CitizenRepository>();
 builder.Services.AddScoped<ICitizenCommandService, CitizenCommandService>();
+builder.Services.AddScoped<ICitizenQueryService, CitizenQueryService>();
 
 builder.Services.AddScoped<IWorkerCredentialRepository, WorkerCredentialRepository>();
 builder.Services.AddScoped<IWorkerCredentialCommandService, WorkerCredentialCommandService>();
@@ -238,6 +241,8 @@ builder.Services.AddScoped<ICitizenCredentialCommandService, CitizenCredentialCo
 builder.Services.AddScoped<ICitizenCredentialQueryService, CitizenCredentialQueryService>();
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
+
+builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 
 #endregion
 
