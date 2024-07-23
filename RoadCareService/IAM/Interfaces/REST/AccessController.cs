@@ -6,6 +6,7 @@ using RoadCareService.IAM.Domain.Services.Citizen;
 using RoadCareService.IAM.Domain.Services.CitizenCredential;
 using RoadCareService.IAM.Domain.Services.Worker;
 using RoadCareService.IAM.Domain.Services.WorkerCredential;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.IAM.Interfaces.REST.Resources.Citizen;
 using RoadCareService.IAM.Interfaces.REST.Resources.CitizenCredential;
 using RoadCareService.IAM.Interfaces.REST.Resources.User;
@@ -20,6 +21,7 @@ namespace RoadCareService.IAM.Interfaces.REST
 {
     [Route("api/access/")]
     [ApiController]
+    [Authorize]
     public class AccessController
         (IWorkerCommandService workerCommandService,
         IWorkerCredentialCommandService workerCredentialCommandService,
@@ -31,6 +33,7 @@ namespace RoadCareService.IAM.Interfaces.REST
     {
         [Route("login")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login
             ([FromBody] UserResource resource)
         {
@@ -66,6 +69,7 @@ namespace RoadCareService.IAM.Interfaces.REST
 
         [Route("register-worker")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterWorker
             ([FromBody] RegisterWorkerResource resource)
         {
@@ -86,6 +90,7 @@ namespace RoadCareService.IAM.Interfaces.REST
 
         [Route("register-citizen")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterCitizen
             ([FromBody] RegisterCitizenResource resource)
         {
