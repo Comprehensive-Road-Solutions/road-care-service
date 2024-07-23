@@ -46,7 +46,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             return Ok(result);
         }
 
-        [Route("staff")]
+        [Route("all-staff")]
         [HttpGet]
         public async Task<IActionResult> GetAllStaff()
         {

@@ -61,7 +61,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             return Ok(result);
         }
 
-        [Route("damaged-infrastructures")]
+        [Route("all-damaged-infrastructures")]
         [HttpGet]
         public async Task<IActionResult> GetAllDamagedInfrastructures()
         {

@@ -36,7 +36,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
             return Ok(result);
         }
 
-        [Route("publications")]
+        [Route("all-publications")]
         [HttpGet]
         public async Task<IActionResult> GetAllPublications()
         {
@@ -53,7 +53,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
             return Ok(publicationResource);
         }
 
-        [Route("publications-by-zone")]
+        [Route("publications-by-department-and-district")]
         [HttpGet]
         public async Task<IActionResult> GetPublicationsByDepartmentIdAndDistrictId
             ([FromQuery] int departmentId, [FromQuery] int districtId)

@@ -17,7 +17,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
         IDistrictQueryService districtQueryService) :
         ControllerBase
     {
-        [Route("departments")]
+        [Route("all-departments")]
         [HttpGet]
         public async Task<IActionResult> GetAllDepartments()
         {
