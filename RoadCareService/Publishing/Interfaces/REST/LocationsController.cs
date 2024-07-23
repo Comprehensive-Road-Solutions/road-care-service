@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.Publishing.Domain.Model.Queries.Department;
 using RoadCareService.Publishing.Domain.Model.Queries.District;
 using RoadCareService.Publishing.Domain.Services.Department;
@@ -12,6 +13,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
     [Route("api/locations/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize]
     public class LocationsController
         (IDepartmentQueryService departmentQueryService,
         IDistrictQueryService districtQueryService) :
@@ -19,6 +21,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
     {
         [Route("all-departments")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllDepartments()
         {
             var deparments = await departmentQueryService
@@ -36,6 +39,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
 
         [Route("districts-by-department")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetDistrictsByDepartmentsId
             (int departmentId)
         {

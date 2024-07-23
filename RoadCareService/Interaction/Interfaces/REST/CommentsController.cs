@@ -2,6 +2,7 @@
 using System.Net.Mime;
 using RoadCareService.Interaction.Domain.Model.Queries;
 using RoadCareService.Interaction.Domain.Services;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.Interaction.Interfaces.REST.Resources;
 using RoadCareService.Interaction.Interfaces.REST.Transform;
 
@@ -10,6 +11,7 @@ namespace RoadCareService.Interaction.Interfaces.REST
     [Route("api/comments/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("CIUDADANO")]
     public class CommentsController
         (ICommentCommandService commentCommandService,
         ICommentQueryService commentQueryService) :

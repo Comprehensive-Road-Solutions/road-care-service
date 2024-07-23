@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
 using RoadCareService.IAM.Domain.Model.Queries.WorkerCredential;
 using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
@@ -21,6 +22,7 @@ namespace RoadCareService.IAM.Interfaces.REST
 {
     [Route("api/access/")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
     [Authorize]
     public class AccessController
         (IWorkerCommandService workerCommandService,

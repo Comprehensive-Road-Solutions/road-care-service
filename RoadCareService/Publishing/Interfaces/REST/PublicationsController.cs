@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.Publishing.Domain.Model.Queries.Evidence;
 using RoadCareService.Publishing.Domain.Model.Queries.Publication;
 using RoadCareService.Publishing.Domain.Services.Evidence;
@@ -14,6 +15,7 @@ namespace RoadCareService.Publishing.Interfaces.REST
     [Route("api/publications/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("CIUDADANO")]
     public class PublicationsController
         (IPublicationCommandService publicationCommandService,
         IPublicationQueryService publicationQueryService,
