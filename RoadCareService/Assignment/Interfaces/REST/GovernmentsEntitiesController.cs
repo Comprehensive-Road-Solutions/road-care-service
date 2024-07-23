@@ -44,7 +44,7 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var govenmentEntityResource = GovernmentEntityResourceFromEntityAssembler
                 .ToResourceFromEntity(govenmentEntity);
 
-            return Ok(govenmentEntity);
+            return Ok(govenmentEntityResource);
         }      
     }
 }

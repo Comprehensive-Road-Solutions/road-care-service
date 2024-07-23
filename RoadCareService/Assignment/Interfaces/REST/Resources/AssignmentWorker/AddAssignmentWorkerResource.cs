@@ -2,6 +2,5 @@
 {
     public record AddAssignmentWorkerResource
         (int WorkerRoleId, int WorkerId,
-        DateOnly StartDate, DateOnly FinalDate,
-        string AssignmentWorkerState);
+        DateOnly StartDate, DateOnly FinalDate);
 }
