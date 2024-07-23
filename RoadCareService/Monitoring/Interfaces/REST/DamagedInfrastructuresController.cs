@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.Monitoring.Domain.Model.Queries.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure;
@@ -11,6 +12,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
     [Route("api/damagedinfrastructures/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("TRABAJADOR")]
     public class DamagedInfrastructuresController
         (IDamagedInfrastructureCommandService damagedInfrastructureCommandService,
         IDamagedInfrastructureQueryService damagedInfrastructureQueryService) :

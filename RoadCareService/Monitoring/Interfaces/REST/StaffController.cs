@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
 using RoadCareService.Monitoring.Domain.Model.Queries.Staff;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.Staff;
 using RoadCareService.Monitoring.Domain.Services.Staff;
@@ -11,6 +12,7 @@ namespace RoadCareService.Monitoring.Interfaces.REST
     [Route("api/staff/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
+    [Authorize("TRABAJADOR")]
     public class StaffController
         (IStaffCommandService staffCommandService,
         IStaffQueryService staffQueryService) :
