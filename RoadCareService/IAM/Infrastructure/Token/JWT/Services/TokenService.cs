@@ -4,7 +4,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using RoadCareService.IAM.Application.Internal.OutboundServices;
-using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Configuration;
 
@@ -16,8 +15,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
     {
         private JwtSettings TokenConfiguration = tokenSettings.Value;
 
-        public string GenerateJwtToken(string id, string code,
-            ECredentialRole credentialRole)
+        public string GenerateJwtToken(dynamic credential)
         {
             SymmetricSecurityKey securityKey = new
                 (Encoding.ASCII.GetBytes
@@ -26,12 +24,30 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
             SigningCredentials credentials = new
                 (securityKey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new[]
+            Claim[]? claims = [];
+
+            if (credential.Role ==
+                ECredentialRole.TRABAJADOR.ToString())
             {
-                new Claim(ClaimTypes.Sid, id),
-                new Claim(ClaimTypes.Hash, code),
-                new Claim(ClaimTypes.Role, credentialRole.ToString())
-            };
+                claims =
+                [
+                    new Claim(ClaimTypes.Sid, credential.Id),
+                    new Claim(ClaimTypes.Hash, credential.Code),
+                    new Claim(ClaimTypes.Role, credential.Role),
+                    new Claim(ClaimTypes.StateOrProvince, credential.DistrictName),
+                    new Claim(ClaimTypes.AuthorizationDecision, credential.WorkerAreaName)
+                ];
+            }
+            else if (credential.Role ==
+                ECredentialRole.CIUDADANO.ToString())
+            {
+                claims =
+                [
+                    new Claim(ClaimTypes.Sid, credential.Id),
+                    new Claim(ClaimTypes.Hash, credential.Code),
+                    new Claim(ClaimTypes.Role, credential.Role)
+                ];
+            }
 
             JwtSecurityToken token = new(
                 issuer: TokenConfiguration.JWT_ISSUER_TOKEN,
@@ -45,7 +61,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public object? ValidateToken(string? token)
+        public dynamic? ValidateToken(string? token)
         {
             if (string.IsNullOrEmpty(token))
                 return null;
@@ -93,11 +109,18 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
 
                 if (role.ToUpper() == ECredentialRole
                     .TRABAJADOR.ToString())
-                    return new WorkerCredential(id, code);
+                    return new { Id = id, Code = code, Role = role, 
+                        DistrictName = Convert.ToString
+                        (result.Claims.First(claim =>
+                        claim.Type == ClaimTypes.StateOrProvince).Value),
+                        WorkerAreaName = Convert.ToString
+                        (result.Claims.First(claim =>
+                        claim.Type == ClaimTypes.AuthorizationDecision).Value)
+                    };
 
                 if (role.ToUpper() == ECredentialRole
                     .CIUDADANO.ToString())
-                    return new CitizenCredential(id, code);
+                    return new { Id = id, Code = code, Role = role };
             }
             catch (Exception) { return null; }
 

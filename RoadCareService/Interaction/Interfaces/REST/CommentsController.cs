@@ -2,7 +2,7 @@
 using System.Net.Mime;
 using RoadCareService.Interaction.Domain.Model.Queries;
 using RoadCareService.Interaction.Domain.Services;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using RoadCareService.Interaction.Interfaces.REST.Resources;
 using RoadCareService.Interaction.Interfaces.REST.Transform;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using RoadCareService.Publishing.Domain.Model.Queries.Department;
 using RoadCareService.Publishing.Domain.Model.Queries.District;
 using RoadCareService.Publishing.Domain.Services.Department;

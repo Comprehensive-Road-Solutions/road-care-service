@@ -6,7 +6,7 @@ namespace RoadCareService.IAM.Domain.Repositories
     public interface IWorkerCredentialRepository :
         IBaseRepository<WorkerCredential>
     {
-        Task<string?> FindByWorkerIdAsync
+        Task<dynamic?> FindByWorkerIdAsync
             (int workerId);
     }
 }

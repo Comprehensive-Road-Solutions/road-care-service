@@ -7,7 +7,7 @@ using RoadCareService.IAM.Domain.Services.Citizen;
 using RoadCareService.IAM.Domain.Services.CitizenCredential;
 using RoadCareService.IAM.Domain.Services.Worker;
 using RoadCareService.IAM.Domain.Services.WorkerCredential;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using RoadCareService.IAM.Interfaces.REST.Resources.Citizen;
 using RoadCareService.IAM.Interfaces.REST.Resources.CitizenCredential;
 using RoadCareService.IAM.Interfaces.REST.Resources.User;
@@ -41,32 +41,23 @@ namespace RoadCareService.IAM.Interfaces.REST
         {
             if (!Enum.TryParse<ECredentialRole>
                 (resource.Role, out var role))
-                return BadRequest();
+                return Unauthorized();
 
-            try
-            {
-                var result = role switch
-                {
-                    ECredentialRole.TRABAJADOR =>
-                    await workerCredentialQueryService
+            dynamic result;
+
+            if (role == ECredentialRole.TRABAJADOR)
+                result = await workerCredentialQueryService
                     .Handle(new GetWorkerCredentialByWorkerIdAndCodeQuery
-                    (resource.Username, resource.Password)),
+                    (resource.Username, resource.Password));
 
-                    ECredentialRole.CIUDADANO =>
-                    await citizenCredentialQueryService
+            else if (role == ECredentialRole.CIUDADANO)
+                result = await citizenCredentialQueryService
                     .Handle(new GetCitizenCredentialByCitizenIdAndCodeQuery
-                    (resource.Username, resource.Password)),
+                    (resource.Username, resource.Password));
 
-                    _ => null
-                };
+            else return Unauthorized();
 
-                if (string.IsNullOrEmpty(result))
-                    return Unauthorized();
-
-                return Ok(result);
-            }
-            catch (Exception)
-            { return BadRequest(); }
+            return Ok(result.Item1);
         }
 
         [Route("register-worker")]

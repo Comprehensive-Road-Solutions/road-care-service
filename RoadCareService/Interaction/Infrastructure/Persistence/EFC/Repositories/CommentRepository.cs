@@ -14,6 +14,7 @@ namespace RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositorie
         public async Task<IEnumerable<Comment>?> FindByPublicationIdAsync
             (int publicationId) =>
             await Context.Set<Comment>().Where
-            (c => c.PublicationsId == publicationId).ToListAsync();
+            (c => c.PublicationsId == publicationId &&
+            c.State == "ENVIADO").ToListAsync();
     }
 }

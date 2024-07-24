@@ -3,7 +3,7 @@ using System.Net.Mime;
 using RoadCareService.Assignment.Domain.Model.Queries.GovernmentEntity;
 using RoadCareService.Assignment.Domain.Services.GovernmentEntity;
 using RoadCareService.Assignment.Interfaces.REST.Transform.GovernmentEntity;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
 namespace RoadCareService.Assignment.Interfaces.REST
 {

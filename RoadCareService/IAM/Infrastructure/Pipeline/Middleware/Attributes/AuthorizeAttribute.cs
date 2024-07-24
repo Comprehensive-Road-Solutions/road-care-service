@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
 
-namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes
+namespace RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthorizeAttribute :
@@ -29,17 +28,19 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes
             if (allowAnonymous)
                 return;
 
-            var workerCredential = (WorkerCredential?)
-                context.HttpContext.Items["Credentials"];
+            var credential =
+                context.HttpContext
+                .Items["Credentials"]
+                as dynamic;
 
-            var citizenCredential = (CitizenCredential?)
-                context.HttpContext.Items["Credentials"];
-
-            if (workerCredential == null &&
-                citizenCredential == null)
+            if (credential is null)
+            {
                 context.Result = new UnauthorizedResult();
 
-            var userRole = workerCredential != null ?
+                return;
+            }
+
+            var userRole = credential.Role != null ?
                 ECredentialRole.TRABAJADOR.ToString() :
                 ECredentialRole.CIUDADANO.ToString();
 

@@ -9,7 +9,7 @@ using RoadCareService.Assignment.Interfaces.REST.Resources.WorkerArea;
 using RoadCareService.Assignment.Interfaces.REST.Resources.WorkerRole;
 using RoadCareService.Assignment.Interfaces.REST.Transform.WorkerArea;
 using RoadCareService.Assignment.Interfaces.REST.Transform.WorkerRole;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
 namespace RoadCareService.Assignment.Interfaces.REST
 {

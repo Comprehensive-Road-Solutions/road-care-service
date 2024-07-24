@@ -22,7 +22,9 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
                 on pu.DistrictsId equals di.Id
                 join de in Context.Set<Department>().ToList()
                 on di.DepartmentsId equals de.Id
-                where de.Id == departmentId && di.Id == districtId
+                where de.Id == departmentId &&
+                di.Id == districtId &&
+                pu.State == "PUBLICADO"
                 select pu;
             });
 

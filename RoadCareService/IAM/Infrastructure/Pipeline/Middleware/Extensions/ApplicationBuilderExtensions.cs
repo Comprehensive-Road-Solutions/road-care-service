@@ -1,6 +1,6 @@
-﻿using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components;
+﻿using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Components;
 
-namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Extensions
+namespace RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Extensions
 {
     public static class ApplicationBuilderExtensions
     {

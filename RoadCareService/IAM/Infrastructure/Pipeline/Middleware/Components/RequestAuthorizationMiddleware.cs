@@ -1,12 +1,12 @@
 ﻿using RoadCareService.IAM.Application.Internal.OutboundServices;
-using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Queries.CitizenCredential;
 using RoadCareService.IAM.Domain.Model.Queries.WorkerCredential;
+using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
 using RoadCareService.IAM.Domain.Services.CitizenCredential;
 using RoadCareService.IAM.Domain.Services.WorkerCredential;
-using RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Attributes;
+using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 
-namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
+namespace RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Components
 {
     public class RequestAuthorizationMiddleware
         (RequestDelegate next)
@@ -38,35 +38,39 @@ namespace RoadCareService.IAM.Infrastructure.Pipiline.Middleware.Components
 
             var result = tokenService.ValidateToken(token);
 
+            dynamic validation;
+
             if (result is null)
                 throw new Exception("Invalid token!");
 
-            string? user = null;
+            bool user = false;
 
-            if (result is WorkerCredential workerCredential)
+            if (result.Role == ECredentialRole
+                .TRABAJADOR.ToString())
             {
-                user = await workerCredentialQueryService.Handle
+                validation = await workerCredentialQueryService.Handle
                     (new GetWorkerCredentialByWorkerIdAndCodeQuery
-                    (workerCredential.WorkersId,
-                    workerCredential.Code));
+                    (result.Id, result.Code));
 
-                if (!string.IsNullOrEmpty(user))
-                    context.Items["Credentials"] =
-                        workerCredential;
+                user = validation.Item2;
+
+                if (user is true)
+                    context.Items["Credentials"] = result;
             }
-            else if (result is CitizenCredential citizenCredential)
+            else if (result.Role == ECredentialRole
+                .TRABAJADOR.ToString())
             {
-                user = await citizenCredentialQueryService.Handle
+                validation = await citizenCredentialQueryService.Handle
                     (new GetCitizenCredentialByCitizenIdAndCodeQuery
-                    (citizenCredential.CitizensId,
-                    citizenCredential.Code));
+                    (result.Id, result.Code));
 
-                if (!string.IsNullOrEmpty(user))
-                    context.Items["Credentials"] =
-                        citizenCredential;
+                user = validation.Item2;
+
+                if (user is true)
+                    context.Items["Credentials"] = result;
             }
 
-            if (!string.IsNullOrEmpty(user))
+            if (user is false)
                 throw new Exception("Credentials not found!");
 
             await next(context);

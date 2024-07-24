@@ -1,12 +1,9 @@
-﻿using RoadCareService.IAM.Domain.Model.ValueObjects.Credential;
-
-namespace RoadCareService.IAM.Application.Internal.OutboundServices
+﻿namespace RoadCareService.IAM.Application.Internal.OutboundServices
 {
     public interface ITokenService
     {
-        string GenerateJwtToken(string id,
-            string code, ECredentialRole credentialRole);
+        string GenerateJwtToken(dynamic credential);
 
-        object? ValidateToken(string? token);
+        dynamic? ValidateToken(string? token);
     }
 }

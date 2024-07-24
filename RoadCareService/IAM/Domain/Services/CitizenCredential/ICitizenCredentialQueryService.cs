@@ -4,7 +4,7 @@ namespace RoadCareService.IAM.Domain.Services.CitizenCredential
 {
     public interface ICitizenCredentialQueryService
     {
-        Task<string?> Handle
+        Task<(string?, bool)> Handle
             (GetCitizenCredentialByCitizenIdAndCodeQuery query);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using RoadCareService.IAM.Domain.Model.Aggregates;
 using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -14,10 +14,19 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
         public async Task<string?> FindByCitizenIdAsync
             (int citizenId)
         {
-            var result = await Context
-                .Set<CitizenCredential>()
-                .Where(c => c.CitizensId == citizenId)
-                .FirstOrDefaultAsync();
+            Task<CitizenCredential?> queryAsync = new(() =>
+            {
+                return
+                (from cc in Context.Set<CitizenCredential>().ToList()
+                join ci in Context.Set<Citizen>().ToList()
+                on cc.CitizensId equals ci.Id
+                where ci.State == "ACTIVO"
+                select cc).FirstOrDefault();
+            });
+
+            queryAsync.Start();
+
+            var result = await queryAsync;
 
             if (result is null)
                 return null;
