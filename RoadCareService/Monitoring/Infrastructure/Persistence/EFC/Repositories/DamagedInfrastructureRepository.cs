@@ -10,7 +10,8 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
     public class DamagedInfrastructureRepository
-        (RoadCareContext context) :
+        (RoadCareContext context,
+        HttpContext httpContext) :
         BaseRepository<DamagedInfrastructure>(context),
         IDamagedInfrastructureRepository
     {
@@ -19,8 +20,17 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return false;
+
+                int districtId = credentials.DistrictId;
+
                 await Context.Set<DamagedInfrastructure>()
-                    .Where(d => d.Id == id)
+                    .Where(d => d.Id == id &&
+                    d.DistrictsId == districtId)
                     .ExecuteUpdateAsync(d => d
                     .SetProperty(u => u.WorkDate, workDate));
 
@@ -34,8 +44,17 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return false;
+
+                int districtId = credentials.DistrictId;
+
                 await Context.Set<DamagedInfrastructure>()
-                    .Where(d => d.Id == id)
+                    .Where(d => d.Id == id &&
+                    d.DistrictsId == districtId)
                     .ExecuteUpdateAsync(d => d
                     .SetProperty(u => u.State, Regex.Replace
                     (damagedInfrastructureState.ToString(),

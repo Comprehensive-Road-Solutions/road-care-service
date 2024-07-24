@@ -34,7 +34,7 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
                     Id = query.Id.ToString(),
                     query.Code,
                     Role = ECredentialRole
-                    .TRABAJADOR.ToString()
+                    .CIUDADANO.ToString()
                 }),
                 Result = true
             };

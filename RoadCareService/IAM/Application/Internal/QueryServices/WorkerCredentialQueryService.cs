@@ -28,7 +28,8 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
             string code = result.WorkerCredentialCode;
 
             if (!encryptionService.VerifyHash
-                (query.Code, code[..24], code[24..]))
+                (query.Code, code[..24],
+                code[24..]))
                 return null;
 
             return new
@@ -40,7 +41,7 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
                     query.Code,
                     Role = ECredentialRole
                     .TRABAJADOR.ToString(),
-                    result.DistrictName,
+                    result.DistrictId,
                     result.WorkerAreaName
                 }),
                 Result = true

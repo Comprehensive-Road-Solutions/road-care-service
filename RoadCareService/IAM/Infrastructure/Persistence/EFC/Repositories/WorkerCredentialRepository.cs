@@ -10,7 +10,8 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerCredentialRepository
-        (RoadCareContext context) :
+        (RoadCareContext context,
+        HttpContext httpContext) :
         BaseRepository<WorkerCredential>(context),
         IWorkerCredentialRepository
     {
@@ -19,6 +20,14 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
         {
             Task<dynamic?> queryAsync = new(() =>
             {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return false;
+
+                int districtId = credentials.DistrictId;
+
                 return
                 (from wc in Context.Set<WorkerCredential>().ToList()
                  join wo in Context.Set<Worker>().ToList()
@@ -37,11 +46,12 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
                  wo.State == "ACTIVO" &&
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
-                 wa.State == "ACTIVO"
+                 wa.State == "ACTIVO" &&
+                 di.Id == districtId
                  select new
                  {
                      WorkerCredentialCode = wc.Code,
-                     DistrictName = di.Name,
+                     DistrictId = di.Id,
                      WorkerAreaName = wa.Name
                  })
                  .FirstOrDefault();

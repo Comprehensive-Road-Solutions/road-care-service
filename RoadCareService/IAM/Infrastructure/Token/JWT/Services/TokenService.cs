@@ -34,7 +34,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                     new Claim(ClaimTypes.Sid, credential.Id),
                     new Claim(ClaimTypes.Hash, credential.Code),
                     new Claim(ClaimTypes.Role, credential.Role),
-                    new Claim(ClaimTypes.StateOrProvince, credential.DistrictName),
+                    new Claim(ClaimTypes.StateOrProvince, credential.DistrictId),
                     new Claim(ClaimTypes.AuthorizationDecision, credential.WorkerAreaName)
                 ];
             }
@@ -109,8 +109,8 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
 
                 if (role.ToUpper() == ECredentialRole
                     .TRABAJADOR.ToString())
-                    return new { Id = id, Code = code, Role = role, 
-                        DistrictName = Convert.ToString
+                    return new { Id = id, Code = code, Role = role,
+                        DistrictId = Convert.ToString
                         (result.Claims.First(claim =>
                         claim.Type == ClaimTypes.StateOrProvince).Value),
                         WorkerAreaName = Convert.ToString
