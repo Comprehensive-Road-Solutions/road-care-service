@@ -33,45 +33,30 @@ namespace RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Components
             var token = context.Request.Headers["Authorization"]
             .FirstOrDefault()?.Split(" ").Last();
 
-            if (string.IsNullOrEmpty(token))
-                throw new Exception("Token not provided!");
-
-            var result = tokenService.ValidateToken(token);
-
-            dynamic validation;
-
-            if (result is null)
+            var tokenResult = tokenService.ValidateToken(token) ??
                 throw new Exception("Invalid token!");
 
-            bool user = false;
+            dynamic? validation = null;
 
-            if (result.Role == ECredentialRole
+            if (tokenResult.Role == ECredentialRole
                 .TRABAJADOR.ToString())
-            {
                 validation = await workerCredentialQueryService.Handle
                     (new GetWorkerCredentialByWorkerIdAndCodeQuery
-                    (result.Id, result.Code));
+                    (tokenResult.Id, tokenResult.Code));
 
-                user = validation.Item2;
-
-                if (user is true)
-                    context.Items["Credentials"] = result;
-            }
-            else if (result.Role == ECredentialRole
-                .TRABAJADOR.ToString())
-            {
+            else if (tokenResult.Role == ECredentialRole
+                .CIUDADANO.ToString())
                 validation = await citizenCredentialQueryService.Handle
                     (new GetCitizenCredentialByCitizenIdAndCodeQuery
-                    (result.Id, result.Code));
+                    (tokenResult.Id, tokenResult.Code));
 
-                user = validation.Item2;
+            if (validation is null)
+                throw new Exception("Invalid credentials!");
 
-                if (user is true)
-                    context.Items["Credentials"] = result;
-            }
+            if (validation.Result is true)
+                context.Items["Credentials"] = tokenResult;
 
-            if (user is false)
-                throw new Exception("Credentials not found!");
+            else throw new Exception("Credentials not found!");
 
             await next(context);
         }

@@ -12,26 +12,28 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
         ITokenService tokenService) :
         IWorkerCredentialQueryService
     {
-        public async Task<(string?, bool)> Handle
+        public async Task<dynamic?> Handle
             (GetWorkerCredentialByWorkerIdAndCodeQuery query)
         {
             var result = await workerCredentialRepository
                 .FindByWorkerIdAsync(query.Id);
 
             if (result is null)
-                return (null, false);
+                return null;
 
             if (string.IsNullOrEmpty
                 (result.WorkerCredentialCode))
-                return (null, false);
+                return null;
 
             string code = result.WorkerCredentialCode;
 
             if (!encryptionService.VerifyHash
                 (query.Code, code[..24], code[24..]))
-                return (null, false);
+                return null;
 
-            return (tokenService.GenerateJwtToken
+            return new
+            {
+                Token = tokenService.GenerateJwtToken
                 (new
                 {
                     Id = query.Id.ToString(),
@@ -40,7 +42,9 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
                     .TRABAJADOR.ToString(),
                     result.DistrictName,
                     result.WorkerAreaName
-                }), true);
+                }),
+                Result = true
+            };
         }
     }
 }

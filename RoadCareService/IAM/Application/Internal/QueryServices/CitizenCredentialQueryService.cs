@@ -12,25 +12,32 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
         ITokenService tokenService) :
         ICitizenCredentialQueryService
     {
-        public async Task<(string?, bool)> Handle
+        public async Task<dynamic?> Handle
             (GetCitizenCredentialByCitizenIdAndCodeQuery query)
         {
             var result = await citizenCredentialRepository
                 .FindByCitizenIdAsync(query.Id);
 
             if (string.IsNullOrEmpty(result))
-                return (null, false);
+                return null;
 
             if (!encryptionService.VerifyHash
                 (query.Code, result[..24],
                 result[24..]))
-                return (null, false);
+                return null;
 
-            return (tokenService.GenerateJwtToken
-                (new { Id = query.Id.ToString(),
+            return new
+            {
+                Token = tokenService.GenerateJwtToken
+                (new
+                {
+                    Id = query.Id.ToString(),
                     query.Code,
-                    Role = ECredentialRole.CIUDADANO
-                }), true);
+                    Role = ECredentialRole
+                    .TRABAJADOR.ToString()
+                }),
+                Result = true
+            };
         }
     }
 }

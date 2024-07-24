@@ -43,7 +43,7 @@ namespace RoadCareService.IAM.Interfaces.REST
                 (resource.Role, out var role))
                 return Unauthorized();
 
-            dynamic result;
+            dynamic? result;
 
             if (role == ECredentialRole.TRABAJADOR)
                 result = await workerCredentialQueryService
@@ -57,7 +57,10 @@ namespace RoadCareService.IAM.Interfaces.REST
 
             else return Unauthorized();
 
-            return Ok(result.Item1);
+            if (result is null)
+                return BadRequest();
+
+            return Ok(result.Token);
         }
 
         [Route("register-worker")]
