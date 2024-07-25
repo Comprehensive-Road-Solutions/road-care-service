@@ -73,7 +73,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         public async Task<IEnumerable<Staff>?> FindByStateAsync
             (EStaffState staffState)
         {
-            Task< IEnumerable<Staff>?> queryAsync = new(() =>
+            Task<IEnumerable<Staff>?> queryAsync = new(() =>
             {
                 var credentials = httpContext
                     .Items["Credentials"] as dynamic;

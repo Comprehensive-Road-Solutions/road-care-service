@@ -3,13 +3,15 @@ using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerRole;
 using RoadCareService.Assignment.Domain.Repositories;
+using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerRoleRepository
-        (RoadCareContext context) :
+        (RoadCareContext context,
+        HttpContext httpContext) :
         BaseRepository<WorkerRole>(context),
         IWorkerRoleRepository
     {
@@ -18,6 +20,32 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
+                Task<IEnumerable<WorkerRole>?> queryAsync = new(() =>
+                {
+                    var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                    if (credentials is null)
+                        return null;
+
+                    return
+                    (from wr in Context.Set<WorkerRole>().ToList()
+                     join wo in Context.Set<WorkerArea>().ToList()
+                     on wr.WorkersAreasId equals wo.Id
+                     join go in Context.Set<GovernmentEntity>().ToList()
+                     on wo.GovernmentsEntitiesId equals go.Id
+                     join di in Context.Set<District>().ToList()
+                     on go.DistrictsId equals di.Id
+                     where wr.Id == id &&
+                     di.Id == credentials.DistrictId
+                     select wr).ToList();
+                });
+
+                queryAsync.Start();
+
+                if (await queryAsync is null)
+                    return false;
+
                 await Context.Set<WorkerRole>()
                     .Where(w => w.Id == id)
                     .ExecuteUpdateAsync(w => w
@@ -34,15 +62,24 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerRole>?> queryAsync = new(() =>
             {
+                var credentials = httpContext
+                .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return null;
+
                 return
-                from wr in Context.Set<WorkerRole>().ToList()
+                (from wr in Context.Set<WorkerRole>().ToList()
                 join wo in Context.Set<WorkerArea>().ToList()
                 on wr.WorkersAreasId equals wo.Id
                 join go in Context.Set<GovernmentEntity>().ToList()
                 on wo.GovernmentsEntitiesId equals go.Id
-                where go.Id == governmentEntityId &&
-                wo.Id == workerAreaId
-                select wr;
+                join di in Context.Set<District>().ToList()
+                on go.DistrictsId equals di.Id
+                where wo.Id == workerAreaId &&
+                go.Id == governmentEntityId &&
+                di.Id == credentials.DistrictId
+                select wr).ToList();
             });
 
             queryAsync.Start();
