@@ -11,7 +11,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
     public class DamagedInfrastructureRepository
         (RoadCareContext context,
-        HttpContext httpContext) :
+        IHttpContextAccessor httpContextAccessor) :
         BaseRepository<DamagedInfrastructure>(context),
         IDamagedInfrastructureRepository
     {
@@ -20,7 +20,10 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return false;
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -44,7 +47,10 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return false;
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)

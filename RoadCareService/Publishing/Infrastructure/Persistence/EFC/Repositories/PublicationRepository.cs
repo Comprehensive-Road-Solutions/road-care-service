@@ -14,7 +14,7 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
         public async Task<IEnumerable<Publication>> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId)
         {
-            Task<IEnumerable<Publication>?> queryAsync = new(() =>
+            Task<IEnumerable<Publication>> queryAsync = new(() =>
             {
                 return
                 from pu in Context.Set<Publication>().ToList()
