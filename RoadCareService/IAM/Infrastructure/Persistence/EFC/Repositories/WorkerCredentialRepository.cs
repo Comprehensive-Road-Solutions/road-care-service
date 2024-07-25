@@ -10,8 +10,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerCredentialRepository
-        (RoadCareContext context,
-        IHttpContextAccessor httpContextAccessor) :
+        (RoadCareContext context) :
         BaseRepository<WorkerCredential>(context),
         IWorkerCredentialRepository
     {
@@ -20,17 +19,6 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
         {
             Task<dynamic?> queryAsync = new(() =>
             {
-                if (httpContextAccessor.HttpContext is null)
-                    return null;
-
-                var credentials = httpContextAccessor.HttpContext
-                    .Items["Credentials"] as dynamic;
-
-                if (credentials is null)
-                    return false;
-
-                int districtId = credentials.DistrictId;
-
                 return
                 (from wc in Context.Set<WorkerCredential>().ToList()
                  join wo in Context.Set<Worker>().ToList()
@@ -49,20 +37,17 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
                  wo.State == "ACTIVO" &&
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
-                 wa.State == "ACTIVO" &&
-                 di.Id == districtId
+                 wa.State == "ACTIVO"
                  select new
                  {
                      WorkerCredentialCode = wc.Code,
-                     DistrictId = di.Id,
+                     DistrictId = di.Id.ToString(),
                      WorkerAreaName = wa.Name
                  })
                  .FirstOrDefault();
             });
 
             queryAsync.Start();
-
-            var result = await queryAsync;
 
             return await queryAsync;
         }

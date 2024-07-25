@@ -28,7 +28,6 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
 
             if (credential.Role ==
                 ECredentialRole.TRABAJADOR.ToString())
-            {
                 claims =
                 [
                     new Claim(ClaimTypes.Sid, credential.Id),
@@ -37,17 +36,15 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                     new Claim(ClaimTypes.StateOrProvince, credential.DistrictId),
                     new Claim(ClaimTypes.AuthorizationDecision, credential.WorkerAreaName)
                 ];
-            }
+
             else if (credential.Role ==
                 ECredentialRole.CIUDADANO.ToString())
-            {
                 claims =
                 [
-                    new Claim(ClaimTypes.Sid, credential.Id),
-                    new Claim(ClaimTypes.Hash, credential.Code),
-                    new Claim(ClaimTypes.Role, credential.Role)
+                    new Claim(ClaimTypes.Sid, (string)credential.Id),
+                    new Claim(ClaimTypes.Hash, (string)credential.Code),
+                    new Claim(ClaimTypes.Role, (string)credential.Role)
                 ];
-            }
 
             JwtSecurityToken token = new(
                 issuer: TokenConfiguration.JWT_ISSUER_TOKEN,
@@ -110,7 +107,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                 if (role.ToUpper() == ECredentialRole
                     .TRABAJADOR.ToString())
                     return new { Id = id, Code = code, Role = role,
-                        DistrictId = Convert.ToString
+                        DistrictId = Convert.ToUInt32
                         (result.Claims.First(claim =>
                         claim.Type == ClaimTypes.StateOrProvince).Value),
                         WorkerAreaName = Convert.ToString

@@ -21,10 +21,6 @@ namespace RoadCareService.IAM.Application.Internal.QueryServices
             if (result is null)
                 return null;
 
-            if (string.IsNullOrEmpty
-                (result.WorkerCredentialCode))
-                return null;
-
             string code = result.WorkerCredentialCode;
 
             if (!encryptionService.VerifyHash
