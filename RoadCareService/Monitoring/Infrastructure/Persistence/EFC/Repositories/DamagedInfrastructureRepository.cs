@@ -65,10 +65,10 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             catch (Exception) { return false; }
         }
 
-        public async Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentIdAndDistrictIdAsync
+        public async Task<IEnumerable<DamagedInfrastructure>> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId)
         {
-            Task<IEnumerable<DamagedInfrastructure>?> queryAsync = new(() =>
+            Task<IEnumerable<DamagedInfrastructure>> queryAsync = new(() =>
             {
                 return
                 from da in Context.Set<DamagedInfrastructure>().ToList()
@@ -76,7 +76,8 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                 on da.DistrictsId equals di.Id
                 join de in Context.Set<Department>().ToList()
                 on di.DepartmentsId equals de.Id
-                where de.Id == departmentId && di.Id == districtId
+                where de.Id == departmentId &&
+                di.Id == districtId
                 select da;
             });
 
@@ -85,7 +86,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             return await queryAsync;
         }
 
-        public async Task<IEnumerable<DamagedInfrastructure>?> FindByStateAsync
+        public async Task<IEnumerable<DamagedInfrastructure>> FindByStateAsync
             (EDamagedInfrastructureState damagedInfrastructureState) =>
             await Context.Set<DamagedInfrastructure>()
             .Where(d => d.State == Regex.Replace(damagedInfrastructureState

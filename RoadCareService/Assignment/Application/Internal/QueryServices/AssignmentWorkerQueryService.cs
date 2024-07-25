@@ -9,7 +9,7 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IAssignmentWorkerRepository assignmentWorkerRepository) :
         IAssignmentWorkerQueryService
     {
-        public async Task<IEnumerable<AssignmentWorker>?> Handle
+        public async Task<IEnumerable<AssignmentWorker>> Handle
             (GetAllAssignmentsWorkersQuery query) =>
             await assignmentWorkerRepository.ListAsync();
 
@@ -18,15 +18,15 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
             await assignmentWorkerRepository
             .FindByIdAsync(query.Id);
 
-        public async Task<IEnumerable<AssignmentWorker>?> Handle
-            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query)
-            => await assignmentWorkerRepository
+        public async Task<IEnumerable<AssignmentWorker>> Handle
+            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query) =>
+            await assignmentWorkerRepository
             .FindByGovernmentEntityIdAndWorkerAreaIdAndRoleIdAsync
             (query.GovernmentEntityId, query.WorkerAreaId, query.RoleId);
 
-        public async Task<IEnumerable<AssignmentWorker>?> Handle
-            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery query)
-            => await assignmentWorkerRepository
+        public async Task<IEnumerable<AssignmentWorker>> Handle
+            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery query) =>
+            await assignmentWorkerRepository
             .FindByGovernmentEntityIdAndWorkerAreaIdAsync
             (query.GovernmentEntityId, query.WorkerAreaId);
     }

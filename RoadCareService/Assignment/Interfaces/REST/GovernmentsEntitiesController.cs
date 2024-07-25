@@ -23,9 +23,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var govenmentsEntities = await governmentEntityQueryService
                 .Handle(new GetAllGovernmentsEntitiesQuery());
 
-            if (govenmentsEntities is null)
-                return BadRequest();
-
             var govenmentsEntitiesResource = govenmentsEntities
                 .Select(GovernmentEntityResourceFromEntityAssembler
                 .ToResourceFromEntity);

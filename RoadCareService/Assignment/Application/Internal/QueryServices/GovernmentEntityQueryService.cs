@@ -9,7 +9,7 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IGovernmentEntityRepository governmentEntityRepository) :
         IGovernmentEntityQueryService
     {
-        public async Task<IEnumerable<GovernmentEntity>?> Handle
+        public async Task<IEnumerable<GovernmentEntity>> Handle
             (GetAllGovernmentsEntitiesQuery query) =>
             await governmentEntityRepository.ListAsync();
 

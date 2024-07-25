@@ -6,7 +6,7 @@ namespace RoadCareService.Publishing.Domain.Repositories
     public interface IDistrictRepository :
         IBaseRepository<District>
     {
-        Task<IEnumerable<District>?> FindByDepartmentIdAsync
+        Task<IEnumerable<District>> FindByDepartmentIdAsync
             (int departmentId);
     }
 }

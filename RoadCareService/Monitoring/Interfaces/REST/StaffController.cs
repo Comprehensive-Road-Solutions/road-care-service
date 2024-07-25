@@ -55,9 +55,6 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             var staff = await staffQueryService
                 .Handle(new GetAllStaffQuery());
 
-            if (staff is null)
-                return BadRequest();
-
             var staffResource = staff.Select
                 (StaffResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -92,9 +89,6 @@ namespace RoadCareService.Monitoring.Interfaces.REST
                 .Handle(new GetStaffByStateQuery
                 (Enum.Parse<EStaffState>(state)));
 
-            if (staff is null)
-                return BadRequest();
-
             var staffResource = staff.Select
                 (StaffResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -110,9 +104,6 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             var staff = await staffQueryService
                 .Handle(new GetStaffByWorkerIdQuery
                 (workerId));
-
-            if (staff is null)
-                return BadRequest();
 
             var staffResource = staff.Select
                 (StaffResourceFromEntityAssembler

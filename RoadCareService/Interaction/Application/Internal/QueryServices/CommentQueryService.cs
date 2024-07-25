@@ -9,7 +9,7 @@ namespace RoadCareService.Interaction.Application.Internal.QueryServices
         (ICommentRepository commentRepository) :
         ICommentQueryService
     {
-        public async Task<IEnumerable<Comment>?> Handle
+        public async Task<IEnumerable<Comment>> Handle
             (GetCommentsByPublicationIdQuery query) =>
             await commentRepository.FindByPublicationIdAsync
             (query.PublicationId);

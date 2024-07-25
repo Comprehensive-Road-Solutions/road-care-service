@@ -61,9 +61,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var workersAreas = await workerAreaQueryService
                 .Handle(new GetAllWorkersAreasQuery());
 
-            if (workersAreas is null)
-                return BadRequest();
-
             var workersAreasResource = workersAreas
                 .Select(WorkerAreaResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -97,9 +94,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
                 .Handle(new GetWorkersAreasByGovernmentEntityIdAndStateQuery
                 (governmentEntityId, Enum.Parse<EWorkerAreaState>(state)));
 
-            if (workersAreas is null)
-                return BadRequest();
-
             var workersAreasResource = workersAreas
                 .Select(WorkerAreaResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -115,9 +109,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var workersAreas = await workerAreaQueryService
                 .Handle(new GetWorkersAreasByGovernmentEntityIdQuery
                 (governmentEntityId));
-
-            if (workersAreas is null)
-                return BadRequest();
 
             var workersAreasResource = workersAreas
                 .Select(WorkerAreaResourceFromEntityAssembler
@@ -163,9 +154,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var workersRoles = await workerRoleQueryService
                 .Handle(new GetAllWorkersRolesQuery());
 
-            if (workersRoles is null)
-                return BadRequest();
-
             var workersRolesResource = workersRoles
                 .Select(WorkerRoleResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -198,9 +186,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var workersRoles = await workerRoleQueryService
                 .Handle(new GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery
                 (governmentEntityId, WorkerAreaId));
-
-            if (workersRoles is null)
-                return BadRequest();
 
             var workersRolesResource = workersRoles
                 .Select(WorkerRoleResourceFromEntityAssembler

@@ -15,7 +15,7 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
             .FindByIdAsync(query.Id)
             is not null;
 
-        public async Task<IEnumerable<District>?> Handle
+        public async Task<IEnumerable<District>> Handle
             (GetDistrictsByDepartmentIdQuery query) =>
             await districtRepository.FindByDepartmentIdAsync
             (query.DepartmentId);

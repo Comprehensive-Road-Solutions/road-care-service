@@ -11,7 +11,7 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
         BaseRepository<District>(context),
         IDistrictRepository
     {
-        public async Task<IEnumerable<District>?> FindByDepartmentIdAsync
+        public async Task<IEnumerable<District>> FindByDepartmentIdAsync
             (int departmentId) => await Context.Set<District>()
             .Where(d => d.DepartmentsId == departmentId).ToListAsync();
     }

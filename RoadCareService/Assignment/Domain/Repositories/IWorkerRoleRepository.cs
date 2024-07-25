@@ -9,7 +9,7 @@ namespace RoadCareService.Assignment.Domain.Repositories
     {
         Task<bool> UpdateWorkerRoleStateAsync
             (int id, EWorkerRoleState workerRoleState);
-        Task<IEnumerable<WorkerRole>?> FindByGovernmentEntityIdAndWorkerAreaIdAsync
+        Task<IEnumerable<WorkerRole>> FindByGovernmentEntityIdAndWorkerAreaIdAsync
             (int governmentEntityId, int workerAreaId);
     }
 }

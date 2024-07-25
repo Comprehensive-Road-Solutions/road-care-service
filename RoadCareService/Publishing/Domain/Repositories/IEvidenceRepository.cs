@@ -6,7 +6,7 @@ namespace RoadCareService.Publishing.Domain.Repositories
     public interface IEvidenceRepository :
         IBaseRepository<Evidence>
     {
-        Task<IEnumerable<Evidence>?> FindByPublicationIdAsync
+        Task<IEnumerable<Evidence>> FindByPublicationIdAsync
             (int publicationId);
     }
 }

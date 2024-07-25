@@ -28,8 +28,6 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                     if (credentials is null)
                         return null;
 
-                    int districtId = credentials.DistrictId;
-
                     return
                     (from wa in Context.Set<WorkerArea>().ToList()
                      join go in Context.Set<GovernmentEntity>().ToList()
@@ -37,7 +35,8 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                      join di in Context.Set<District>().ToList()
                      on go.DistrictsId equals di.Id
                      where wa.Id == id &&
-                     di.Id == districtId
+                     wa.Name == credentials.WorkerAreaName &&
+                     di.Id == credentials.DistrictId
                      select wa)
                      .FirstOrDefault();
                 });
@@ -56,10 +55,35 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             catch (Exception) { return false; }
         }
 
-        public async Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAndStateAsync
-            (int governmentEntityId, EWorkerAreaState workerAreaState)
+        public new async Task<IEnumerable<WorkerArea>> ListAsync()
         {
-            Task<IEnumerable<WorkerArea>?> queryAsync = new(() =>
+            Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
+            {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
+
+                return
+                (from wa in Context.Set<WorkerArea>().ToList()
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where di.Id == credentials.DistrictId
+                 select wa).ToList();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
+        public new async Task<WorkerArea?> FindByIdAsync
+            (int id)
+        {
+            Task<WorkerArea?> queryAsync = new(() =>
             {
                 var credentials = httpContext
                     .Items["Credentials"] as dynamic;
@@ -68,6 +92,34 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                     return null;
 
                 int districtId = credentials.DistrictId;
+
+                return
+                (from wa in Context.Set<WorkerArea>().ToList()
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where wa.Id == id &&
+                 di.Id == districtId
+                 select wa)
+                 .FirstOrDefault();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
+        public async Task<IEnumerable<WorkerArea>> FindByGovernmentEntityIdAndStateAsync
+            (int governmentEntityId, EWorkerAreaState workerAreaState)
+        {
+            Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
+            {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
@@ -77,7 +129,7 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                  on go.DistrictsId equals di.Id
                  where wa.State == workerAreaState.ToString() &&
                  go.Id == governmentEntityId &&
-                 di.Id == districtId
+                 di.Id == credentials.DistrictId
                  select wa).ToList();
             });
 
@@ -86,18 +138,16 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             return await queryAsync;
         }
 
-        public async Task<IEnumerable<WorkerArea>?> FindByGovernmentEntityIdAsync
+        public async Task<IEnumerable<WorkerArea>> FindByGovernmentEntityIdAsync
             (int governmentEntityId)
         {
-            Task<IEnumerable<WorkerArea>?> queryAsync = new(() =>
+            Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
             {
                 var credentials = httpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
-                    return null;
-
-                int districtId = credentials.DistrictId;
+                    return [];
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
@@ -106,7 +156,7 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                  join di in Context.Set<District>().ToList()
                  on go.DistrictsId equals di.Id
                  where go.Id == governmentEntityId &&
-                 di.Id == districtId
+                 di.Id == credentials.DistrictId
                  select wa).ToList();
             });
 

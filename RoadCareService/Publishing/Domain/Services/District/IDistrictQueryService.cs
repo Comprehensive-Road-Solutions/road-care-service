@@ -7,7 +7,7 @@ namespace RoadCareService.Publishing.Domain.Services.District
         Task<bool> Handle
             (GetDistrictByIdQuery query);
 
-        Task<IEnumerable<Model.Entities.District>?> Handle
+        Task<IEnumerable<Model.Entities.District>> Handle
             (GetDistrictsByDepartmentIdQuery query);
     }
 }

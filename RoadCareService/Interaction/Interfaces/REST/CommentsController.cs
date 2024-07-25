@@ -41,9 +41,6 @@ namespace RoadCareService.Interaction.Interfaces.REST
                 .Handle(new GetCommentsByPublicationIdQuery
                 (publicationId));
 
-            if (comments is null)
-                return BadRequest();
-
             var commentsResource = comments
                 .Select(CommentResourceFromEntityAssembler
                 .ToResourceFromEntity);

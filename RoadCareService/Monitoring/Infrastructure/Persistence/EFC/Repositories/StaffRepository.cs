@@ -30,8 +30,6 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                     if (credentials is null)
                         return null;
 
-                    int districtId = credentials.DistrictId;
-
                     return
                     (from st in Context.Set<Staff>().ToList()
                      join wo in Context.Set<Worker>().ToList()
@@ -51,7 +49,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                      aw.State == "VIGENTE" &&
                      wr.State == "ACTIVO" &&
                      wa.State == "ACTIVO" &&
-                     di.Id == districtId
+                     di.Id == credentials.DistrictId
                      select st)
                      .FirstOrDefault();
                 });
@@ -70,18 +68,16 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             catch (Exception) { return false; }
         }
 
-        public async Task<IEnumerable<Staff>?> FindByStateAsync
+        public async Task<IEnumerable<Staff>> FindByStateAsync
             (EStaffState staffState)
         {
-            Task<IEnumerable<Staff>?> queryAsync = new(() =>
+            Task<IEnumerable<Staff>> queryAsync = new(() =>
             {
                 var credentials = httpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
-                    return null;
-
-                int districtId = credentials.DistrictId;
+                    return [];
 
                 return
                 (from st in Context.Set<Staff>().ToList()
@@ -102,7 +98,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
                  wa.State == "ACTIVO" &&
-                 di.Id == districtId
+                 di.Id == credentials.DistrictId
                  select st).ToList();
             });
 
@@ -111,18 +107,16 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             return await queryAsync;
         }
 
-        public async Task<IEnumerable<Staff>?> FindByWorkerIdAsync
+        public async Task<IEnumerable<Staff>> FindByWorkerIdAsync
             (int workerId)
         {
-            Task<IEnumerable<Staff>?> queryAsync = new(() =>
+            Task<IEnumerable<Staff>> queryAsync = new(() =>
             {
                 var credentials = httpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
-                    return null;
-
-                int districtId = credentials.DistrictId;
+                    return [];
 
                 return
                 (from st in Context.Set<Staff>().ToList()
@@ -143,7 +137,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
                  wa.State == "ACTIVO" &&
-                 di.Id == districtId
+                 di.Id == credentials.DistrictId
                  select st).ToList();
             });
 

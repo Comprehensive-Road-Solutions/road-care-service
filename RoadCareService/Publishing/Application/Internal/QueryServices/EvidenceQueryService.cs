@@ -9,7 +9,7 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
         (IEvidenceRepository evidenceRepository) :
         IEvidenceQueryService
     {
-        public async Task<IEnumerable<Evidence>?> Handle
+        public async Task<IEnumerable<Evidence>> Handle
             (GetEvidencesByPublicationIdQuery query) =>
             await evidenceRepository
             .FindByPublicationIdAsync

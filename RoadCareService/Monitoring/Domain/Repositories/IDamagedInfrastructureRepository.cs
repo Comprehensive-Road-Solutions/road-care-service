@@ -13,10 +13,10 @@ namespace RoadCareService.Monitoring.Domain.Repositories
         Task<bool> UpdateDamagedInfrastructureStateAsync
             (int id, EDamagedInfrastructureState damagedInfrastructureState);
 
-        Task<IEnumerable<DamagedInfrastructure>?> FindByDepartmentIdAndDistrictIdAsync
+        Task<IEnumerable<DamagedInfrastructure>> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId);
 
-        Task<IEnumerable<DamagedInfrastructure>?> FindByStateAsync
+        Task<IEnumerable<DamagedInfrastructure>> FindByStateAsync
             (EDamagedInfrastructureState damagedInfrastructureState);
     }
 }

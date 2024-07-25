@@ -6,7 +6,7 @@ namespace RoadCareService.Interaction.Domain.Repositories
     public interface ICommentRepository :
         IBaseRepository<Comment>
     {
-        Task<IEnumerable<Comment>?> FindByPublicationIdAsync
+        Task<IEnumerable<Comment>> FindByPublicationIdAsync
             (int publicationId);
     }
 }

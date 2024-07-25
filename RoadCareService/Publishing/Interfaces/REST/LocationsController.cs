@@ -27,9 +27,6 @@ namespace RoadCareService.Publishing.Interfaces.REST
             var deparments = await departmentQueryService
                 .Handle(new GetAllDepartmentsQuery());
 
-            if (deparments is null)
-                return BadRequest();
-
             var deparmentsResource = deparments
                 .Select(DepartmentResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -46,9 +43,6 @@ namespace RoadCareService.Publishing.Interfaces.REST
             var districts = await districtQueryService
                 .Handle(new GetDistrictsByDepartmentIdQuery
                 (departmentId));
-
-            if (districts is null)
-                return BadRequest();
 
             var districtsResource = districts
                 .Select(DistrictResourceFromEntityAssembler

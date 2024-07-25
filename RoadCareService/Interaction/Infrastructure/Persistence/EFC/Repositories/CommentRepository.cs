@@ -11,7 +11,7 @@ namespace RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositorie
         BaseRepository<Comment>(context),
         ICommentRepository
     {
-        public async Task<IEnumerable<Comment>?> FindByPublicationIdAsync
+        public async Task<IEnumerable<Comment>> FindByPublicationIdAsync
             (int publicationId) =>
             await Context.Set<Comment>().Where
             (c => c.PublicationsId == publicationId &&

@@ -54,9 +54,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var assignmentsWorkers = await assignmentWorkerQueryService
                 .Handle(new GetAllAssignmentsWorkersQuery());
 
-            if (assignmentsWorkers is null)
-                return BadRequest();
-
             var assignmentsWorkersResource = assignmentsWorkers
                 .Select(AssignmentWorkerResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -90,9 +87,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
                 .Handle(new GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery
                 (governmentEntityId, workerAreaId, roleId));
 
-            if (assignmentsWorkers is null)
-                return BadRequest();
-
             var assignmentsWorkersResource = assignmentsWorkers
                 .Select(AssignmentWorkerResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -108,9 +102,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var assignmentsWorkers = await assignmentWorkerQueryService
                 .Handle(new GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery
                 (governmentEntityId, workerAreaId));
-
-            if (assignmentsWorkers is null)
-                return BadRequest();
 
             var assignmentsWorkersResource = assignmentsWorkers
                 .Select(AssignmentWorkerResourceFromEntityAssembler

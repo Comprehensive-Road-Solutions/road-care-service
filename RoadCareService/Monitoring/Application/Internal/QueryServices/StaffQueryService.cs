@@ -9,7 +9,7 @@ namespace RoadCareService.Monitoring.Application.Internal.QueryServices
         (IStaffRepository staffRepository) :
         IStaffQueryService
     {
-        public async Task<IEnumerable<Staff>?> Handle
+        public async Task<IEnumerable<Staff>> Handle
             (GetAllStaffQuery query) =>
             await staffRepository.ListAsync();
 
@@ -18,12 +18,12 @@ namespace RoadCareService.Monitoring.Application.Internal.QueryServices
             await staffRepository.FindByIdAsync
             (query.Id);
 
-        public async Task<IEnumerable<Staff>?> Handle
+        public async Task<IEnumerable<Staff>> Handle
             (GetStaffByStateQuery query) =>
             await staffRepository.FindByStateAsync
             (query.StaffState);
 
-        public async Task<IEnumerable<Staff>?> Handle
+        public async Task<IEnumerable<Staff>> Handle
             (GetStaffByWorkerIdQuery query) =>
             await staffRepository.FindByWorkerIdAsync
             (query.WorkerId);

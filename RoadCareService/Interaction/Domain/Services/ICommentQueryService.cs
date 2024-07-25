@@ -5,7 +5,7 @@ namespace RoadCareService.Interaction.Domain.Services
 {
     public interface ICommentQueryService
     {
-        Task<IEnumerable<Comment>?> Handle
+        Task<IEnumerable<Comment>> Handle
             (GetCommentsByPublicationIdQuery query);
     }
 }

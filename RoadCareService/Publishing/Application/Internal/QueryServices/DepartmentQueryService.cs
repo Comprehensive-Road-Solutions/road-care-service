@@ -9,7 +9,7 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
         (IDepartmentRepository departmentRepository) :
         IDepartmentQueryService
     {
-        public async Task<IEnumerable<Department>?> Handle
+        public async Task<IEnumerable<Department>> Handle
             (GetAllDepartmentsQuery query) =>
             await departmentRepository.ListAsync();
 

@@ -9,7 +9,7 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
         (IWorkerRoleRepository workerRoleRepository) :
         IWorkerRoleQueryService
     {
-        public async Task<IEnumerable<WorkerRole>?> Handle
+        public async Task<IEnumerable<WorkerRole>> Handle
             (GetAllWorkersRolesQuery query) =>
             await workerRoleRepository.ListAsync();
 
@@ -18,8 +18,8 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
             await workerRoleRepository
             .FindByIdAsync(query.Id);
 
-        public async Task<IEnumerable<WorkerRole>?> Handle(
-            GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery query)
+        public async Task<IEnumerable<WorkerRole>> Handle
+            (GetWorkersRolesByGovernmentEntityIdAndWorkerAreaIdQuery query)
             => await workerRoleRepository
             .FindByGovernmentEntityIdAndWorkerAreaIdAsync
             (query.GovernmentEntityId, query.WorkerAreaId);

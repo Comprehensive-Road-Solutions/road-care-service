@@ -9,7 +9,7 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
         (IPublicationRepository publicationRepository) :
         IPublicationQueryService
     {
-        public async Task<IEnumerable<Publication>?> Handle
+        public async Task<IEnumerable<Publication>> Handle
             (GetAllPublicationsQuery query) =>
             await publicationRepository.ListAsync();
 
@@ -18,7 +18,7 @@ namespace RoadCareService.Publishing.Application.Internal.QueryServices
             await publicationRepository
             .FindByIdAsync(query.Id);
 
-        public async Task<IEnumerable<Publication>?> Handle
+        public async Task<IEnumerable<Publication>> Handle
             (GetPublicationsByDepartmentIdAndDistrictIdQuery query) =>
             await publicationRepository
             .FindByDepartmentIdAndDistrictIdAsync

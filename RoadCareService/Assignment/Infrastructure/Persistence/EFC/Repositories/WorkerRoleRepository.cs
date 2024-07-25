@@ -20,10 +20,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             try
             {
-                Task<IEnumerable<WorkerRole>?> queryAsync = new(() =>
+                Task<WorkerRole?> queryAsync = new(() =>
                 {
                     var credentials = httpContext
-                    .Items["Credentials"] as dynamic;
+                        .Items["Credentials"] as dynamic;
 
                     if (credentials is null)
                         return null;
@@ -38,7 +38,8 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                      on go.DistrictsId equals di.Id
                      where wr.Id == id &&
                      di.Id == credentials.DistrictId
-                     select wr).ToList();
+                     select wr)
+                     .FirstOrDefault();
                 });
 
                 queryAsync.Start();
@@ -49,24 +50,80 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 await Context.Set<WorkerRole>()
                     .Where(w => w.Id == id)
                     .ExecuteUpdateAsync(w => w
-                    .SetProperty(u => u.State,
-                    workerRoleState.ToString()));
+                    .SetProperty(u => u.State, workerRoleState.ToString()));
 
                 return true;
             }
             catch (Exception) { return true; }
         }
 
-        public async Task<IEnumerable<WorkerRole>?> FindByGovernmentEntityIdAndWorkerAreaIdAsync
-            (int governmentEntityId, int workerAreaId)
+        public new async Task<IEnumerable<WorkerRole>> ListAsync()
         {
-            Task<IEnumerable<WorkerRole>?> queryAsync = new(() =>
+            Task<IEnumerable<WorkerRole>> queryAsync = new(() =>
             {
                 var credentials = httpContext
-                .Items["Credentials"] as dynamic;
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
+
+                return
+                (from wr in Context.Set<WorkerRole>().ToList()
+                 join wo in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wo.Id
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wo.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where di.Id == credentials.DistrictId
+                 select wr).ToList();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
+        public new async Task<WorkerRole?> FindByIdAsync
+            (int id)
+        {
+            Task<WorkerRole?> queryAsync = new(() =>
+            {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
                     return null;
+
+                return
+                (from wr in Context.Set<WorkerRole>().ToList()
+                 join wo in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wo.Id
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wo.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where wr.Id == id &&
+                 di.Id == credentials.DistrictId
+                 select wr)
+                 .FirstOrDefault();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
+        public async Task<IEnumerable<WorkerRole>> FindByGovernmentEntityIdAndWorkerAreaIdAsync
+            (int governmentEntityId, int workerAreaId)
+        {
+            Task<IEnumerable<WorkerRole>> queryAsync = new(() =>
+            {
+                var credentials = httpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
 
                 return
                 (from wr in Context.Set<WorkerRole>().ToList()

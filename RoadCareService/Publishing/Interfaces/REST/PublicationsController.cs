@@ -45,9 +45,6 @@ namespace RoadCareService.Publishing.Interfaces.REST
             var publications = await publicationQueryService
                 .Handle(new GetAllPublicationsQuery());
 
-            if (publications is null)
-                return BadRequest();
-
             var publicationResource = publications
                 .Select(PublicationResourceFromEntityAssembler
                 .ToResourceFromEntity);
@@ -63,9 +60,6 @@ namespace RoadCareService.Publishing.Interfaces.REST
             var publications = await publicationQueryService
                 .Handle(new GetPublicationsByDepartmentIdAndDistrictIdQuery
                 (departmentId, districtId));
-
-            if (publications is null)
-                return BadRequest();
 
             var publicationsResource = publications
                 .Select(PublicationResourceFromEntityAssembler
@@ -97,9 +91,6 @@ namespace RoadCareService.Publishing.Interfaces.REST
             var evidences = await evidenceQueryService
                 .Handle(new GetEvidencesByPublicationIdQuery
                 (publicationId));
-
-            if (evidences is null)
-                return BadRequest();
 
             var evidencesResource = evidences
                 .Select(EvidenceResourceFromEntityAssembler
