@@ -11,7 +11,7 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerCredentialRepository
         (RoadCareContext context,
-        HttpContext httpContext) :
+        IHttpContextAccessor httpContextAccessor) :
         BaseRepository<WorkerCredential>(context),
         IWorkerCredentialRepository
     {
@@ -20,7 +20,10 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
         {
             Task<dynamic?> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return null;
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
