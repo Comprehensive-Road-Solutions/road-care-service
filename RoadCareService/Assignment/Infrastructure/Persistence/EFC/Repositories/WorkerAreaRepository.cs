@@ -11,7 +11,7 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerAreaRepository
         (RoadCareContext context,
-        HttpContext httpContext) :
+        IHttpContextAccessor httpContextAccessor) :
         BaseRepository<WorkerArea>(context),
         IWorkerAreaRepository
     {
@@ -22,7 +22,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             {
                 Task<WorkerArea?> queryAsync = new(() =>
                 {
-                    var credentials = httpContext
+                    if (httpContextAccessor.HttpContext is null)
+                        return null;
+
+                    var credentials = httpContextAccessor.HttpContext
                         .Items["Credentials"] as dynamic;
 
                     if (credentials is null)
@@ -59,7 +62,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -85,7 +91,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<WorkerArea?> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return null;
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -115,7 +124,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -143,7 +155,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)

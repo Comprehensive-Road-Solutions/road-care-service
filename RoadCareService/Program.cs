@@ -101,6 +101,8 @@ builder.Services.AddSwaggerGen(c =>
         });
 });
 
+builder.Services.AddHttpContextAccessor();
+
 #region JWT Configuration
 
 var jwtSettings = builder.Configuration.GetSection("JWT_SETTINGS");

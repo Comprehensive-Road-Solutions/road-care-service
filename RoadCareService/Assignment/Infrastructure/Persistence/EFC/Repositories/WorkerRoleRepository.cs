@@ -11,7 +11,7 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
     public class WorkerRoleRepository
         (RoadCareContext context,
-        HttpContext httpContext) :
+        IHttpContextAccessor httpContextAccessor) :
         BaseRepository<WorkerRole>(context),
         IWorkerRoleRepository
     {
@@ -22,7 +22,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             {
                 Task<WorkerRole?> queryAsync = new(() =>
                 {
-                    var credentials = httpContext
+                    if (httpContextAccessor.HttpContext is null)
+                        return null;
+
+                    var credentials = httpContextAccessor.HttpContext
                         .Items["Credentials"] as dynamic;
 
                     if (credentials is null)
@@ -61,7 +64,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerRole>> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -89,7 +95,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<WorkerRole?> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return null;
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
@@ -119,7 +128,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
         {
             Task<IEnumerable<WorkerRole>> queryAsync = new(() =>
             {
-                var credentials = httpContext
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
                     .Items["Credentials"] as dynamic;
 
                 if (credentials is null)
