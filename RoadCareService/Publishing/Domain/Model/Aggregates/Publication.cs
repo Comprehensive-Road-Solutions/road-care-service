@@ -31,12 +31,12 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.Description = string.Empty;
         }
         public Publication
-            (int citizenId, DateTime publicationDate,
-            int districtId, string ubication, string description,
+            (int citizenId,int districtId,
+            string ubication, string description,
             EPublicationState publicationState)
         {
             this.CitizensId = citizenId;
-            this.PublicationDate = publicationDate;
+            this.PublicationDate = DateTime.Now;
             this.DistrictsId = districtId;
             this.Ubication = ubication;
             this.Description = description;

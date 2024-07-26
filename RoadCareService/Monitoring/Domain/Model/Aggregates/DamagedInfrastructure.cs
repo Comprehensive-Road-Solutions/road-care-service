@@ -56,6 +56,12 @@ namespace RoadCareService.Monitoring.Domain.Model.Aggregates
                 .Trim();
         }
         public DamagedInfrastructure
+            (AssignWorkDateToDamagedInfrastructureCommand command)
+        {
+            this.Id = command.Id;
+            this.WorkDate = command.WorkDate;
+        }
+        public DamagedInfrastructure
             (UpdateDamagedInfrastructureStateCommand command)
         {
             this.Id = command.Id;
