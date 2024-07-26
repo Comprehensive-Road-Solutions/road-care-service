@@ -28,6 +28,7 @@ using RoadCareService.IAM.Infrastructure.Hashing.Argon2id;
 using RoadCareService.IAM.Interfaces.ACL.Services;
 using RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories;
 using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using RoadCareService.IAM.Infrastructure.Request;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Configuration;
 using RoadCareService.IAM.Infrastructure.Token.JWT.Services;
 
@@ -198,7 +199,7 @@ builder.Services.AddScoped<ICitizenCredentialCommandService, CitizenCredentialCo
 builder.Services.AddScoped<ICitizenCredentialQueryService, CitizenCredentialQueryService>();
 
 builder.Services.AddScoped<IEncryptionService, EncryptionService>();
-
+builder.Services.AddScoped<IReniecService, ReniecService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 
 builder.Services.AddTransient<RoadCareService.IAM.Application.Internal.OutboundServices.ACL.ExternalPublishingService>();

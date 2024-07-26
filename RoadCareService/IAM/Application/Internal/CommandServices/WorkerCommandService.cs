@@ -1,4 +1,5 @@
-﻿using RoadCareService.IAM.Application.Internal.OutboundServices.ACL;
+﻿using RoadCareService.IAM.Application.Internal.OutboundServices;
+using RoadCareService.IAM.Application.Internal.OutboundServices.ACL;
 using RoadCareService.IAM.Domain.Model.Commands.Worker;
 using RoadCareService.IAM.Domain.Repositories;
 using RoadCareService.IAM.Domain.Services.Worker;
@@ -9,7 +10,8 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
     public class WorkerCommandService
         (IWorkerRepository workerRepository,
         IUnitOfWork unitOfWork,
-        ExternalPublishingService externalPublishingService) :
+        ExternalPublishingService externalPublishingService,
+        IReniecService reniecService) :
         IWorkerCommandService
     {
         public async Task<bool> Handle
@@ -19,7 +21,9 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
             {
                 if (await externalPublishingService
                     .ExistsDistrictById
-                    (command.DistrictId)
+                    (command.DistrictId) ||
+                    await reniecService
+                    .ValidateDni(command.Id)
                     is false)
                     return false;
 
