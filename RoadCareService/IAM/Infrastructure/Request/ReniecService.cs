@@ -26,12 +26,13 @@ namespace RoadCareService.IAM.Infrastructure.Request
                     .Content.ReadAsStringAsync();
 
                 var contentResult = JsonSerializer
-                    .Deserialize<dynamic>(result);
+                    .Deserialize<Dictionary
+                    <string, JsonElement>>(result);
 
-                if (contentResult is null)
-                    return false;
-
-                return contentResult.success;
+                if (contentResult != null &&
+                    contentResult.TryGetValue
+                    ("success", out var success))
+                    return success.ValueKind == JsonValueKind.True;
             }
 
             return false;

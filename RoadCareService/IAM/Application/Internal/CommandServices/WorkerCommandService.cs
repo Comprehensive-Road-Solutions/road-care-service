@@ -21,8 +21,8 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
             {
                 if (await externalPublishingService
                     .ExistsDistrictById
-                    (command.DistrictId) ||
-                    await reniecService
+                    (command.DistrictId)
+                    is false || await reniecService
                     .ValidateDni(command.Id)
                     is false)
                     return false;
