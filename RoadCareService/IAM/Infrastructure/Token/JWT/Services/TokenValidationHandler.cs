@@ -20,7 +20,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
         private static bool TryRetrieveToken
             (HttpRequestMessage request, out string token)
         {
-            token = null;
+            token = string.Empty;
 
             IEnumerable<string>? authzHeaders;
 

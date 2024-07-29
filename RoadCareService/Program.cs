@@ -118,8 +118,11 @@ builder.Services.Configure<JwtSettings>(jwtSettings);
 var secretKey = jwtSettings["JWT_SECRET_KEY"];
 var audience = jwtSettings["JWT_AUDIENCE_TOKEN"];
 var issuer = jwtSettings["JWT_ISSUER_TOKEN"];
-var expireMinutes = int.Parse(jwtSettings["JWT_EXPIRE_MINUTES"]);
-var securityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes(jwtSettings["JWT_SECRET_KEY"]));
+var securityKey = !string.IsNullOrEmpty(secretKey) ?
+    new SymmetricSecurityKey
+    (Encoding.Default.GetBytes(secretKey)) :
+    throw new ArgumentNullException
+    (nameof(secretKey), "secret key is null or empty!");
 
 builder.Services.AddAuthentication(options =>
 {

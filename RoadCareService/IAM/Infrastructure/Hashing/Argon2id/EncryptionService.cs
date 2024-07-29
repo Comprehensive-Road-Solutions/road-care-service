@@ -10,9 +10,8 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
         {
             byte[] buffer = new byte[16];
 
-            RNGCryptoServiceProvider random = new();
-
-            random.GetBytes(buffer);
+            using (RandomNumberGenerator rng = RandomNumberGenerator
+                .Create()) rng.GetBytes(buffer);
 
             return Convert.ToBase64String(buffer);
         }
@@ -21,7 +20,7 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
             (string code, string salt)
         {
             Konscious.Security
-                .Cryptography.Argon2id EncryptionCode =
+                .Cryptography.Argon2id encryptionCode =
                 new(Encoding.UTF8.GetBytes(code))
             {
                 Salt = Encoding.UTF8.GetBytes(salt),
@@ -31,7 +30,7 @@ namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
             };
 
             return Convert.ToBase64String
-                (EncryptionCode.GetBytes(16));
+                (encryptionCode.GetBytes(16));
         }
 
         public bool VerifyHash
