@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using RoadCareService.Monitoring.Domain.Model.Commands.DamagedInfrastructure;
-using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
+using RoadCareService.Location.Domain.Model.Aggregates;
 
 namespace RoadCareService.Monitoring.Domain.Model.Aggregates
 {

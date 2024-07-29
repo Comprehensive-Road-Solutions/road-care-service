@@ -39,6 +39,14 @@ using RoadCareService.Interaction.Domain.Repositories;
 using RoadCareService.Interaction.Domain.Services;
 using RoadCareService.Interaction.Infrastructure.Socket;
 
+using RoadCareService.Location.Application.Internal.QueryServices;
+using RoadCareService.Location.Domain.Repositories;
+using RoadCareService.Location.Domain.Services.Department;
+using RoadCareService.Location.Domain.Services.District;
+using RoadCareService.Location.Interfaces.ACL;
+using RoadCareService.Location.Interfaces.ACL.Services;
+using RoadCareService.Location.Infrastructure.Persistence.EFC.Repositories;
+
 using RoadCareService.Monitoring.Application.Internal.CommandServices;
 using RoadCareService.Monitoring.Application.Internal.QueryServices;
 using RoadCareService.Monitoring.Domain.Repositories;
@@ -49,8 +57,6 @@ using RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories;
 using RoadCareService.Publishing.Application.Internal.CommandServices;
 using RoadCareService.Publishing.Application.Internal.QueryServices;
 using RoadCareService.Publishing.Domain.Repositories;
-using RoadCareService.Publishing.Domain.Services.Department;
-using RoadCareService.Publishing.Domain.Services.District;
 using RoadCareService.Publishing.Domain.Services.Evidence;
 using RoadCareService.Publishing.Domain.Services.Publication;
 using RoadCareService.Publishing.Interfaces.ACL;
@@ -202,7 +208,7 @@ builder.Services.AddScoped<IEncryptionService, EncryptionService>();
 builder.Services.AddScoped<IReniecService, ReniecService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
 
-builder.Services.AddTransient<RoadCareService.IAM.Application.Internal.OutboundServices.ACL.ExternalPublishingService>();
+builder.Services.AddTransient<RoadCareService.IAM.Application.Internal.OutboundServices.ACL.ExternalLocationService>();
 
 #endregion
 
@@ -217,6 +223,18 @@ builder.Services.AddTransient<RoadCareService.Interaction.Application.Internal.O
 
 #endregion
 
+#region Location Context
+
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentQueryService, DepartmentQueryService>();
+
+builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
+builder.Services.AddScoped<IDistrictQueryService, DistrictQueryService>();
+
+builder.Services.AddScoped<ILocationContextFacade, LocationContextFacade>();
+
+#endregion
+
 #region Monitoring Context
 
 builder.Services.AddScoped<IDamagedInfrastructureRepository, DamagedInfrastructureRepository>();
@@ -228,17 +246,11 @@ builder.Services.AddScoped<IStaffCommandService, StaffCommandService>();
 builder.Services.AddScoped<IStaffQueryService, StaffQueryService>();
 
 builder.Services.AddTransient<RoadCareService.Monitoring.Application.Internal.OutboundServices.ACL.ExternalIamService>();
-builder.Services.AddTransient<RoadCareService.Monitoring.Application.Internal.OutboundServices.ACL.ExternalPublishingService>();
+builder.Services.AddTransient<RoadCareService.Monitoring.Application.Internal.OutboundServices.ACL.ExternalLocationService>();
 
 #endregion
 
 #region Publishing Context
-
-builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-builder.Services.AddScoped<IDepartmentQueryService, DepartmentQueryService>();
-
-builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
-builder.Services.AddScoped<IDistrictQueryService, DistrictQueryService>();
 
 builder.Services.AddScoped<IPublicationRepository, PublicationRepository>();
 builder.Services.AddScoped<IPublicationCommandService, PublicationCommandService>();
@@ -251,7 +263,7 @@ builder.Services.AddScoped<IEvidenceQueryService, EvidenceQueryService>();
 builder.Services.AddScoped<IPublishingContextFacade, PublishingContextFacade>();
 
 builder.Services.AddTransient<RoadCareService.Publishing.Application.Internal.OutboundServices.ACL.ExternalIamService>();
-builder.Services.AddTransient<RoadCareService.Publishing.Application.Internal.OutboundServices.ACL.ExternalPublishingService>();
+builder.Services.AddTransient<RoadCareService.Publishing.Application.Internal.OutboundServices.ACL.ExternalLocationService>();
 
 #endregion
 

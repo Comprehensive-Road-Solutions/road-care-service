@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
-using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
+using RoadCareService.Location.Domain.Model.Aggregates;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {

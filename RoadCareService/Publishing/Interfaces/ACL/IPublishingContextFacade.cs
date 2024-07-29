@@ -9,9 +9,6 @@ namespace RoadCareService.Publishing.Interfaces.ACL
         Task<IEnumerable<Evidence>?> GetEvidencesByPublicationId
             (int publicationId);
 
-        Task<bool> ExistsDistrictById
-            (int id);
-
         Task<bool> ExistsPublicationById
             (int id);
     }

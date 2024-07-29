@@ -1,7 +1,7 @@
 ﻿using RoadCareService.IAM.Domain.Model.Aggregates;
 using RoadCareService.Interaction.Domain.Model.Aggregates;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Commands.Publication;
-using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Publishing.Domain.Model.ValueObjects;
 
 namespace RoadCareService.Publishing.Domain.Model.Aggregates

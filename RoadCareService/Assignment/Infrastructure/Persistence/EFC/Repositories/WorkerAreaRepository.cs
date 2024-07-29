@@ -3,7 +3,7 @@ using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.Assignment.Domain.Model.ValueObjects.WorkerArea;
 using RoadCareService.Assignment.Domain.Repositories;
-using RoadCareService.Publishing.Domain.Model.Entities;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
@@ -100,8 +100,6 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 if (credentials is null)
                     return null;
 
-                int districtId = credentials.DistrictId;
-
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
                  join go in Context.Set<GovernmentEntity>().ToList()
@@ -109,7 +107,7 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                  join di in Context.Set<District>().ToList()
                  on go.DistrictsId equals di.Id
                  where wa.Id == id &&
-                 di.Id == districtId
+                 di.Id == credentials.DistrictId
                  select wa)
                  .FirstOrDefault();
             });

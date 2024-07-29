@@ -9,7 +9,7 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
     public class DamagedInfrastructureCommandService
         (IDamagedInfrastructureRepository damagedInfrastructureRepository,
         IUnitOfWork unitOfWork,
-        ExternalPublishingService externalPublishingService) :
+        ExternalLocationService externalLocationService) :
         IDamagedInfrastructureCommandService
     {
         public async Task<bool> Handle
@@ -17,7 +17,7 @@ namespace RoadCareService.Monitoring.Application.Internal.CommandServices
         {
             try
             {
-                if (await externalPublishingService
+                if (await externalLocationService
                     .ExistsDistrictById
                     (command.DistrictId) is false)
                     return false;

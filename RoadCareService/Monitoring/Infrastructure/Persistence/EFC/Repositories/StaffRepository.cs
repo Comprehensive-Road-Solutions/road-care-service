@@ -2,10 +2,10 @@
 using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Aggregates;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.Staff;
 using RoadCareService.Monitoring.Domain.Repositories;
-using RoadCareService.Publishing.Domain.Model.Entities;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 

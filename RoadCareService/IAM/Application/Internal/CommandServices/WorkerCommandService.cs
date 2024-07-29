@@ -10,7 +10,7 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
     public class WorkerCommandService
         (IWorkerRepository workerRepository,
         IUnitOfWork unitOfWork,
-        ExternalPublishingService externalPublishingService,
+        ExternalLocationService externalLocationService,
         IReniecService reniecService) :
         IWorkerCommandService
     {
@@ -19,7 +19,7 @@ namespace RoadCareService.IAM.Application.Internal.CommandServices
         {
             try
             {
-                if (await externalPublishingService
+                if (await externalLocationService
                     .ExistsDistrictById
                     (command.DistrictId)
                     is false || await reniecService

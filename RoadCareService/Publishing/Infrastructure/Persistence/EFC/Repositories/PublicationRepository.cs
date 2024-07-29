@@ -1,5 +1,5 @@
-﻿using RoadCareService.Publishing.Domain.Model.Aggregates;
-using RoadCareService.Publishing.Domain.Model.Entities;
+﻿using RoadCareService.Location.Domain.Model.Aggregates;
+using RoadCareService.Publishing.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;

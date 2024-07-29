@@ -1,6 +1,6 @@
 ﻿using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Aggregates;
-using RoadCareService.Publishing.Domain.Model.Entities;
+using RoadCareService.Location.Domain.Model.Aggregates;
 
 namespace RoadCareService.Assignment.Domain.Model.Aggregates
 {

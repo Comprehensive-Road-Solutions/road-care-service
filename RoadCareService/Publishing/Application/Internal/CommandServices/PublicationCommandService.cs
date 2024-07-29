@@ -9,8 +9,8 @@ namespace RoadCareService.Publishing.Application.Internal.CommandServices
     public class PublicationCommandService
         (IPublicationRepository publicationRepository,
         IUnitOfWork unitOfWork,
-        ExternalIamService externalIamService,
-        ExternalPublishingService externalPublishingService) :
+        ExternalLocationService externalLocationService,
+        ExternalIamService externalIamService) :
         IPublicationCommandService
     {
         public async Task<bool> Handle
@@ -21,7 +21,7 @@ namespace RoadCareService.Publishing.Application.Internal.CommandServices
                 if (await externalIamService
                     .ExistsCitizenById
                     (command.CitizenId) is false ||
-                    await externalPublishingService
+                    await externalLocationService
                     .ExistsDistrictById
                     (command.DistrictId) is false)
                     return false;

@@ -2,8 +2,8 @@
 using RoadCareService.IAM.Domain.Model.Commands.Worker;
 using RoadCareService.IAM.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.ValueObjects.Worker;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
-using RoadCareService.Publishing.Domain.Model.Entities;
 
 namespace RoadCareService.IAM.Domain.Model.Aggregates
 {
