@@ -5,7 +5,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
-    public class CitizenRepository
+    internal class CitizenRepository
         (RoadCareContext context) :
         BaseRepository<Citizen>(context),
         ICitizenRepository

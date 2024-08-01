@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Application.Internal.CommandServices
 {
-    public class PublicationCommandService
+    internal class PublicationCommandService
         (IPublicationRepository publicationRepository,
         IUnitOfWork unitOfWork,
         ExternalLocationService externalLocationService,

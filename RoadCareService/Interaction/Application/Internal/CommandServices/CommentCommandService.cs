@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Interaction.Application.Internal.CommandServices
 {
-    public class CommentCommandService
+    internal class CommentCommandService
         (ICommentRepository commentRepository,
         IUnitOfWork unitOfWork,
         ExternalPublishingService externalPublishingService,

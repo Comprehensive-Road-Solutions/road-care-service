@@ -6,7 +6,7 @@ using RoadCareService.IAM.Domain.Services.WorkerCredential;
 
 namespace RoadCareService.IAM.Application.Internal.QueryServices
 {
-    public class WorkerCredentialQueryService
+    internal class WorkerCredentialQueryService
         (IWorkerCredentialRepository workerCredentialRepository,
         IEncryptionService encryptionService,
         ITokenService tokenService) :

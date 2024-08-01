@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class EvidenceRepository
+    internal class EvidenceRepository
         (RoadCareContext context) :
         BaseRepository<Evidence>(context),
         IEvidenceRepository

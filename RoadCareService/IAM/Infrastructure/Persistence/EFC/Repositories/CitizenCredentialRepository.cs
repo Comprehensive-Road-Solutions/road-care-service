@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
-    public class CitizenCredentialRepository
+    internal class CitizenCredentialRepository
         (RoadCareContext context) :
         BaseRepository<CitizenCredential>(context),
         ICitizenCredentialRepository
@@ -20,7 +20,8 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
                 (from cc in Context.Set<CitizenCredential>().ToList()
                 join ci in Context.Set<Citizen>().ToList()
                 on cc.CitizensId equals ci.Id
-                where ci.State == "ACTIVO"
+                where ci.Id == citizenId &&
+                ci.State == "ACTIVO"
                 select cc).FirstOrDefault();
             });
 

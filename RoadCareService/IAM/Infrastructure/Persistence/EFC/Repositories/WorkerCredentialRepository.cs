@@ -9,7 +9,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
 {
-    public class WorkerCredentialRepository
+    internal class WorkerCredentialRepository
         (RoadCareContext context) :
         BaseRepository<WorkerCredential>(context),
         IWorkerCredentialRepository

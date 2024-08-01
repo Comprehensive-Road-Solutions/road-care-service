@@ -11,7 +11,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
-    public class StaffRepository
+    internal class StaffRepository
         (RoadCareContext context,
         IHttpContextAccessor httpContextAccessor) :
         BaseRepository<Staff>(context),

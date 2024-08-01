@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.IAM.Application.Internal.CommandServices
 {
-    public class CitizenCommandService
+    internal class CitizenCommandService
         (ICitizenRepository citizenRepository,
         IUnitOfWork unitOfWork,
         IReniecService reniecService) :

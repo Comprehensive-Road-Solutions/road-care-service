@@ -5,7 +5,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Publishing.Application.Internal.CommandServices
 {
-    public class EvidenceCommandService
+    internal class EvidenceCommandService
         (IEvidenceRepository evidenceRepository,
         IUnitOfWork unitOfWork) :
         IEvidenceCommandService

@@ -5,7 +5,7 @@ using RoadCareService.Publishing.Domain.Services.Evidence;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class EvidenceQueryService
+    internal class EvidenceQueryService
         (IEvidenceRepository evidenceRepository) :
         IEvidenceQueryService
     {

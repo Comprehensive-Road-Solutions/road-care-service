@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Monitoring.Application.Internal.CommandServices
 {
-    public class StaffCommandService
+    internal class StaffCommandService
         (IStaffRepository staffRepository,
         IUnitOfWork unitOfWork,
         ExternalIamService externalIamService) :

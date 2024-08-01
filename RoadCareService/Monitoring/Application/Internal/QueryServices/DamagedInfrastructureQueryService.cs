@@ -5,7 +5,7 @@ using RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure;
 
 namespace RoadCareService.Monitoring.Application.Internal.QueryServices
 {
-    public class DamagedInfrastructureQueryService
+    internal class DamagedInfrastructureQueryService
         (IDamagedInfrastructureRepository damagedInfrastructureRepository) :
         IDamagedInfrastructureQueryService
     {

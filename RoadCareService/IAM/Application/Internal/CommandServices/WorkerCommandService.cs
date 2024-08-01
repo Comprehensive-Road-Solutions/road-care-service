@@ -7,7 +7,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.IAM.Application.Internal.CommandServices
 {
-    public class WorkerCommandService
+    internal class WorkerCommandService
         (IWorkerRepository workerRepository,
         IUnitOfWork unitOfWork,
         ExternalLocationService externalLocationService,

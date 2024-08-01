@@ -4,7 +4,7 @@ using RoadCareService.IAM.Application.Internal.OutboundServices;
 
 namespace RoadCareService.IAM.Infrastructure.Hashing.Argon2id
 {
-    public class EncryptionService : IEncryptionService
+    internal class EncryptionService : IEncryptionService
     {
         public string CreateSalt()
         {

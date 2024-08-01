@@ -5,7 +5,7 @@ using RoadCareService.Interaction.Domain.Services;
 
 namespace RoadCareService.Interaction.Application.Internal.QueryServices
 {
-    public class CommentQueryService
+    internal class CommentQueryService
         (ICommentRepository commentRepository) :
         ICommentQueryService
     {

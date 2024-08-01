@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositories
 {
-    public class CommentRepository
+    internal class CommentRepository
         (RoadCareContext context) :
         BaseRepository<Comment>(context),
         ICommentRepository

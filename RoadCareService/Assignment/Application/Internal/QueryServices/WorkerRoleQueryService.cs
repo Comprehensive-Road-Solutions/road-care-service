@@ -5,7 +5,7 @@ using RoadCareService.Assignment.Domain.Services.WorkerRole;
 
 namespace RoadCareService.Assignment.Application.Internal.QueryServices
 {
-    public class WorkerRoleQueryService
+    internal class WorkerRoleQueryService
         (IWorkerRoleRepository workerRoleRepository) :
         IWorkerRoleQueryService
     {

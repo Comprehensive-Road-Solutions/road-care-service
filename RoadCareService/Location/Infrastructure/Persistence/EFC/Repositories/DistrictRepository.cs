@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Location.Infrastructure.Persistence.EFC.Repositories
 {
-    public class DistrictRepository
+    internal class DistrictRepository
         (RoadCareContext context) :
         BaseRepository<District>(context),
         IDistrictRepository

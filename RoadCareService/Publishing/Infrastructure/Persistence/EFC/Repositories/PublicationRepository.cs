@@ -6,7 +6,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
 {
-    public class PublicationRepository
+    internal class PublicationRepository
         (RoadCareContext context) :
         BaseRepository<Publication>(context),
         IPublicationRepository
@@ -22,8 +22,8 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
                 on pu.DistrictsId equals di.Id
                 join de in Context.Set<Department>().ToList()
                 on di.DepartmentsId equals de.Id
-                where de.Id == departmentId &&
-                di.Id == districtId &&
+                where di.Id == districtId &&
+                de.Id == departmentId &&
                 pu.State == "PUBLICADO"
                 select pu;
             });

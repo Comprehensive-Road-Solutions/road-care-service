@@ -5,7 +5,7 @@ using RoadCareService.Publishing.Domain.Services.Publication;
 
 namespace RoadCareService.Publishing.Application.Internal.QueryServices
 {
-    public class PublicationQueryService
+    internal class PublicationQueryService
         (IPublicationRepository publicationRepository) :
         IPublicationQueryService
     {

@@ -5,7 +5,7 @@ using RoadCareService.Assignment.Domain.Services.WorkerArea;
 
 namespace RoadCareService.Assignment.Application.Internal.QueryServices
 {
-    public class WorkerAreaQueryService
+    internal class WorkerAreaQueryService
         (IWorkerAreaRepository workerAreaRepository) :
         IWorkerAreaQueryService
     {

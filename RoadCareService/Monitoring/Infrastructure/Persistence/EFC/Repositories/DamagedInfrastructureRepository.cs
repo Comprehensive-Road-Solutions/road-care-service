@@ -9,7 +9,7 @@ using RoadCareService.Location.Domain.Model.Aggregates;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
-    public class DamagedInfrastructureRepository
+    internal class DamagedInfrastructureRepository
         (RoadCareContext context,
         IHttpContextAccessor httpContextAccessor) :
         BaseRepository<DamagedInfrastructure>(context),

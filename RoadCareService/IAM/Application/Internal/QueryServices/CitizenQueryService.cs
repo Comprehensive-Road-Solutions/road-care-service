@@ -4,7 +4,7 @@ using RoadCareService.IAM.Domain.Services.Citizen;
 
 namespace RoadCareService.IAM.Application.Internal.QueryServices
 {
-    public class CitizenQueryService
+    internal class CitizenQueryService
         (ICitizenRepository citizenRepository) :
         ICitizenQueryService
     {

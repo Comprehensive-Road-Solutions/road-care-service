@@ -9,7 +9,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
-    public class WorkerRoleRepository
+    internal class WorkerRoleRepository
         (RoadCareContext context,
         IHttpContextAccessor httpContextAccessor) :
         BaseRepository<WorkerRole>(context),

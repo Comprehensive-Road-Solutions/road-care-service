@@ -5,7 +5,7 @@ using RoadCareService.Assignment.Domain.Services.AssignmentWorker;
 
 namespace RoadCareService.Assignment.Application.Internal.QueryServices
 {
-    public class AssignmentWorkerQueryService
+    internal class AssignmentWorkerQueryService
         (IAssignmentWorkerRepository assignmentWorkerRepository) :
         IAssignmentWorkerQueryService
     {

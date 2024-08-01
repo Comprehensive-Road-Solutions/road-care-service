@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.IAM.Application.Internal.CommandServices
 {
-    public class WorkerCredentialCommandService
+    internal class WorkerCredentialCommandService
         (IWorkerCredentialRepository workerCredentialRepository,
         IUnitOfWork unitOfWork,
         IEncryptionService encryptionService) :

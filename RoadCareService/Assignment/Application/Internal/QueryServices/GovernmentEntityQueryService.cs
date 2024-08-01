@@ -5,7 +5,7 @@ using RoadCareService.Assignment.Domain.Services.GovernmentEntity;
 
 namespace RoadCareService.Assignment.Application.Internal.QueryServices
 {
-    public class GovernmentEntityQueryService
+    internal class GovernmentEntityQueryService
         (IGovernmentEntityRepository governmentEntityRepository) :
         IGovernmentEntityQueryService
     {

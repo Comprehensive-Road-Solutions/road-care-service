@@ -5,7 +5,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
-    public class GovernmentEntityRepository
+    internal class GovernmentEntityRepository
         (RoadCareContext context) :
         BaseRepository<GovernmentEntity>(context),
         IGovernmentEntityRepository

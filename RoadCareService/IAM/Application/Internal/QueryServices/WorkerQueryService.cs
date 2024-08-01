@@ -4,7 +4,7 @@ using RoadCareService.IAM.Domain.Services.Worker;
 
 namespace RoadCareService.IAM.Application.Internal.QueryServices
 {
-    public class WorkerQueryService
+    internal class WorkerQueryService
         (IWorkerRepository workerRepository) :
         IWorkerQueryService
     {

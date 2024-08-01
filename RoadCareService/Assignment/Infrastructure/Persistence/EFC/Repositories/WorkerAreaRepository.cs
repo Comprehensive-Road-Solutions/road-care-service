@@ -9,7 +9,7 @@ using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 {
-    public class WorkerAreaRepository
+    internal class WorkerAreaRepository
         (RoadCareContext context,
         IHttpContextAccessor httpContextAccessor) :
         BaseRepository<WorkerArea>(context),

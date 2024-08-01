@@ -5,7 +5,7 @@ using RoadCareService.Location.Domain.Services.District;
 
 namespace RoadCareService.Location.Application.Internal.QueryServices
 {
-    public class DistrictQueryService
+    internal class DistrictQueryService
         (IDistrictRepository districtRepository) :
         IDistrictQueryService
     {

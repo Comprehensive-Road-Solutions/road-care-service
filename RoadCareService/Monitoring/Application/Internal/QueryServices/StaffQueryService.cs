@@ -5,7 +5,7 @@ using RoadCareService.Monitoring.Domain.Services.Staff;
 
 namespace RoadCareService.Monitoring.Application.Internal.QueryServices
 {
-    public class StaffQueryService
+    internal class StaffQueryService
         (IStaffRepository staffRepository) :
         IStaffQueryService
     {

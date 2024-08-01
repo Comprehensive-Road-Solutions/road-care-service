@@ -6,7 +6,7 @@ using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Assignment.Application.Internal.CommandServices
 {
-    public class AssignmentWorkerCommandService
+    internal class AssignmentWorkerCommandService
         (IAssignmentWorkerRepository assignmentWorkerRepository,
         IUnitOfWork unitOfWork,
         ExternalIamService externalIamService) :
