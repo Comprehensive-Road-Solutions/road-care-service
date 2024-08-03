@@ -2,7 +2,7 @@
 
 namespace RoadCareService.Interaction.Application.Internal.OutboundServices.ACL
 {
-    public class ExternalIamService
+    internal class ExternalIamService
         (IIamContextFacade iamContextFacade)
     {
         public async Task<bool> ExistsCitizenById

@@ -2,7 +2,7 @@
 
 namespace RoadCareService.Interaction.Application.Internal.OutboundServices.ACL
 {
-    public class ExternalPublishingService
+    internal class ExternalPublishingService
         (IPublishingContextFacade publishingContextFacade)
     {
         public async Task<bool> ExistsPublicationById
