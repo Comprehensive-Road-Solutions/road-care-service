@@ -3,7 +3,7 @@ using RoadCareService.Location.Domain.Services.District;
 
 namespace RoadCareService.Location.Interfaces.ACL.Services
 {
-    public class LocationContextFacade
+    internal class LocationContextFacade
         (IDistrictQueryService districtQueryService) :
         ILocationContextFacade
     {
