@@ -5,7 +5,7 @@ using RoadCareService.IAM.Domain.Services.Worker;
 
 namespace RoadCareService.IAM.Interfaces.ACL.Services
 {
-    public class IamContextFacade
+    internal class IamContextFacade
         (IWorkerQueryService workerQueryService,
         ICitizenQueryService citizenQueryService) :
         IIamContextFacade
