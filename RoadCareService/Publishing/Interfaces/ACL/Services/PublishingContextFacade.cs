@@ -6,7 +6,7 @@ using RoadCareService.Publishing.Domain.Services.Publication;
 
 namespace RoadCareService.Publishing.Interfaces.ACL.Services
 {
-    public class PublishingContextFacade
+    internal class PublishingContextFacade
         (IPublicationQueryService publicationQueryService,
         IEvidenceQueryService evidenceQueryService) :
         IPublishingContextFacade
