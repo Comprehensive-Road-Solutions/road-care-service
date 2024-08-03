@@ -2,7 +2,7 @@
 
 namespace RoadCareService.Publishing.Application.Internal.OutboundServices.ACL
 {
-    public class ExternalLocationService
+    internal class ExternalLocationService
         (ILocationContextFacade locationContextFacade)
     {
         public async Task<bool> ExistsDistrictById
