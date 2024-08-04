@@ -38,8 +38,8 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.CitizensId = citizenId;
             this.PublicationDate = DateTime.Now;
             this.DistrictsId = districtId;
-            this.Ubication = ubication;
-            this.Description = description;
+            this.Ubication = ubication.ToUpper();
+            this.Description = description.ToUpper();
             this.State = publicationState.ToString();
         }
         public Publication
@@ -48,8 +48,8 @@ namespace RoadCareService.Publishing.Domain.Model.Aggregates
             this.CitizensId = command.CitizenId;
             this.PublicationDate = DateTime.Now;
             this.DistrictsId = command.DistrictId;
-            this.Ubication = command.Ubication;
-            this.Description = command.Description;
+            this.Ubication = command.Ubication.ToUpper();
+            this.Description = command.Description.ToUpper();
             this.State = command.PublicationState.ToString();
         }
     }
