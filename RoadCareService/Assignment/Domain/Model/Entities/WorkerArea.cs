@@ -26,14 +26,14 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             EWorkerAreaState workerAreaState)
         {
             this.GovernmentsEntitiesId = governmentEntityId;
-            this.Name = name;
+            this.Name = name.ToUpper();
             this.State = workerAreaState.ToString();
         }
         public WorkerArea
             (CreateWorkerAreaCommand command)
         {
             this.GovernmentsEntitiesId = command.GovernmentEntityId;
-            this.Name = command.Name;
+            this.Name = command.Name.ToUpper();
             this.State = command.WorkerAreaState.ToString();
         }
         public WorkerArea

@@ -26,14 +26,14 @@ namespace RoadCareService.Assignment.Domain.Model.Entities
             EWorkerRoleState workerRoleState)
         {
             this.WorkersAreasId = workerAreaId;
-            this.Name = name;
+            this.Name = name.ToUpper();
             this.State = workerRoleState.ToString();
         }
         public WorkerRole
             (AddWorkerRoleToWorkerAreaCommand command)
         {
             this.WorkersAreasId = command.WorkerAreaId;
-            this.Name = command.Name;
+            this.Name = command.Name.ToUpper();
             this.State = command.WorkerRoleState.ToString();
         }
         public WorkerRole
