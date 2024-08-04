@@ -122,7 +122,7 @@ var securityKey = !string.IsNullOrEmpty(secretKey) ?
     new SymmetricSecurityKey
     (Encoding.Default.GetBytes(secretKey)) :
     throw new ArgumentNullException
-    (nameof(secretKey), "secret key is null or empty!");
+    (nameof(secretKey), "Secret key is null or empty!");
 
 builder.Services.AddAuthentication(options =>
 {
