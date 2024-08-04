@@ -51,13 +51,13 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Id = id;
             this.DistrictsId = districtId;
             this.GovernmentsEntitiesId = governmentEntityId;
-            this.Firstname = firstname;
-            this.Lastname = lastname;
+            this.Firstname = firstname.ToUpper();
+            this.Lastname = lastname.ToUpper();
             this.Age = age;
             this.Genre = genre;
             this.Phone = phone;
             this.Email = email;
-            this.Address = address;
+            this.Address = address.ToUpper();
             this.State = workerState.ToString();
         }
         public Worker
@@ -66,13 +66,13 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
             this.Id = command.Id;
             this.DistrictsId = command.DistrictId;
             this.GovernmentsEntitiesId = command.GovernmentEntityId;
-            this.Firstname = command.Firstname;
-            this.Lastname = command.Lastname;
+            this.Firstname = command.Firstname.ToUpper();
+            this.Lastname = command.Lastname.ToUpper();
             this.Age = command.Age;
             this.Genre = command.Genre;
             this.Phone = command.Phone;
             this.Email = command.Email;
-            this.Address = command.Address;
+            this.Address = command.Address.ToUpper();
             this.State = command.WorkerState.ToString();
         }
     }

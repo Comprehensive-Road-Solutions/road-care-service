@@ -43,8 +43,8 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
         {
             this.Id = id;
             this.ProfileUrl = profileUrl;
-            this.Firstname = firstname;
-            this.Lastname = lastname;
+            this.Firstname = firstname.ToUpper();
+            this.Lastname = lastname.ToUpper();
             this.Age = age;
             this.Genre = genre;
             this.Phone = phone;
@@ -56,8 +56,8 @@ namespace RoadCareService.IAM.Domain.Model.Aggregates
         {
             this.Id = command.Id;
             this.ProfileUrl = command.ProfileUrl;
-            this.Firstname = command.Firstname;
-            this.Lastname = command.Lastname;
+            this.Firstname = command.Firstname.ToUpper();
+            this.Lastname = command.Lastname.ToUpper();
             this.Age = command.Age;
             this.Genre = command.Genre;
             this.Phone = command.Phone;
