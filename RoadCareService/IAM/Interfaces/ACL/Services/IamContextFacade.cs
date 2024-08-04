@@ -13,11 +13,11 @@ namespace RoadCareService.IAM.Interfaces.ACL.Services
         public async Task<bool> ExistsWorkerById
             (int id) =>
             await workerQueryService.Handle
-            (new GetWorkerByIdQuery(id));
+            (new GetWorkerByIdQuery(id)) != null;
 
         public async Task<bool> ExistsCitizenById
             (int id) =>
             await citizenQueryService.Handle
-            (new GetCitizenByIdQuery(id));
+            (new GetCitizenByIdQuery(id)) != null;
     }
 }
