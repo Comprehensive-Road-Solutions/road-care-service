@@ -15,21 +15,14 @@ namespace RoadCareService.Publishing.Interfaces.ACL.Services
             await publicationQueryService
             .Handle(new GetAllPublicationsQuery());
 
+        public async Task<bool> ExistsPublicationById
+            (int id) => await publicationQueryService
+            .Handle(new GetPublicationByIdQuery
+                (id)) != null;
+
         public async Task<IEnumerable<Evidence>?> GetEvidencesByPublicationId
             (int publicationId) => await evidenceQueryService
             .Handle(new GetEvidencesByPublicationIdQuery
                 (publicationId));
-
-        public async Task<bool> ExistsPublicationById
-            (int id)
-        {
-            var result = await publicationQueryService
-                .Handle(new GetPublicationByIdQuery(id));
-
-            if (result is null)
-                return false;
-
-            return true;
-        }
     }
 }
