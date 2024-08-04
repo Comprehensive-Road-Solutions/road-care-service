@@ -31,7 +31,7 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.PublicationsId = publicationId;
             this.CitizensId = citizenId;
             this.ShippingDate = DateTime.Now;
-            this.Opinion = opinion;
+            this.Opinion = opinion.ToUpper();
             this.State = commentState.ToString();
         }
         public Comment
@@ -40,7 +40,7 @@ namespace RoadCareService.Interaction.Domain.Model.Aggregates
             this.PublicationsId = command.PublicationId;
             this.CitizensId = command.CitizenId;
             this.ShippingDate = DateTime.Now;
-            this.Opinion = command.Opinion;
+            this.Opinion = command.Opinion.ToUpper();
             this.State = command.CommentState.ToString();
         }
     }
