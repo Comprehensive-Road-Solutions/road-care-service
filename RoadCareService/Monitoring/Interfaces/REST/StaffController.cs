@@ -80,22 +80,6 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             return Ok(staffResource);
         }
 
-        [Route("staff-by-state")]
-        [HttpGet]
-        public async Task<IActionResult> GetStaffByState
-            ([FromQuery] string state)
-        {
-            var staff = await staffQueryService
-                .Handle(new GetStaffByStateQuery
-                (Enum.Parse<EStaffState>(state)));
-
-            var staffResource = staff.Select
-                (StaffResourceFromEntityAssembler
-                .ToResourceFromEntity);
-
-            return Ok(staffResource);
-        }
-
         [Route("staff-by-worker")]
         [HttpGet]
         public async Task<IActionResult> GetStaffByWorkerId
@@ -104,6 +88,22 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             var staff = await staffQueryService
                 .Handle(new GetStaffByWorkerIdQuery
                 (workerId));
+
+            var staffResource = staff.Select
+                (StaffResourceFromEntityAssembler
+                .ToResourceFromEntity);
+
+            return Ok(staffResource);
+        }
+
+        [Route("staff-by-state")]
+        [HttpGet]
+        public async Task<IActionResult> GetStaffByState
+            ([FromQuery] string state)
+        {
+            var staff = await staffQueryService
+                .Handle(new GetStaffByStateQuery
+                (Enum.Parse<EStaffState>(state)));
 
             var staffResource = staff.Select
                 (StaffResourceFromEntityAssembler

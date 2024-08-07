@@ -98,14 +98,14 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             return Ok(damagedInfrastructureResource);
         }
 
-        [Route("damaged-infrastructures-by-department-and-district")]
+        [Route("damaged-infrastructures-by-state")]
         [HttpGet]
-        public async Task<IActionResult> GetDamagedInfrastructuresByDepartmentIdAndDistrictId
-            ([FromQuery] int departmentId, [FromQuery] int districtId)
+        public async Task<IActionResult> GetDamagedInfrastructuresByState
+            ([FromQuery] string state)
         {
             var damagedInfrastructures = await damagedInfrastructureQueryService
-                .Handle(new GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery
-                (departmentId, districtId));
+                .Handle(new GetDamagedInfrastructuresByStateQuery
+                (Enum.Parse<EDamagedInfrastructureState>(state)));
 
             if (damagedInfrastructures is null)
                 return BadRequest();
@@ -117,14 +117,14 @@ namespace RoadCareService.Monitoring.Interfaces.REST
             return Ok(damagedInfrastructuresResource);
         }
 
-        [Route("damaged-infrastructures-by-state")]
+        [Route("damaged-infrastructures-by-department-and-district")]
         [HttpGet]
-        public async Task<IActionResult> GetDamagedInfrastructuresByState
-            ([FromQuery] string state)
+        public async Task<IActionResult> GetDamagedInfrastructuresByDepartmentIdAndDistrictId
+            ([FromQuery] int departmentId, [FromQuery] int districtId)
         {
             var damagedInfrastructures = await damagedInfrastructureQueryService
-                .Handle(new GetDamagedInfrastructuresByStateQuery
-                (Enum.Parse<EDamagedInfrastructureState>(state)));
+                .Handle(new GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery
+                (departmentId, districtId));
 
             if (damagedInfrastructures is null)
                 return BadRequest();

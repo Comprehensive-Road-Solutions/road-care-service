@@ -19,13 +19,13 @@ namespace RoadCareService.Monitoring.Application.Internal.QueryServices
             (query.Id);
 
         public async Task<IEnumerable<Staff>> Handle
-            (GetStaffByStateQuery query) =>
-            await staffRepository.FindByStateAsync
-            (query.StaffState);
-
-        public async Task<IEnumerable<Staff>> Handle
             (GetStaffByWorkerIdQuery query) =>
             await staffRepository.FindByWorkerIdAsync
             (query.WorkerId);
+
+        public async Task<IEnumerable<Staff>> Handle
+            (GetStaffByStateQuery query) =>
+            await staffRepository.FindByStateAsync
+            (query.StaffState);
     }
 }

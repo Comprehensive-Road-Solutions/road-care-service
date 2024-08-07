@@ -11,9 +11,9 @@ namespace RoadCareService.Monitoring.Domain.Services.Staff
             (GetStaffByIdQuery query);
 
         Task<IEnumerable<Model.Aggregates.Staff>> Handle
-            (GetStaffByStateQuery query);
+            (GetStaffByWorkerIdQuery query);
 
         Task<IEnumerable<Model.Aggregates.Staff>> Handle
-            (GetStaffByWorkerIdQuery query);
+            (GetStaffByStateQuery query);
     }
 }

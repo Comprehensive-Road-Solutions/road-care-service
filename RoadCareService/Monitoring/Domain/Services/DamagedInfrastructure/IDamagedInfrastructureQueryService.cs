@@ -11,9 +11,9 @@ namespace RoadCareService.Monitoring.Domain.Services.DamagedInfrastructure
             (GetDamagedInfrastructureByIdQuery query);
 
         Task<IEnumerable<Model.Aggregates.DamagedInfrastructure>> Handle
-            (GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery query);
+            (GetDamagedInfrastructuresByStateQuery query);
 
         Task<IEnumerable<Model.Aggregates.DamagedInfrastructure>> Handle
-            (GetDamagedInfrastructuresByStateQuery query);
+            (GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery query);
     }
 }

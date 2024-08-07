@@ -19,14 +19,14 @@ namespace RoadCareService.Monitoring.Application.Internal.QueryServices
             .FindByIdAsync(query.Id);
 
         public async Task<IEnumerable<DamagedInfrastructure>> Handle
+            (GetDamagedInfrastructuresByStateQuery query) =>
+            await damagedInfrastructureRepository.FindByStateAsync
+            (query.DamagedInfrastructureState);
+
+        public async Task<IEnumerable<DamagedInfrastructure>> Handle
             (GetDamagedInfrastructuresByDepartmentsIdAndDistrictsIdQuery query) =>
             await damagedInfrastructureRepository
             .FindByDepartmentIdAndDistrictIdAsync
             (query.DepartmentId, query.DistrictId);
-
-        public async Task<IEnumerable<DamagedInfrastructure>> Handle
-            (GetDamagedInfrastructuresByStateQuery query) =>
-            await damagedInfrastructureRepository.FindByStateAsync
-            (query.DamagedInfrastructureState);
     }
 }
