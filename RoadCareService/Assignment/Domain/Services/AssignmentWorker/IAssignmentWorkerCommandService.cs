@@ -6,6 +6,7 @@ namespace RoadCareService.Assignment.Domain.Services.AssignmentWorker
     {
         Task<bool> Handle
             (AddAssignmentWorkerCommand command);
+
         Task<bool> Handle
             (UpdateAssignmentWorkerStateCommand command);
     }

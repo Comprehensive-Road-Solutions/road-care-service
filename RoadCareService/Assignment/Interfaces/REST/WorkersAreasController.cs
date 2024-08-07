@@ -85,22 +85,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             return Ok(workerAreaResource);
         }
 
-        [Route("workers-areas-by-government-entity-and-state")]
-        [HttpGet]
-        public async Task<IActionResult> GetWorkersAreasByGovernmentEntityIdAndState
-            ([FromQuery] int governmentEntityId, [FromQuery] string state)
-        {
-            var workersAreas = await workerAreaQueryService
-                .Handle(new GetWorkersAreasByGovernmentEntityIdAndStateQuery
-                (governmentEntityId, Enum.Parse<EWorkerAreaState>(state)));
-
-            var workersAreasResource = workersAreas
-                .Select(WorkerAreaResourceFromEntityAssembler
-                .ToResourceFromEntity);
-
-            return Ok(workersAreasResource);
-        }
-
         [Route("workers-areas-by-government-entity")]
         [HttpGet]
         public async Task<IActionResult> GetWorkersAreasByGovernmentEntityId
@@ -109,6 +93,22 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var workersAreas = await workerAreaQueryService
                 .Handle(new GetWorkersAreasByGovernmentEntityIdQuery
                 (governmentEntityId));
+
+            var workersAreasResource = workersAreas
+                .Select(WorkerAreaResourceFromEntityAssembler
+                .ToResourceFromEntity);
+
+            return Ok(workersAreasResource);
+        }
+
+        [Route("workers-areas-by-government-entity-and-state")]
+        [HttpGet]
+        public async Task<IActionResult> GetWorkersAreasByGovernmentEntityIdAndState
+            ([FromQuery] int governmentEntityId, [FromQuery] string state)
+        {
+            var workersAreas = await workerAreaQueryService
+                .Handle(new GetWorkersAreasByGovernmentEntityIdAndStateQuery
+                (governmentEntityId, Enum.Parse<EWorkerAreaState>(state)));
 
             var workersAreasResource = workersAreas
                 .Select(WorkerAreaResourceFromEntityAssembler

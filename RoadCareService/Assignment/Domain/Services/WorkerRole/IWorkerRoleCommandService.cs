@@ -6,6 +6,7 @@ namespace RoadCareService.Assignment.Domain.Services.WorkerRole
     {
         Task<bool> Handle
             (AddWorkerRoleToWorkerAreaCommand command);
+
         Task<bool> Handle
             (UpdateWorkerRoleStateCommand command);
     }

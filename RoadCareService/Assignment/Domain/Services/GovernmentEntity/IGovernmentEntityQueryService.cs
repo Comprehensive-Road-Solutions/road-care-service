@@ -6,6 +6,7 @@ namespace RoadCareService.Assignment.Domain.Services.GovernmentEntity
     {
         Task<IEnumerable<Model.Aggregates.GovernmentEntity>> Handle
             (GetAllGovernmentsEntitiesQuery query);
+
         Task<Model.Aggregates.GovernmentEntity?> Handle
             (GetGovernmentEntityByIdQuery query);
     }

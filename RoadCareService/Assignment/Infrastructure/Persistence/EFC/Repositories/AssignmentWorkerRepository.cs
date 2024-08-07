@@ -129,6 +129,41 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             return await queryAsync;
         }
 
+        public async Task<IEnumerable<AssignmentWorker>> FindByGovernmentEntityIdAndWorkerAreaIdAsync
+            (int governmentEntityId, int workerAreaId)
+        {
+            Task<IEnumerable<AssignmentWorker>> queryAsync = new(() =>
+            {
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
+
+                return
+                (from aw in Context.Set<AssignmentWorker>().ToList()
+                 join wr in Context.Set<WorkerRole>().ToList()
+                 on aw.WorkersRolesId equals wr.Id
+                 join wo in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wo.Id
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wo.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where wo.Id == workerAreaId &&
+                 go.Id == governmentEntityId &&
+                 di.Id == credentials.DistrictId
+                 select aw).ToList();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
         public async Task<IEnumerable<AssignmentWorker>> FindByGovernmentEntityIdAndWorkerAreaIdAndRoleIdAsync
             (int governmentEntityId, int workerAreaId, int roleId)
         {
@@ -155,41 +190,6 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 on go.DistrictsId equals di.Id
                 where wr.Id == roleId &&
                 wo.Id == workerAreaId &&
-                go.Id == governmentEntityId &&
-                di.Id == credentials.DistrictId
-                select aw).ToList();
-            });
-
-            queryAsync.Start();
-
-            return await queryAsync;
-        }
-
-        public async Task<IEnumerable<AssignmentWorker>> FindByGovernmentEntityIdAndWorkerAreaIdAsync
-            (int governmentEntityId, int workerAreaId)
-        {
-            Task<IEnumerable<AssignmentWorker>> queryAsync = new(() =>
-            {
-                if (httpContextAccessor.HttpContext is null)
-                    return [];
-
-                var credentials = httpContextAccessor.HttpContext
-                    .Items["Credentials"] as dynamic;
-
-                if (credentials is null)
-                    return [];
-
-                return
-                (from aw in Context.Set<AssignmentWorker>().ToList()
-                join wr in Context.Set<WorkerRole>().ToList()
-                on aw.WorkersRolesId equals wr.Id
-                join wo in Context.Set<WorkerArea>().ToList()
-                on wr.WorkersAreasId equals wo.Id
-                join go in Context.Set<GovernmentEntity>().ToList()
-                on wo.GovernmentsEntitiesId equals go.Id
-                join di in Context.Set<District>().ToList()
-                on go.DistrictsId equals di.Id
-                where wo.Id == workerAreaId &&
                 go.Id == governmentEntityId &&
                 di.Id == credentials.DistrictId
                 select aw).ToList();

@@ -19,15 +19,15 @@ namespace RoadCareService.Assignment.Application.Internal.QueryServices
             .FindByIdAsync(query.Id);
 
         public async Task<IEnumerable<AssignmentWorker>> Handle
-            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query) =>
-            await assignmentWorkerRepository
-            .FindByGovernmentEntityIdAndWorkerAreaIdAndRoleIdAsync
-            (query.GovernmentEntityId, query.WorkerAreaId, query.RoleId);
-
-        public async Task<IEnumerable<AssignmentWorker>> Handle
             (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery query) =>
             await assignmentWorkerRepository
             .FindByGovernmentEntityIdAndWorkerAreaIdAsync
             (query.GovernmentEntityId, query.WorkerAreaId);
+
+        public async Task<IEnumerable<AssignmentWorker>> Handle
+            (GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery query) =>
+            await assignmentWorkerRepository
+            .FindByGovernmentEntityIdAndWorkerAreaIdAndRoleIdAsync
+            (query.GovernmentEntityId, query.WorkerAreaId, query.RoleId);
     }
 }

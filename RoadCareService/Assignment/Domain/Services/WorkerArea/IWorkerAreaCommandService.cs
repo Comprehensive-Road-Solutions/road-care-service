@@ -6,6 +6,7 @@ namespace RoadCareService.Assignment.Domain.Services.WorkerArea
     {
         Task<bool> Handle
             (CreateWorkerAreaCommand command);
+
         Task<bool> Handle
             (UpdateWorkerAreaStateCommand command);
     }

@@ -78,22 +78,6 @@ namespace RoadCareService.Assignment.Interfaces.REST
             return Ok(assignmentWorkerResource);
         }
 
-        [Route("assignments-workers-by-government-entity-and-worker-area-and-role")]
-        [HttpGet]
-        public async Task<IActionResult> GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleId
-            ([FromQuery] int governmentEntityId, [FromQuery] int workerAreaId, [FromQuery] int roleId)
-        {
-            var assignmentsWorkers = await assignmentWorkerQueryService
-                .Handle(new GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery
-                (governmentEntityId, workerAreaId, roleId));
-
-            var assignmentsWorkersResource = assignmentsWorkers
-                .Select(AssignmentWorkerResourceFromEntityAssembler
-                .ToResourceFromEntity);
-
-            return Ok(assignmentsWorkersResource);
-        }
-
         [Route("assignments-workers-by-government-entity-and-worker-area")]
         [HttpGet]
         public async Task<IActionResult> GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaId
@@ -102,6 +86,22 @@ namespace RoadCareService.Assignment.Interfaces.REST
             var assignmentsWorkers = await assignmentWorkerQueryService
                 .Handle(new GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdQuery
                 (governmentEntityId, workerAreaId));
+
+            var assignmentsWorkersResource = assignmentsWorkers
+                .Select(AssignmentWorkerResourceFromEntityAssembler
+                .ToResourceFromEntity);
+
+            return Ok(assignmentsWorkersResource);
+        }
+
+        [Route("assignments-workers-by-government-entity-and-worker-area-and-role")]
+        [HttpGet]
+        public async Task<IActionResult> GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleId
+            ([FromQuery] int governmentEntityId, [FromQuery] int workerAreaId, [FromQuery] int roleId)
+        {
+            var assignmentsWorkers = await assignmentWorkerQueryService
+                .Handle(new GetAssignmentsWorkersByGovernmentEntityIdAndWorkerAreaIdAndRoleIdQuery
+                (governmentEntityId, workerAreaId, roleId));
 
             var assignmentsWorkersResource = assignmentsWorkers
                 .Select(AssignmentWorkerResourceFromEntityAssembler

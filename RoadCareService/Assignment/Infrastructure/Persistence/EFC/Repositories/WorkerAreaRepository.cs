@@ -117,6 +117,36 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
             return await queryAsync;
         }
 
+        public async Task<IEnumerable<WorkerArea>> FindByGovernmentEntityIdAsync
+            (int governmentEntityId)
+        {
+            Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
+            {
+                if (httpContextAccessor.HttpContext is null)
+                    return [];
+
+                var credentials = httpContextAccessor.HttpContext
+                    .Items["Credentials"] as dynamic;
+
+                if (credentials is null)
+                    return [];
+
+                return
+                (from wa in Context.Set<WorkerArea>().ToList()
+                 join go in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals go.Id
+                 join di in Context.Set<District>().ToList()
+                 on go.DistrictsId equals di.Id
+                 where go.Id == governmentEntityId &&
+                 di.Id == credentials.DistrictId
+                 select wa).ToList();
+            });
+
+            queryAsync.Start();
+
+            return await queryAsync;
+        }
+
         public async Task<IEnumerable<WorkerArea>> FindByGovernmentEntityIdAndStateAsync
             (int governmentEntityId, EWorkerAreaState workerAreaState)
         {
@@ -139,36 +169,6 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                  on go.DistrictsId equals di.Id
                  where wa.State == workerAreaState.ToString() &&
                  go.Id == governmentEntityId &&
-                 di.Id == credentials.DistrictId
-                 select wa).ToList();
-            });
-
-            queryAsync.Start();
-
-            return await queryAsync;
-        }
-
-        public async Task<IEnumerable<WorkerArea>> FindByGovernmentEntityIdAsync
-            (int governmentEntityId)
-        {
-            Task<IEnumerable<WorkerArea>> queryAsync = new(() =>
-            {
-                if (httpContextAccessor.HttpContext is null)
-                    return [];
-
-                var credentials = httpContextAccessor.HttpContext
-                    .Items["Credentials"] as dynamic;
-
-                if (credentials is null)
-                    return [];
-
-                return
-                (from wa in Context.Set<WorkerArea>().ToList()
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
-                 where go.Id == governmentEntityId &&
                  di.Id == credentials.DistrictId
                  select wa).ToList();
             });
