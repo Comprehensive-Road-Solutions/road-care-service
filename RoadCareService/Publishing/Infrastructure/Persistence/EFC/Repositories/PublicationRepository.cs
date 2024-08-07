@@ -1,4 +1,5 @@
-﻿using RoadCareService.Location.Domain.Model.Aggregates;
+﻿using Microsoft.EntityFrameworkCore;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -11,6 +12,16 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
         BaseRepository<Publication>(context),
         IPublicationRepository
     {
+        public new async Task<IEnumerable<Publication>> ListAsync() =>
+            await Context.Set<Publication>()
+            .Where(p => p.State == "PUBLICADO")
+            .ToListAsync();
+
+        public new async Task<Publication?> FindByIdAsync
+            (int id) => await Context.Set<Publication>()
+            .Where(p => p.Id == id && p.State == "PUBLICADO")
+            .FirstOrDefaultAsync();
+
         public async Task<IEnumerable<Publication>> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId)
         {
