@@ -13,7 +13,7 @@ namespace RoadCareService.IAM.Interfaces.REST
     [Route("api/informations/")]
     [ApiController]
     [Produces(MediaTypeNames.Application.Json)]
-    [Authorize("TRABAJADOR", "CIUDADANO")]
+    [Authorize]
     public class InformationsController
         (IWorkerQueryService workerQueryService,
         ICitizenQueryService citizenQueryService) :
@@ -21,6 +21,7 @@ namespace RoadCareService.IAM.Interfaces.REST
     {
         [Route("worker-by-id")]
         [HttpGet]
+        [Authorize("TRABAJADOR")]
         public async Task<IActionResult> GetWorkerById
             ([FromQuery] int id)
         {
@@ -38,6 +39,7 @@ namespace RoadCareService.IAM.Interfaces.REST
 
         [Route("citizen-by-id")]
         [HttpGet]
+        [Authorize("TRABAJADOR", "CIUDADANO")]
         public async Task<IActionResult> GetCitizenById
             ([FromQuery] int id)
         {
