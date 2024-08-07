@@ -1,6 +1,6 @@
-﻿using RoadCareService.Interaction.Domain.Model.Commands;
+﻿using RoadCareService.Interaction.Domain.Model.Commands.Comment;
 
-namespace RoadCareService.Interaction.Domain.Services
+namespace RoadCareService.Interaction.Domain.Services.Comment
 {
     public interface ICommentCommandService
     {

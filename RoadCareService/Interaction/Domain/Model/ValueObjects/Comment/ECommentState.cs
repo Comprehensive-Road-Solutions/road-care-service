@@ -1,4 +1,4 @@
-﻿namespace RoadCareService.Interaction.Domain.Model.ValueObjects
+﻿namespace RoadCareService.Interaction.Domain.Model.ValueObjects.Comment
 {
     public enum ECommentState
     {

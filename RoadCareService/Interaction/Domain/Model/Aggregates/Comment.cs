@@ -1,6 +1,6 @@
 ﻿using RoadCareService.IAM.Domain.Model.Aggregates;
-using RoadCareService.Interaction.Domain.Model.Commands;
-using RoadCareService.Interaction.Domain.Model.ValueObjects;
+using RoadCareService.Interaction.Domain.Model.Commands.Comment;
+using RoadCareService.Interaction.Domain.Model.ValueObjects.Comment;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
 
 namespace RoadCareService.Interaction.Domain.Model.Aggregates

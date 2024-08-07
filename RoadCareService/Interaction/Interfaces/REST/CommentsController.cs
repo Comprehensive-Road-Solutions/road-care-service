@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
-using RoadCareService.Interaction.Domain.Model.Queries;
-using RoadCareService.Interaction.Domain.Services;
+using RoadCareService.Interaction.Domain.Model.Queries.Comment;
 using RoadCareService.IAM.Infrastructure.Pipeline.Middleware.Attributes;
 using RoadCareService.Interaction.Interfaces.REST.Resources;
 using RoadCareService.Interaction.Interfaces.REST.Transform;
+using RoadCareService.Interaction.Domain.Services.Comment;
 
 namespace RoadCareService.Interaction.Interfaces.REST
 {

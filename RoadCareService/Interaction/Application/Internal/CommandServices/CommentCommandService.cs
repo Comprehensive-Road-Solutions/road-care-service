@@ -1,7 +1,7 @@
 ﻿using RoadCareService.Interaction.Application.Internal.OutboundServices.ACL;
-using RoadCareService.Interaction.Domain.Model.Commands;
+using RoadCareService.Interaction.Domain.Model.Commands.Comment;
 using RoadCareService.Interaction.Domain.Repositories;
-using RoadCareService.Interaction.Domain.Services;
+using RoadCareService.Interaction.Domain.Services.Comment;
 using RoadCareService.Shared.Domain.Repositories;
 
 namespace RoadCareService.Interaction.Application.Internal.CommandServices

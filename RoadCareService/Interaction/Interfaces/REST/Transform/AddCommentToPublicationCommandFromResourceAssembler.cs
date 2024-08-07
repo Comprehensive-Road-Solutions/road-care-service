@@ -1,5 +1,5 @@
-﻿using RoadCareService.Interaction.Domain.Model.Commands;
-using RoadCareService.Interaction.Domain.Model.ValueObjects;
+﻿using RoadCareService.Interaction.Domain.Model.Commands.Comment;
+using RoadCareService.Interaction.Domain.Model.ValueObjects.Comment;
 using RoadCareService.Interaction.Interfaces.REST.Resources;
 
 namespace RoadCareService.Interaction.Interfaces.REST.Transform
