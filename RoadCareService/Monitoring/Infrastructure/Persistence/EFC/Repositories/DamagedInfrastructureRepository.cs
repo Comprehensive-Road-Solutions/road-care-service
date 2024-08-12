@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
 using RoadCareService.Monitoring.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
-using RoadCareService.Location.Domain.Model.Aggregates;
 
 namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 {
@@ -31,13 +31,11 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 int districtId = credentials.DistrictId;
 
-                await Context.Set<DamagedInfrastructure>()
+                return await Context.Set<DamagedInfrastructure>()
                     .Where(d => d.Id == id &&
                     d.DistrictsId == districtId)
                     .ExecuteUpdateAsync(d => d
-                    .SetProperty(u => u.WorkDate, workDate));
-
-                return true;
+                    .SetProperty(u => u.WorkDate, workDate)) > 0;
             }
             catch (Exception) { return false; }
         }
@@ -58,15 +56,13 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 int districtId = credentials.DistrictId;
 
-                await Context.Set<DamagedInfrastructure>()
+                return await Context.Set<DamagedInfrastructure>()
                     .Where(d => d.Id == id &&
                     d.DistrictsId == districtId)
                     .ExecuteUpdateAsync(d => d
                     .SetProperty(u => u.State, Regex.Replace
                     (damagedInfrastructureState.ToString(),
-                    "([A-Z])", " $1").Trim()));
-
-                return true;
+                    "([A-Z])", " $1").Trim())) > 0;
             }
             catch (Exception) { return false; }
         }
@@ -83,14 +79,14 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             Task<IEnumerable<DamagedInfrastructure>> queryAsync = new(() =>
             {
                 return
-                from da in Context.Set<DamagedInfrastructure>().ToList()
-                join di in Context.Set<District>().ToList()
+                [.. (from da in Context.Set<DamagedInfrastructure>()
+                join di in Context.Set<District>()
                 on da.DistrictsId equals di.Id
-                join de in Context.Set<Department>().ToList()
+                join de in Context.Set<Department>()
                 on di.DepartmentsId equals de.Id
                 where de.Id == departmentId &&
                 di.Id == districtId
-                select da;
+                select da)];
             });
 
             queryAsync.Start();

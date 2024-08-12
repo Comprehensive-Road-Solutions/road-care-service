@@ -2,7 +2,6 @@
 using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Aggregates;
-using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.Staff;
 using RoadCareService.Monitoring.Domain.Repositories;
@@ -43,16 +42,14 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                      on aw.WorkersRolesId equals wr.Id
                      join wa in Context.Set<WorkerArea>().ToList()
                      on wr.WorkersAreasId equals wa.Id
-                     join go in Context.Set<GovernmentEntity>().ToList()
-                     on wa.GovernmentsEntitiesId equals go.Id
-                     join di in Context.Set<District>().ToList()
-                     on go.DistrictsId equals di.Id
+                     join ge in Context.Set<GovernmentEntity>().ToList()
+                     on wa.GovernmentsEntitiesId equals ge.Id
                      where st.Id == id &&
                      wo.State == "ACTIVO" &&
                      aw.State == "VIGENTE" &&
                      wr.State == "ACTIVO" &&
                      wa.State == "ACTIVO" &&
-                     di.Id == credentials.DistrictId
+                     ge.DistrictsId == credentials.DistrictId
                      select st)
                      .FirstOrDefault();
                 });
@@ -62,11 +59,9 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                 if (await queryAsync is null)
                     return false;
 
-                await Context.Set<Staff>().Where(s => s.Id == id)
+                return await Context.Set<Staff>().Where(s => s.Id == id)
                     .ExecuteUpdateAsync(s => s
-                    .SetProperty(u => u.State, staffState.ToString()));
-
-                return true;
+                    .SetProperty(u => u.State, staffState.ToString())) > 0;
             }
             catch (Exception) { return false; }
         }
@@ -95,16 +90,14 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                  on aw.WorkersRolesId equals wr.Id
                  join wa in Context.Set<WorkerArea>().ToList()
                  on wr.WorkersAreasId equals wa.Id
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
+                 join ge in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals ge.Id
                  where wo.Id == workerId &&
                  wo.State == "ACTIVO" &&
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
                  wa.State == "ACTIVO" &&
-                 di.Id == credentials.DistrictId
+                 ge.DistrictsId == credentials.DistrictId
                  select st).ToList();
             });
 
@@ -137,16 +130,14 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
                  on aw.WorkersRolesId equals wr.Id
                  join wa in Context.Set<WorkerArea>().ToList()
                  on wr.WorkersAreasId equals wa.Id
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
+                 join ge in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals ge.Id
                  where st.State == staffState.ToString() &&
                  wo.State == "ACTIVO" &&
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
                  wa.State == "ACTIVO" &&
-                 di.Id == credentials.DistrictId
+                 ge.DistrictsId == credentials.DistrictId
                  select st).ToList();
             });
 
