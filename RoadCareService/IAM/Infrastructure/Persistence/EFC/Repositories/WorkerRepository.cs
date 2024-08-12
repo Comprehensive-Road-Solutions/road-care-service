@@ -2,7 +2,6 @@
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.IAM.Domain.Model.Aggregates;
 using RoadCareService.IAM.Domain.Repositories;
-using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
@@ -35,18 +34,15 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
                  on aw.WorkersRolesId equals wr.Id
                  join wa in Context.Set<WorkerArea>().ToList()
                  on wr.WorkersAreasId equals wa.Id
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
+                 join ge in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals ge.Id
                  where wo.Id == id &&
                  wo.State == "ACTIVO" &&
                  aw.State == "VIGENTE" &&
                  wr.State == "ACTIVO" &&
                  wa.State == "ACTIVO" &&
-                 di.Id == credentials.DistrictId
-                 select wo)
-                 .FirstOrDefault();
+                 ge.DistrictsId == credentials.DistrictId
+                 select wo).FirstOrDefault();
             });
 
             queryAsync.Start();

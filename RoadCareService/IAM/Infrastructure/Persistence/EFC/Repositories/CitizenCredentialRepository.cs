@@ -17,8 +17,8 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
             Task<CitizenCredential?> queryAsync = new(() =>
             {
                 return
-                (from cc in Context.Set<CitizenCredential>().ToList()
-                join ci in Context.Set<Citizen>().ToList()
+                (from cc in Context.Set<CitizenCredential>()
+                join ci in Context.Set<Citizen>()
                 on cc.CitizensId equals ci.Id
                 where ci.Id == citizenId &&
                 ci.State == "ACTIVO"
