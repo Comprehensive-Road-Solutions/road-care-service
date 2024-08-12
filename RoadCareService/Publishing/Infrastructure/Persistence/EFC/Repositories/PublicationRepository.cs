@@ -28,15 +28,15 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
             Task<IEnumerable<Publication>> queryAsync = new(() =>
             {
                 return
-                from pu in Context.Set<Publication>().ToList()
-                join di in Context.Set<District>().ToList()
+                [.. (from pu in Context.Set<Publication>()
+                join di in Context.Set<District>()
                 on pu.DistrictsId equals di.Id
-                join de in Context.Set<Department>().ToList()
+                join de in Context.Set<Department>()
                 on di.DepartmentsId equals de.Id
                 where di.Id == districtId &&
                 de.Id == departmentId &&
                 pu.State == "PUBLICADO"
-                select pu;
+                select pu)];
             });
 
             queryAsync.Start();
