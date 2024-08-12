@@ -3,7 +3,6 @@ using RoadCareService.Assignment.Domain.Model.Aggregates;
 using RoadCareService.Assignment.Domain.Model.Entities;
 using RoadCareService.Assignment.Domain.Model.ValueObjects.AssignmentWorker;
 using RoadCareService.Assignment.Domain.Repositories;
-using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
 
@@ -35,17 +34,14 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                     (from aw in Context.Set<AssignmentWorker>().ToList()
                     join wr in Context.Set<WorkerRole>().ToList()
                     on aw.WorkersRolesId equals wr.Id
-                    join wo in Context.Set<WorkerArea>().ToList()
-                    on wr.WorkersAreasId equals wo.Id
-                    join go in Context.Set<GovernmentEntity>().ToList()
-                    on wo.GovernmentsEntitiesId equals go.Id
-                    join di in Context.Set<District>().ToList()
-                    on go.DistrictsId equals di.Id
+                    join wa in Context.Set<WorkerArea>().ToList()
+                    on wr.WorkersAreasId equals wa.Id
+                    join ge in Context.Set<GovernmentEntity>().ToList()
+                    on wa.GovernmentsEntitiesId equals ge.Id
                     where aw.Id == id &&
-                    wo.Name == credentials.WorkerAreaName &&
-                    di.Id == credentials.DistrictId
-                    select aw)
-                    .FirstOrDefault();
+                    wa.Name == credentials.WorkerAreaName &&
+                    ge.DistrictsId == credentials.DistrictId
+                    select aw).FirstOrDefault();
                 });
 
                 queryAsync.Start();
@@ -53,11 +49,9 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 if (await queryAsync is null)
                     return false;
 
-                await Context.Set<AssignmentWorker>().Where(a => a.Id == id)
+                return await Context.Set<AssignmentWorker>().Where(a => a.Id == id)
                     .ExecuteUpdateAsync(a => a
-                    .SetProperty(u => u.State, assignmentWorkerState.ToString()));
-
-                return true;
+                    .SetProperty(u => u.State, assignmentWorkerState.ToString())) > 0;
             }
             catch (Exception) { return false; }
         }
@@ -79,13 +73,11 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 (from aw in Context.Set<AssignmentWorker>().ToList()
                  join wr in Context.Set<WorkerRole>().ToList()
                  on aw.WorkersRolesId equals wr.Id
-                 join wo in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wo.Id
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wo.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
-                 where di.Id == credentials.DistrictId
+                 join wa in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wa.Id
+                 join ge in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals ge.Id
+                 where ge.DistrictsId == credentials.DistrictId
                  select aw).ToList();
             });
 
@@ -112,16 +104,13 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 (from aw in Context.Set<AssignmentWorker>().ToList()
                  join wr in Context.Set<WorkerRole>().ToList()
                  on aw.WorkersRolesId equals wr.Id
-                 join wo in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wo.Id
+                 join wa in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wa.Id
                  join go in Context.Set<GovernmentEntity>().ToList()
-                 on wo.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
+                 on wa.GovernmentsEntitiesId equals go.Id
                  where aw.Id == id &&
-                 di.Id == credentials.DistrictId
-                 select aw)
-                 .FirstOrDefault();
+                 go.DistrictsId == credentials.DistrictId
+                 select aw).FirstOrDefault();
             });
 
             queryAsync.Start();
@@ -147,15 +136,13 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 (from aw in Context.Set<AssignmentWorker>().ToList()
                  join wr in Context.Set<WorkerRole>().ToList()
                  on aw.WorkersRolesId equals wr.Id
-                 join wo in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wo.Id
-                 join go in Context.Set<GovernmentEntity>().ToList()
-                 on wo.GovernmentsEntitiesId equals go.Id
-                 join di in Context.Set<District>().ToList()
-                 on go.DistrictsId equals di.Id
-                 where wo.Id == workerAreaId &&
-                 go.Id == governmentEntityId &&
-                 di.Id == credentials.DistrictId
+                 join wa in Context.Set<WorkerArea>().ToList()
+                 on wr.WorkersAreasId equals wa.Id
+                 join ge in Context.Set<GovernmentEntity>().ToList()
+                 on wa.GovernmentsEntitiesId equals ge.Id
+                 where wa.Id == workerAreaId &&
+                 ge.Id == governmentEntityId &&
+                 ge.DistrictsId == credentials.DistrictId
                  select aw).ToList();
             });
 
@@ -182,16 +169,14 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
                 (from aw in Context.Set<AssignmentWorker>().ToList()
                 join wr in Context.Set<WorkerRole>().ToList()
                 on aw.WorkersRolesId equals wr.Id
-                join wo in Context.Set<WorkerArea>().ToList()
-                on wr.WorkersAreasId equals wo.Id
-                join go in Context.Set<GovernmentEntity>().ToList()
-                on wo.GovernmentsEntitiesId equals go.Id
-                join di in Context.Set<District>().ToList()
-                on go.DistrictsId equals di.Id
+                join wa in Context.Set<WorkerArea>().ToList()
+                on wr.WorkersAreasId equals wa.Id
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
                 where wr.Id == roleId &&
-                wo.Id == workerAreaId &&
-                go.Id == governmentEntityId &&
-                di.Id == credentials.DistrictId
+                wa.Id == workerAreaId &&
+                ge.Id == governmentEntityId &&
+                ge.DistrictsId == credentials.DistrictId
                 select aw).ToList();
             });
 
