@@ -32,13 +32,13 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                     return
                     (from wr in Context.Set<WorkerRole>().ToList()
-                     join wa in Context.Set<WorkerArea>().ToList()
-                     on wr.WorkersAreasId equals wa.Id
-                     join ge in Context.Set<GovernmentEntity>().ToList()
-                     on wa.GovernmentsEntitiesId equals ge.Id
-                     where wr.Id == id &&
-                     ge.DistrictsId == credentials.DistrictId
-                     select wr).FirstOrDefault();
+                    join wa in Context.Set<WorkerArea>().ToList()
+                    on wr.WorkersAreasId equals wa.Id
+                    join ge in Context.Set<GovernmentEntity>().ToList()
+                    on wa.GovernmentsEntitiesId equals ge.Id
+                    where wr.Id == id &&
+                    ge.DistrictsId == credentials.DistrictId
+                    select wr).FirstOrDefault();
                 });
 
                 queryAsync.Start();
@@ -69,12 +69,12 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wr in Context.Set<WorkerRole>().ToList()
-                 join wa in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wa.Id
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where ge.DistrictsId == credentials.DistrictId
-                 select wr).ToList();
+                join wa in Context.Set<WorkerArea>().ToList()
+                on wr.WorkersAreasId equals wa.Id
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where ge.DistrictsId == credentials.DistrictId
+                select wr).ToList();
             });
 
             queryAsync.Start();
@@ -98,13 +98,13 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wr in Context.Set<WorkerRole>().ToList()
-                 join wa in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wa.Id
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where wr.Id == id &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select wr).FirstOrDefault();
+                join wa in Context.Set<WorkerArea>().ToList()
+                on wr.WorkersAreasId equals wa.Id
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where wr.Id == id &&
+                ge.DistrictsId == credentials.DistrictId
+                select wr).FirstOrDefault();
             });
 
             queryAsync.Start();

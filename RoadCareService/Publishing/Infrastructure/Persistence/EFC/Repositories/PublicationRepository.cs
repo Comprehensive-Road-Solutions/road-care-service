@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
+using RoadCareService.Publishing.Domain.Model.ValueObjects;
 using RoadCareService.Publishing.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
@@ -14,12 +15,12 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
     {
         public new async Task<IEnumerable<Publication>> ListAsync() =>
             await Context.Set<Publication>()
-            .Where(p => p.State == "PUBLICADO")
+            .Where(p => p.State == EPublicationState.PUBLICADO.ToString())
             .ToListAsync();
 
         public new async Task<Publication?> FindByIdAsync
             (int id) => await Context.Set<Publication>()
-            .Where(p => p.Id == id && p.State == "PUBLICADO")
+            .Where(p => p.Id == id && p.State == EPublicationState.PUBLICADO.ToString())
             .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<Publication>> FindByDepartmentIdAndDistrictIdAsync
@@ -35,7 +36,7 @@ namespace RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories
                 on di.DepartmentsId equals de.Id
                 where di.Id == districtId &&
                 de.Id == departmentId &&
-                pu.State == "PUBLICADO"
+                pu.State == EPublicationState.PUBLICADO.ToString()
                 select pu)];
             });
 

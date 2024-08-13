@@ -79,14 +79,14 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
             Task<IEnumerable<DamagedInfrastructure>> queryAsync = new(() =>
             {
                 return
-                [.. (from da in Context.Set<DamagedInfrastructure>()
-                join di in Context.Set<District>()
-                on da.DistrictsId equals di.Id
+                [.. (from di in Context.Set<DamagedInfrastructure>()
+                join dt in Context.Set<District>()
+                on di.DistrictsId equals dt.Id
                 join de in Context.Set<Department>()
-                on di.DepartmentsId equals de.Id
+                on dt.DepartmentsId equals de.Id
                 where de.Id == departmentId &&
-                di.Id == districtId
-                select da)];
+                dt.Id == districtId
+                select di)];
             });
 
             queryAsync.Start();

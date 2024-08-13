@@ -1,5 +1,6 @@
 ﻿using RoadCareService.IAM.Domain.Model.Aggregates;
 using RoadCareService.IAM.Domain.Model.Entities;
+using RoadCareService.IAM.Domain.Model.ValueObjects.Citizen;
 using RoadCareService.IAM.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
@@ -21,7 +22,7 @@ namespace RoadCareService.IAM.Infrastructure.Persistence.EFC.Repositories
                 join ci in Context.Set<Citizen>()
                 on cc.CitizensId equals ci.Id
                 where ci.Id == citizenId &&
-                ci.State == "ACTIVO"
+                ci.State == ECitizenState.ACTIVO.ToString()
                 select cc).FirstOrDefault();
             });
 

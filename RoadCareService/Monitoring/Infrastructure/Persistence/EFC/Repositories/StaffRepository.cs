@@ -34,24 +34,24 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                     return
                     (from st in Context.Set<Staff>().ToList()
-                     join wo in Context.Set<Worker>().ToList()
-                     on st.WorkersId equals wo.Id
-                     join aw in Context.Set<AssignmentWorker>().ToList()
-                     on wo.Id equals aw.WorkersId
-                     join wr in Context.Set<WorkerRole>().ToList()
-                     on aw.WorkersRolesId equals wr.Id
-                     join wa in Context.Set<WorkerArea>().ToList()
-                     on wr.WorkersAreasId equals wa.Id
-                     join ge in Context.Set<GovernmentEntity>().ToList()
-                     on wa.GovernmentsEntitiesId equals ge.Id
-                     where st.Id == id &&
-                     wo.State == "ACTIVO" &&
-                     aw.State == "VIGENTE" &&
-                     wr.State == "ACTIVO" &&
-                     wa.State == "ACTIVO" &&
-                     ge.DistrictsId == credentials.DistrictId
-                     select st)
-                     .FirstOrDefault();
+                    join wo in Context.Set<Worker>().ToList()
+                    on st.WorkersId equals wo.Id
+                    join aw in Context.Set<AssignmentWorker>().ToList()
+                    on wo.Id equals aw.WorkersId
+                    join wr in Context.Set<WorkerRole>().ToList()
+                    on aw.WorkersRolesId equals wr.Id
+                    join wa in Context.Set<WorkerArea>().ToList()
+                    on wr.WorkersAreasId equals wa.Id
+                    join ge in Context.Set<GovernmentEntity>().ToList()
+                    on wa.GovernmentsEntitiesId equals ge.Id
+                    where st.Id == id &&
+                    wo.State == "ACTIVO" &&
+                    aw.State == "VIGENTE" &&
+                    wr.State == "ACTIVO" &&
+                    wa.State == "ACTIVO" &&
+                    ge.DistrictsId == credentials.DistrictId
+                    select st)
+                    .FirstOrDefault();
                 });
 
                 queryAsync.Start();
@@ -82,23 +82,23 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from st in Context.Set<Staff>().ToList()
-                 join wo in Context.Set<Worker>().ToList()
-                 on st.WorkersId equals wo.Id
-                 join aw in Context.Set<AssignmentWorker>().ToList()
-                 on wo.Id equals aw.WorkersId
-                 join wr in Context.Set<WorkerRole>().ToList()
-                 on aw.WorkersRolesId equals wr.Id
-                 join wa in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wa.Id
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where wo.Id == workerId &&
-                 wo.State == "ACTIVO" &&
-                 aw.State == "VIGENTE" &&
-                 wr.State == "ACTIVO" &&
-                 wa.State == "ACTIVO" &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select st).ToList();
+                join wo in Context.Set<Worker>().ToList()
+                on st.WorkersId equals wo.Id
+                join aw in Context.Set<AssignmentWorker>().ToList()
+                on wo.Id equals aw.WorkersId
+                join wr in Context.Set<WorkerRole>().ToList()
+                on aw.WorkersRolesId equals wr.Id
+                join wa in Context.Set<WorkerArea>().ToList()
+                on wr.WorkersAreasId equals wa.Id
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where wo.Id == workerId &&
+                wo.State == "ACTIVO" &&
+                aw.State == "VIGENTE" &&
+                wr.State == "ACTIVO" &&
+                wa.State == "ACTIVO" &&
+                ge.DistrictsId == credentials.DistrictId
+                select st).ToList();
             });
 
             queryAsync.Start();
@@ -122,23 +122,23 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from st in Context.Set<Staff>().ToList()
-                 join wo in Context.Set<Worker>().ToList()
-                 on st.WorkersId equals wo.Id
-                 join aw in Context.Set<AssignmentWorker>().ToList()
-                 on wo.Id equals aw.WorkersId
-                 join wr in Context.Set<WorkerRole>().ToList()
-                 on aw.WorkersRolesId equals wr.Id
-                 join wa in Context.Set<WorkerArea>().ToList()
-                 on wr.WorkersAreasId equals wa.Id
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where st.State == staffState.ToString() &&
-                 wo.State == "ACTIVO" &&
-                 aw.State == "VIGENTE" &&
-                 wr.State == "ACTIVO" &&
-                 wa.State == "ACTIVO" &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select st).ToList();
+                join wo in Context.Set<Worker>().ToList()
+                on st.WorkersId equals wo.Id
+                join aw in Context.Set<AssignmentWorker>().ToList()
+                on wo.Id equals aw.WorkersId
+                join wr in Context.Set<WorkerRole>().ToList()
+                on aw.WorkersRolesId equals wr.Id
+                join wa in Context.Set<WorkerArea>().ToList()
+                on wr.WorkersAreasId equals wa.Id
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where st.State == staffState.ToString() &&
+                wo.State == "ACTIVO" &&
+                aw.State == "VIGENTE" &&
+                wr.State == "ACTIVO" &&
+                wa.State == "ACTIVO" &&
+                ge.DistrictsId == credentials.DistrictId
+                select st).ToList();
             });
 
             queryAsync.Start();

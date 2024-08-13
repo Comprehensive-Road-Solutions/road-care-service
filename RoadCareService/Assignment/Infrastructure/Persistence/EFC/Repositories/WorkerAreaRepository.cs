@@ -32,12 +32,12 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                     return
                     (from wa in Context.Set<WorkerArea>().ToList()
-                     join ge in Context.Set<GovernmentEntity>().ToList()
-                     on wa.GovernmentsEntitiesId equals ge.Id
-                     where wa.Id == id &&
-                     wa.Name == credentials.WorkerAreaName &&
-                     ge.DistrictsId == credentials.DistrictId
-                     select wa).FirstOrDefault();
+                    join ge in Context.Set<GovernmentEntity>().ToList()
+                    on wa.GovernmentsEntitiesId equals ge.Id
+                    where wa.Id == id &&
+                    wa.Name == credentials.WorkerAreaName &&
+                    ge.DistrictsId == credentials.DistrictId
+                    select wa).FirstOrDefault();
                 });
 
                 queryAsync.Start();
@@ -67,10 +67,10 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where ge.DistrictsId == credentials.DistrictId
-                 select wa).ToList();
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where ge.DistrictsId == credentials.DistrictId
+                select wa).ToList();
             });
 
             queryAsync.Start();
@@ -94,11 +94,11 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where wa.Id == id &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select wa).FirstOrDefault();
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where wa.Id == id &&
+                ge.DistrictsId == credentials.DistrictId
+                select wa).FirstOrDefault();
             });
 
             queryAsync.Start();
@@ -122,11 +122,11 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where ge.Id == governmentEntityId &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select wa).ToList();
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where ge.Id == governmentEntityId &&
+                ge.DistrictsId == credentials.DistrictId
+                select wa).ToList();
             });
 
             queryAsync.Start();
@@ -150,12 +150,12 @@ namespace RoadCareService.Assignment.Infrastructure.Persistence.EFC.Repositories
 
                 return
                 (from wa in Context.Set<WorkerArea>().ToList()
-                 join ge in Context.Set<GovernmentEntity>().ToList()
-                 on wa.GovernmentsEntitiesId equals ge.Id
-                 where wa.State == workerAreaState.ToString() &&
-                 ge.Id == governmentEntityId &&
-                 ge.DistrictsId == credentials.DistrictId
-                 select wa).ToList();
+                join ge in Context.Set<GovernmentEntity>().ToList()
+                on wa.GovernmentsEntitiesId equals ge.Id
+                where wa.State == workerAreaState.ToString() &&
+                ge.Id == governmentEntityId &&
+                ge.DistrictsId == credentials.DistrictId
+                select wa).ToList();
             });
 
             queryAsync.Start();
