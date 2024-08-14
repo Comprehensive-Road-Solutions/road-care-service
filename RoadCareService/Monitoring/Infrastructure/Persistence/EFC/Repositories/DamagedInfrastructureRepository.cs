@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.Aggregates;
 using RoadCareService.Monitoring.Domain.Model.ValueObjects.DamagedInfrastructure;
@@ -56,22 +55,31 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 int districtId = credentials.DistrictId;
 
+                string newState = damagedInfrastructureState.ToString() ==
+                    "ENPROCESO" ? "EN PROCESO" :
+                    damagedInfrastructureState
+                    .ToString();
+
                 return await Context.Set<DamagedInfrastructure>()
                     .Where(d => d.Id == id &&
                     d.DistrictsId == districtId)
                     .ExecuteUpdateAsync(d => d
-                    .SetProperty(u => u.State, Regex.Replace
-                    (damagedInfrastructureState.ToString(),
-                    "([A-Z])", " $1").Trim())) > 0;
+                    .SetProperty(u => u.State, newState)) > 0;
             }
             catch (Exception) { return false; }
         }
 
         public async Task<IEnumerable<DamagedInfrastructure>> FindByStateAsync
-            (EDamagedInfrastructureState damagedInfrastructureState) =>
-            await Context.Set<DamagedInfrastructure>()
-            .Where(d => d.State == Regex.Replace(damagedInfrastructureState
-                .ToString(), "([A-Z])", " $1").Trim()).ToListAsync();
+            (EDamagedInfrastructureState damagedInfrastructureState)
+        {
+            string newState = damagedInfrastructureState.ToString() ==
+                "ENPROCESO" ? "EN PROCESO" :
+                damagedInfrastructureState
+                .ToString();
+
+            return await Context.Set<DamagedInfrastructure>()
+                .Where(d => d.State == newState).ToListAsync();
+        }
 
         public async Task<IEnumerable<DamagedInfrastructure>> FindByDepartmentIdAndDistrictIdAsync
             (int departmentId, int districtId)
