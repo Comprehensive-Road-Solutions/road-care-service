@@ -22,10 +22,8 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
         {
             token = string.Empty;
 
-            IEnumerable<string>? authzHeaders;
-
             if (!request.Headers.TryGetValues
-                ("Authorization", out authzHeaders) ||
+                ("Authorization", out IEnumerable<string>? authzHeaders) ||
                 authzHeaders.Count() > 1)
                 return false;
 
@@ -58,8 +56,6 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                     (Encoding.Default.GetBytes
                     (TokenConfiguration.SecretKey));
 
-                SecurityToken securityToken;
-
                 JwtSecurityTokenHandler tokenHandler = new();
 
                 TokenValidationParameters validationParameters = new()
@@ -76,7 +72,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                 };
 
                 Thread.CurrentPrincipal = tokenHandler.ValidateToken
-                    (token, validationParameters, out securityToken);
+                    (token, validationParameters, out SecurityToken securityToken);
 
                 if (securityToken is JwtSecurityToken jwtToken)
                     if (!jwtToken.Header.Alg.Equals(SecurityAlgorithms
