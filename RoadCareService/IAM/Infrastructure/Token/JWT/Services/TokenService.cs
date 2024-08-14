@@ -19,7 +19,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
         {
             SymmetricSecurityKey securityKey = new
                 (Encoding.ASCII.GetBytes
-                (TokenConfiguration.JWT_SECRET_KEY));
+                (TokenConfiguration.SecretKey));
 
             SigningCredentials credentials = new
                 (securityKey, SecurityAlgorithms.HmacSha256);
@@ -41,17 +41,17 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                 ECredentialRole.CIUDADANO.ToString())
                 claims =
                 [
-                    new Claim(ClaimTypes.Sid, (string)credential.Id),
-                    new Claim(ClaimTypes.Hash, (string)credential.Code),
-                    new Claim(ClaimTypes.Role, (string)credential.Role)
+                    new Claim(ClaimTypes.Sid, credential.Id),
+                    new Claim(ClaimTypes.Hash, credential.Code),
+                    new Claim(ClaimTypes.Role, credential.Role)
                 ];
 
             JwtSecurityToken token = new(
-                issuer: TokenConfiguration.JWT_ISSUER_TOKEN,
-                audience: TokenConfiguration.JWT_AUDIENCE_TOKEN,
+                issuer: TokenConfiguration.Issuer,
+                audience: TokenConfiguration.Audience,
                 claims: claims,
                 expires: DateTime.UtcNow
-                .AddMinutes(TokenConfiguration.JWT_EXPIRE_MINUTES),
+                .AddMinutes(TokenConfiguration.Expire),
                 signingCredentials: credentials
             );
 
@@ -67,7 +67,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
             {
                 var securityKey = new SymmetricSecurityKey
                     (Encoding.Default.GetBytes
-                    (TokenConfiguration.JWT_SECRET_KEY));
+                    (TokenConfiguration.SecretKey));
 
                 JwtSecurityTokenHandler tokenHandler = new();
 
@@ -77,8 +77,8 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = TokenConfiguration.JWT_ISSUER_TOKEN,
-                    ValidAudience = TokenConfiguration.JWT_AUDIENCE_TOKEN,
+                    ValidIssuer = TokenConfiguration.Issuer,
+                    ValidAudience = TokenConfiguration.Audience,
                     IssuerSigningKey = securityKey,
                     LifetimeValidator = LifetimeValidator,
                     ClockSkew = TimeSpan.Zero

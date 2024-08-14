@@ -56,7 +56,7 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
             {
                 var securityKey = new SymmetricSecurityKey
                     (Encoding.Default.GetBytes
-                    (TokenConfiguration.JWT_SECRET_KEY));
+                    (TokenConfiguration.SecretKey));
 
                 SecurityToken securityToken;
 
@@ -68,8 +68,8 @@ namespace RoadCareService.IAM.Infrastructure.Token.JWT.Services
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = TokenConfiguration.JWT_ISSUER_TOKEN,
-                    ValidAudience = TokenConfiguration.JWT_AUDIENCE_TOKEN,
+                    ValidIssuer = TokenConfiguration.Issuer,
+                    ValidAudience = TokenConfiguration.Audience,
                     IssuerSigningKey = securityKey,
                     LifetimeValidator = LifetimeValidator,
                     ClockSkew = TimeSpan.Zero

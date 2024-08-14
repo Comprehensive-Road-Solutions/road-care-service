@@ -112,12 +112,12 @@ builder.Services.AddHttpContextAccessor();
 
 #region JWT Configuration
 
-var jwtSettings = builder.Configuration.GetSection("JWT_SETTINGS");
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.Configure<JwtSettings>(jwtSettings);
 
-var secretKey = jwtSettings["JWT_SECRET_KEY"];
-var audience = jwtSettings["JWT_AUDIENCE_TOKEN"];
-var issuer = jwtSettings["JWT_ISSUER_TOKEN"];
+var secretKey = jwtSettings["SecretKey"];
+var audience = jwtSettings["Audience"];
+var issuer = jwtSettings["Issuer"];
 var securityKey = !string.IsNullOrEmpty(secretKey) ?
     new SymmetricSecurityKey
     (Encoding.Default.GetBytes(secretKey)) :
