@@ -1,4 +1,4 @@
-﻿namespace RoadCareService.Publishing.Domain.Model.ValueObjects
+﻿namespace RoadCareService.Publishing.Domain.Model.ValueObjects.Publication
 {
     public enum EPublicationState
     {

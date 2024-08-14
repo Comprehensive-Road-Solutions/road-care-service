@@ -55,7 +55,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
 
                 int districtId = credentials.DistrictId;
 
-                string newState = damagedInfrastructureState.ToString() ==
+                var newState = damagedInfrastructureState.ToString() ==
                     "ENPROCESO" ? "EN PROCESO" :
                     damagedInfrastructureState
                     .ToString();
@@ -72,7 +72,7 @@ namespace RoadCareService.Monitoring.Infrastructure.Persistence.EFC.Repositories
         public async Task<IEnumerable<DamagedInfrastructure>> FindByStateAsync
             (EDamagedInfrastructureState damagedInfrastructureState)
         {
-            string newState = damagedInfrastructureState.ToString() ==
+            var newState = damagedInfrastructureState.ToString() ==
                 "ENPROCESO" ? "EN PROCESO" :
                 damagedInfrastructureState
                 .ToString();

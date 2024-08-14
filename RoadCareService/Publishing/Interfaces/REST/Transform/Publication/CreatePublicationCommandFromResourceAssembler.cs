@@ -1,5 +1,5 @@
 ﻿using RoadCareService.Publishing.Domain.Model.Commands.Publication;
-using RoadCareService.Publishing.Domain.Model.ValueObjects;
+using RoadCareService.Publishing.Domain.Model.ValueObjects.Publication;
 using RoadCareService.Publishing.Interfaces.REST.Resources.Publication;
 
 namespace RoadCareService.Publishing.Interfaces.REST.Transform.Publication

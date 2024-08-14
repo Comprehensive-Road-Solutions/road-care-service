@@ -1,4 +1,4 @@
-﻿using RoadCareService.Publishing.Domain.Model.ValueObjects;
+﻿using RoadCareService.Publishing.Domain.Model.ValueObjects.Publication;
 
 namespace RoadCareService.Publishing.Domain.Model.Commands.Publication
 {

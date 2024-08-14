@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Aggregates;
-using RoadCareService.Publishing.Domain.Model.ValueObjects;
+using RoadCareService.Publishing.Domain.Model.ValueObjects.Publication;
 using RoadCareService.Publishing.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;

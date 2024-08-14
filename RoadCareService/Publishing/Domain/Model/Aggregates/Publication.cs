@@ -2,7 +2,7 @@
 using RoadCareService.Interaction.Domain.Model.Aggregates;
 using RoadCareService.Location.Domain.Model.Aggregates;
 using RoadCareService.Publishing.Domain.Model.Commands.Publication;
-using RoadCareService.Publishing.Domain.Model.ValueObjects;
+using RoadCareService.Publishing.Domain.Model.ValueObjects.Publication;
 
 namespace RoadCareService.Publishing.Domain.Model.Aggregates
 {
