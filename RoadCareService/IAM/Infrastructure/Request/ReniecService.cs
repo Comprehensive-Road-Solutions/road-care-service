@@ -15,7 +15,7 @@ namespace RoadCareService.IAM.Infrastructure.Request
 
             httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer",
-                configuration["HttpClient:Reniec"]);
+                configuration["HttpClientSettings:Reniec"]);
 
             var httpResponseMessage = await httpClient.GetAsync
                 ("https://dniruc.apisperu.com/api/v1/dni/" + dni);
