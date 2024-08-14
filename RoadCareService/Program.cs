@@ -36,6 +36,7 @@ using RoadCareService.Interaction.Application.Internal.CommandServices;
 using RoadCareService.Interaction.Application.Internal.QueryServices;
 using RoadCareService.Interaction.Infrastructure.Persistence.EFC.Repositories;
 using RoadCareService.Interaction.Domain.Repositories;
+using RoadCareService.Interaction.Domain.Services.Comment;
 using RoadCareService.Interaction.Infrastructure.Socket;
 
 using RoadCareService.Location.Application.Internal.QueryServices;
@@ -65,7 +66,6 @@ using RoadCareService.Publishing.Infrastructure.Persistence.EFC.Repositories;
 using RoadCareService.Shared.Domain.Repositories;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Configuration;
 using RoadCareService.Shared.Infrastructure.Persistence.EFC.Repositories;
-using RoadCareService.Interaction.Domain.Services.Comment;
 
 var builder = WebApplication.CreateBuilder(args);
 
